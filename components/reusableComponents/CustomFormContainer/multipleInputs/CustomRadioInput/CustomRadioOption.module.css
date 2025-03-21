@@ -1,0 +1,21 @@
+.customRadioOptionContainer {
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.625em;
+}
+
+.customRadioOptionContainer>input {
+  font-size: inherit;
+  height: 2em;
+  flex-basis: 2em;
+  flex-grow: 0;
+  margin: 0;
+}
+
+.customRadioOptionContainer>span {
+  flex-basis: 12.5em;
+  flex-grow: 1;
+}

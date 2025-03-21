@@ -1,0 +1,7 @@
+.customMultiDateInputContainer {
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+}

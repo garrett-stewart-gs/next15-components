@@ -1,0 +1,31 @@
+.customCalendarInputContainer {
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+}
+
+.customCalendarInputTitle {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.customCalendarInputBody {
+  display: flex;
+  justify-content: center;
+}
+
+.customCalendarInputBody>span {
+  flex-basis: 6.25em;
+  flex-shrink: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.inputErrorMessage {
+  min-height: 1em;
+  color: red;
+}

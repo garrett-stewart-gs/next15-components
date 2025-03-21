@@ -1,0 +1,10 @@
+.customForm {
+  margin-block: 40px 20px;
+}
+
+.customFormButtonsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+

@@ -1,0 +1,35 @@
+.customDigitInputContainer {
+  font-size: var(--ref-size);
+  min-width: 2.5em;
+  max-width: 2.5em;
+  aspect-ratio: 1;
+}
+
+.customDigitInputContainer>input {
+  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 0.375em;
+  box-shadow: 0 0 0.625rem grey;
+  border: none;
+  outline: none;
+  background-color: white;
+  transition: all linear 0.15s;
+}
+
+/* removes up/down buttons for number field increment/decrement on CHROME, SAFARI, EDGE, OPERA */
+.customDigitInputContainer>input::-webkit-outer-spin-button,
+.customDigitInputContainer>input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* removes up/down buttons for number field increment/decrement on FIREFOX */
+.customDigitInputContainer>input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.customDigitInputContainer>input:focus {
+  box-shadow: 0 0 0.875em black;
+}
