@@ -4,7 +4,8 @@ import Image from "next/image";
 
 import image from "@/public/icons/email-received-icon.svg";
 
-import MatrixCarouselWrapper from "@/components/reusableComponents/MatrixCarouselWrapper";
+import VerticalCarouselWrapper from "@/components/reusableComponents/VerticalCarouselWrapper";
+import HorizontalCarouselWrapper from "@/components/reusableComponents/HorizontalCarouselWrapper";
 
 const dummyArticle = {
   imageSrc: image,
@@ -12,34 +13,61 @@ const dummyArticle = {
   paragraph: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus cupiditate tenetur doloribus. Suscipit, consequatur dolorum. Ex velit voluptatibus recusandae temporibus! Autem facilis a inventore odio recusandae sapiente ipsum reprehenderit enim.",
 };
 
-const dummyColumn = [];
-const dummyRow = [];
+const dummyRows = [];
+const dummyColumns = [];
+
+for (let i = 0; i < 30; i++) {
+  dummyColumns.push(
+    {
+      key: `vertical column dummy article ${i + 1}`,
+      ...dummyArticle,
+    }
+  );
+  dummyRows.push(
+    dummyColumns
+  );
+
+}
+
 
 export default function MatrixPage() {
 
   return (
     <main
       style={{
-        width: "100%",
-        height: "100%",
+        width: "100vw",
+        height: "100vh",
         overflow: "hidden",
       }}
     >
 
-
-
-
-      <section
-        className={"matrixContainer"}
-      >
+      <VerticalCarouselWrapper itemsPerSection={2}>
         {
+          dummyRows.map( (row, rowIndex) => {
+            return (
 
+              <HorizontalCarouselWrapper itemsPerSection={4} loop={true}>
+                {
+                  row.map((columnElement, columnIndex) => {
+                    return (
 
-
-
+                      <div
+                        key={columnElement.key}
+                      >
+                        <Image src={columnElement.imageSrc} alt="w/e" ></Image>
+                        <h1>{columnElement.title}</h1>
+                        <p>{columnElement.paragraph}</p>
+                        <p>element #: {(rowIndex + 1) * columnIndex}</p>
+                      </div>
+                    )
+                  })
+                }
+              </HorizontalCarouselWrapper>
+              
+            )
+          })
         }
-      </section>
-
+      </VerticalCarouselWrapper>
     </main>
   );
 }

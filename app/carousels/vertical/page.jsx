@@ -1,11 +1,5 @@
-"use client";
-
-import Image from "next/image";
 
 import image from "@/public/icons/email-received-icon.svg";
-
-import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
-import { useVerticalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import VerticalCarouselWrapper from "@/components/reusableComponents/VerticalCarouselWrapper";
 
@@ -28,21 +22,6 @@ for (let i = 0; i < 25; i++) {
 
 export default function VerticalPage() {
 
-  const itemsPerSection = 5;
-
-  const {
-    activeIndex,
-    incrementActiveIndex,
-    decrementActiveIndex,
-    currentArrayLength: numberOfItems,
-  } = useActiveIndex(dummyArray.length);
-
-  const {
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
-  } = useVerticalSwipeTracker(() => decrementActiveIndex(true, itemsPerSection), () => incrementActiveIndex(true, itemsPerSection));
-
   return (
     <>
 
@@ -55,14 +34,8 @@ export default function VerticalPage() {
         // border: "1px solid black",
       }}>
 
-
         <VerticalCarouselWrapper
-          activeIndex={activeIndex}
-          numberOfItems={numberOfItems}
-          itemsPerSection={itemsPerSection}
-          handleTouchStart={handleTouchStart}
-          handleTouchMove={handleTouchMove}
-          handleTouchEnd={handleTouchEnd}
+          itemsPerSection={5}
         >
           {
 
@@ -87,8 +60,6 @@ export default function VerticalPage() {
 
           }
         </VerticalCarouselWrapper>
-
-
 
       </main>
 
