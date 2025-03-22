@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
@@ -28,7 +28,12 @@ const calculateHtmlProperties = (activeIndex, numberOfItems, itemsPerSection, tr
 // handleBack and handleNext pass current array information to parent, allowing you to give custom instructions to the carousel
 // (activeIndex is react state initialized in the carousel wrapper)
 // (numberOfItems is determined by number of children)
-export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, children }) {
+// you can provide an inner closure function that writes data to child state object, giving the carousel's parents access to control child state (ex. enable parents buttons to control child)
+export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
+
+  // useEffect(()=>{
+  //   if(provideStateSetterToParent) return provideStateSetterToParent();
+  // },[])
 
   // create array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
@@ -39,18 +44,16 @@ export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleB
     currentArrayLength: numberOfItems,
   } = useActiveIndex(childrenArr.length);
 
+  // if custom behavior provided (handleBack/handleNext), then append custom behavior to increment/decrement. 
+  // If not, simply increment/decrement
+  const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, itemsPerSection) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, itemsPerSection));
+  const customHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, itemsPerSection) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, itemsPerSection));
+
+  // if parent needs ability to increment/decrement carousel (child) state, run function that delivers state manipulator to parent. parent needs to store value in outer closure, while the callback is defined as the inner closure
+  if (sendChildStateMethods !== null) sendChildStateMethods(completeHandleBack, customHandleNext, activeIndex, numberOfItems);
+
   // enable swipe tracking and custom behavior when swipe occurs, USING SWIPE TRACKER HOOK
-  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useHorizontalSwipeTracker(
-    async () => handleBack === null ?
-      decrementActiveIndex(loop, itemsPerSection)
-      :
-      (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, itemsPerSection))
-    ,
-    async () => handleNext === null ?
-      incrementActiveIndex(loop, itemsPerSection)
-      :
-      (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, itemsPerSection))
-  );
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useHorizontalSwipeTracker(completeHandleBack, customHandleNext);
 
   const {
     carouselWidth,

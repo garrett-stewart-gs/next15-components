@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
 import { useCustomFormContext } from "../CustomFormContext";
-import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
-import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import HorizontalCarouselWrapper from "../../HorizontalCarouselWrapper";
 import CustomFormSection from "../FormSection";
@@ -20,7 +17,15 @@ const createFormActions = (
   setSubmissionResult, // from customFormContext state (manages form submission state/results)
 ) => {
 
-  
+  const childStateMethods = {
+    completeHandleBack: null,
+    completeHandleNext: null,
+  };
+
+  const retrieveChildMethods = (completeHandleBack, completeHandleNext) => {
+    childStateMethods.completeHandleBack = completeHandleBack;
+    childStateMethods.completeHandleNext = completeHandleNext;
+  };
 
   // get all form fields in current section (which are registered with react-hook-form)
   const activeSectionFields = (activeIndex) => {
@@ -42,7 +47,7 @@ const createFormActions = (
   // custom submission that appends custom submission action to default react-hook-form submission behavior
   const handleCustomSubmit = handleSubmit((data) => onCustomSubmit(data, setSubmissionResult)); // handle submit returns a function that can be called with handleCustomSubmit
 
-  const handleNext = async (activeIndex, numberOfItems) => {
+  const customHandleNext = async (activeIndex, numberOfItems) => {
     // if user is on final index / submission results page, don't try to validate and disable incrementing by returning false
     if (activeIndex === numberOfItems - 1) return false;
 
@@ -62,7 +67,7 @@ const createFormActions = (
 
   };
 
-  const handleBack = (activeIndex, numberOfItems) => {
+  const customHandleBack = (activeIndex, numberOfItems) => {
     // if user is on first form page or submission results page (index: numberOfItems - 1), disable decrementing by returning false value
     if (activeIndex === 0 || activeIndex === numberOfItems - 1) return false;
     // otherwise, clear the current section and allow decrementing by returning true value
@@ -71,8 +76,10 @@ const createFormActions = (
   };
 
   return {
-    handleBack, // custom instructions to carousel component. carousel component provides activeIndex State value
-    handleNext, // custom instructions to carousel component. carousel component provides activeIndex State value
+    childStateMethods,
+    retrieveChildMethods,
+    customHandleBack, // custom instructions to carousel component. carousel component provides activeIndex State value
+    customHandleNext, // custom instructions to carousel component. carousel component provides activeIndex State value
   };
 };
 
@@ -91,15 +98,21 @@ export default function CustomForm() {
   const activeSectionsArr = formConfigArr.filter(sectionObj => sectionObj.shouldRenderFn && sectionObj.shouldRenderFn());
 
   // extract callback functions to give custom instructs to carousel
-  const { handleBack, handleNext } = createFormActions(activeSectionsArr, handleSubmit, trigger, resetField, onCustomSubmit, setSubmissionResult);
+  const {
+    childStateMethods, // contains 2 methods: complete versions of handleBack and handleNext (they are composed of the child carousel's default handleNext/Back behavior + customHandleNext/Back behavior)
+    retrieveChildMethods, // allows child to update childStateMethods on mount (childStateMethods need to be applied to parent elements so they can control child state)
+    customHandleBack, // parent instructions for appending custom handleNext/Back behavior to the carousel's default handleNext/Back behavior
+    customHandleNext // parent instructions for appending custom handleNext/Back behavior to the carousel's default handleNext/Back behavior
+  } = createFormActions(activeSectionsArr, handleSubmit, trigger, resetField, onCustomSubmit, setSubmissionResult);
 
 
   return (
     <form className={styles.customForm}>
 
       <HorizontalCarouselWrapper
-        handleBack={handleBack} // provides custom behavior when decrementing (including clearing current section fields before decrement)
-        handleNext={handleNext} // provides custom behavior when incrementing (including validating current section fields before increment)
+        handleBack={customHandleBack} // provides custom behavior when decrementing (including clearing current section fields before decrement)
+        handleNext={customHandleNext} // provides custom behavior when incrementing (including validating current section fields before increment)
+        sendChildStateMethods={retrieveChildMethods}
       >
         {
 
@@ -108,20 +121,11 @@ export default function CustomForm() {
         }
         <FormSubmissionResultsSection />
       </HorizontalCarouselWrapper>
-
-      {/* <div className={styles.customFormButtonsContainer}>
-        { // if active index not referencing the last section (form submission message) and is not referencing the first elment (first page of form), show back button
-          (activeIndex !== numberOfItems - 1 && activeIndex !== 0) && <button type="button" onClick={handleBack}>Back</button>
-        }
-
-        { // if active index is referencing an element BEFORE the 2nd last element (last page of form), show next button
-          (activeIndex < numberOfItems - 2) && <button type="button" onClick={handleNext}>Next</button>
-        }
-
-        { // if active index is referencing the 2nd last element (last page of form), show submit button (instead of next button)
-          (activeIndex === numberOfItems - 2 && activeIndex > 0 && numberOfItems > 1) && <button type="button" onClick={handleNext} >Submit</button>
-        }
-      </div> */}
+      
+      <div className={styles.customFormButtonsContainer}>
+        <button type="button" onClick={() => childStateMethods.completeHandleBack()}>Back</button>
+        <button type="button" onClick={() => childStateMethods.completeHandleNext()}>Next</button>
+      </div>
 
     </form>
   );
