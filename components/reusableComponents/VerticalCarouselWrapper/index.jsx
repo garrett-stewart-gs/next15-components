@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 
+import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
+import { useVerticalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
+
 import styles from "./VerticalCarouselWrapper.module.css";
 
 const calculateHtmlProperties = (activeIndex, numberOfItems, itemsPerSection, transitionSpeed) => {
@@ -20,7 +23,33 @@ const calculateHtmlProperties = (activeIndex, numberOfItems, itemsPerSection, tr
 
 };
 
-export default function VerticalCarouselWrapper({ activeIndex, numberOfItems, itemsPerSection = 1, handleTouchStart, handleTouchMove, handleTouchEnd, transitionSpeed = 0.15, children }) {
+
+// handleBack and handleNext essentially pass current array information to parent, allowing you to give custom instructions to the carousel
+// (activeIndex is react state initialized in the carousel wrapper)
+// (numberOfItems is determined by number of children)
+export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, children }) {
+
+  // create array state tracking based on number of children
+  const childrenArr = React.Children.toArray(children);
+  const {
+    activeIndex,
+    incrementActiveIndex,
+    decrementActiveIndex,
+    currentArrayLength: numberOfItems,
+  } = useActiveIndex(childrenArr.length);
+
+  // enable swipe tracking and custom behavior when swipe occurs, USING SWIPE TRACKER HOOK
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useVerticalSwipeTracker( // takes 2 functions as arguements (these are instructions for the swipe tracker when the user )
+    async () => handleBack === null ?
+      decrementActiveIndex(loop, itemsPerSection)
+      :
+      (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, itemsPerSection))
+    ,
+    async () => handleNext === null ?
+      incrementActiveIndex(loop, itemsPerSection)
+      :
+      (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, itemsPerSection))
+  );
 
   const {
     carouselHeight,
@@ -57,7 +86,7 @@ export default function VerticalCarouselWrapper({ activeIndex, numberOfItems, it
                   ${styles.yCarouselElement}
                   ${siblingNumber >= 0 && siblingNumber < itemsPerSection ? styles.active : ""}
                 `}
-                style={{height: `${itemHeight}%`, }}
+                style={{ height: `${itemHeight}%`, }}
               >
                 {child}
               </div>

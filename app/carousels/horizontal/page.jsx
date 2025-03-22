@@ -1,11 +1,7 @@
-"use client";
 
 import Image from "next/image";
 
 import image from "@/public/icons/email-received-icon.svg";
-
-import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
-import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import HorizontalCarouselWrapper from "@/components/reusableComponents/HorizontalCarouselWrapper";
 
@@ -28,21 +24,6 @@ for (let i = 0; i < 21; i++) {
 
 export default function HorizontalPage() {
 
-  const itemsPerSection = 5;
-
-  const {
-    activeIndex,
-    incrementActiveIndex,
-    decrementActiveIndex,
-    currentArrayLength: numberOfItems,
-  } = useActiveIndex(dummyArray.length);
-
-  const {
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
-  } = useHorizontalSwipeTracker(() => decrementActiveIndex(true, itemsPerSection), () => incrementActiveIndex(true, itemsPerSection));
-
   return (
     <main style={{
       minHeight: "40em",
@@ -51,14 +32,10 @@ export default function HorizontalPage() {
       flexDirection: "column",
     }}>
 
-      <h1>ActiveIndex: {activeIndex}</h1>
+      {/* <h1>ActiveIndex: {activeIndex}</h1> */}
       <HorizontalCarouselWrapper
-        activeIndex={activeIndex}
-        numberOfItems={numberOfItems}
-        itemsPerSection={itemsPerSection}
-        handleTouchStart={handleTouchStart}
-        handleTouchMove={handleTouchMove}
-        handleTouchEnd={handleTouchEnd}
+        itemsPerSection={5}
+        loop={true}
       >
         {
 
