@@ -1,0 +1,7 @@
+.pageSectionWrapper {
+  flex-direction: column;
+}
+
+.pageSectionWrapper>div {
+  min-width: 10em;
+}

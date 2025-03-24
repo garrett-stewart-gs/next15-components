@@ -1,11 +1,11 @@
-"use client";
+
 import React from "react";
 import Image from "next/image";
 
 import image from "@/public/icons/email-received-icon.svg";
 
-import VerticalCarouselWrapper from "@/components/reusableComponents/VerticalCarouselWrapper";
-import HorizontalCarouselWrapper from "@/components/reusableComponents/HorizontalCarouselWrapper";
+import VerticalCarouselWrapper from "@/components/scaffoldingComponents/VerticalCarouselWrapper";
+import HorizontalCarouselWrapper from "@/components/scaffoldingComponents/HorizontalCarouselWrapper";
 
 const dummyArticle = {
   imageSrc: image,
@@ -29,9 +29,9 @@ for (let i = 0; i < 30; i++) {
 
 }
 
-
 export default function MatrixPage() {
-
+  
+  
   return (
     <main
       style={{

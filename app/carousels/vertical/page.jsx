@@ -1,7 +1,7 @@
 
 import image from "@/public/icons/email-received-icon.svg";
 
-import VerticalCarouselWrapper from "@/components/reusableComponents/VerticalCarouselWrapper";
+import VerticalCarouselWrapper from "@/components/scaffoldingComponents/VerticalCarouselWrapper";
 
 const dummyArticle = {
   imageSrc: image,

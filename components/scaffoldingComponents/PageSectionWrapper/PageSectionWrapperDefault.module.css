@@ -1,0 +1,11 @@
+.pageSectionWrapper {
+  width: 100%;
+  max-width: var(--doc-width);
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25em;
+  gap: 1.25em;
+}
+

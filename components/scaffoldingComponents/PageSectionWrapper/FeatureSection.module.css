@@ -1,0 +1,30 @@
+.pageSectionWrapper {
+  row-gap: 0;
+}
+
+.pageSectionWrapper:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.pageSectionWrapper:nth-child(odd) {
+  flex-direction: row;
+}
+
+.textStyleWrapper {
+  flex: 1 0 20em;
+}
+
+.imageWrapper {
+  flex: 1 0 25em;
+  max-width: 30em;
+  aspect-ratio: 7 / 4;
+  box-shadow: 0 0 0.625em var(--primary-shade);
+  border-radius: 1.25em;
+}
+
+
+@media (max-width: 50rem) {
+  .pageSectionWrapper {
+    flex-wrap: wrap;
+  }
+}

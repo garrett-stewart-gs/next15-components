@@ -2,7 +2,7 @@
 
 import { useCustomFormContext } from "../CustomFormContext";
 
-import HorizontalCarouselWrapper from "../../HorizontalCarouselWrapper";
+import HorizontalCarouselWrapper from "../../../scaffoldingComponents/HorizontalCarouselWrapper";
 import CustomFormSection from "../FormSection";
 import FormSubmissionResultsSection from "../FormSubmissionResultsSection";
 

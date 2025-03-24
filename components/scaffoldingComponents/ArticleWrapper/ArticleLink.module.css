@@ -1,0 +1,21 @@
+
+.articleWrapper {
+  width: 15em;
+  margin: 0.625em auto;
+  border: 0.0625em solid var(--secondary-shade);
+}
+
+.articleWrapper>a {
+  text-decoration: none;
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 7 / 4;
+}
+
+.textStyleWrapper {
+  padding: 0.625em;
+  width: 100%;
+  margin-top: 0.625em
+}

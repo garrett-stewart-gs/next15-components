@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import image from "@/public/icons/email-received-icon.svg";
 
-import HorizontalCarouselWrapper from "@/components/reusableComponents/HorizontalCarouselWrapper";
+import HorizontalCarouselWrapper from "@/components/scaffoldingComponents/HorizontalCarouselWrapper";
 
 const dummyArticle = {
   imageSrc: image,

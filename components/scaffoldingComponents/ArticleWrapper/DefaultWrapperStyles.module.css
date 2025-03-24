@@ -1,0 +1,6 @@
+.articleWrapper {
+  font-size: var(--ref-size);
+  display: flex;
+  flex-direction: column;
+  
+}

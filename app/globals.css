@@ -9,26 +9,32 @@
   /* NOTE: target container/parent elements, and apply font-size: var(--ref-size); */
   /* global media query break points set below, using --ref-size */
   --ref-size: var(--base-size);
+  --doc-width: 100em;
 
   /* good for applying to text for consistent sizing */
   --h1-size: 3em;
-  --h2-size: 2.5em;
-  --h3-size: 2em;
-  --h4-size: 1.75em;
-  --h5-size: 1.5em;
-  --h6-size: 1.25em;
+  --h2-size: 2.6em;
+  --h3-size: 2.2em;
+  --h4-size: 1.9em;
+  --h5-size: 1.6em;
+  --h6-size: 1.3em;
+  --p-size: 1em;
+
+  --bold-weight: 500;
+  --avg-weight: 400;
+  --light-weight: 300;
 
   /* good for anything */
-  --primary-color: blue;
-  --secondary-color: blue;
-  --tertiary-color: green;
+  --primary-color: #10069f;
+  --secondary-color: #ebf6ff;
+  --tertiary-color: #f5f5f5;
   --quaternary-color: magenta;
   --quinary-color: saddlebrown;
 
   /* good for backgrounds and fonts */
-  --primary-shade: black;
+  --primary-shade: #050403;
   --secondary-shade: lightgrey;
-  --tertiary-shade: white;
+  --tertiary-shade: white; 
   --quaternary-shade: purple;
   --quinary-shade: brown;
 }
