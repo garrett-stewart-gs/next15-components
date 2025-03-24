@@ -34,7 +34,7 @@ export default function HorizontalPage() {
 
       {/* <h1>ActiveIndex: {activeIndex}</h1> */}
       <HorizontalCarouselWrapper
-        itemsPerSection={5}
+        incrementAmount={5}
         loop={true}
       >
         {

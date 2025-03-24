@@ -41,12 +41,12 @@ export default function MatrixPage() {
       }}
     >
 
-      <VerticalCarouselWrapper itemsPerSection={2}>
+      <VerticalCarouselWrapper incrementAmount={2}>
         {
           dummyRows.map( (row, rowIndex) => {
             return (
 
-              <HorizontalCarouselWrapper itemsPerSection={4} loop={true}>
+              <HorizontalCarouselWrapper incrementAmount={4} loop={true}>
                 {
                   row.map((columnElement, columnIndex) => {
                     return (

@@ -36,23 +36,26 @@ export default function FormSubmissionResultsSection() {
   }, [isSubmissionServerActionComplete]);
 
   return (
-    <section
-      className={styles.formSubmissionResultsSection}
-      style={{ width: "100%" }}
-    >
+    <section className={styles.formSectionContainer}>
 
-      {
-        isLoading && <SubmissionResultsInfo submissionResultsInfo={submissionLoadingInfo} isLoading={isLoading} />
-      }
+      <section
+        className={styles.formSubmissionResultsSection}
+        style={{ width: "100%" }}
+      >
 
-      {
-        !isLoading && isSubmissionServerActionComplete === true && <SubmissionResultsInfo submissionResultsInfo={submissionSuccessInfo} />
-      }
+        {
+          isLoading && <SubmissionResultsInfo submissionResultsInfo={submissionLoadingInfo} isLoading={isLoading} />
+        }
 
-      {
-        !isLoading && isSubmissionServerActionComplete === false && <SubmissionResultsInfo submissionResultsInfo={submissionFailureInfo} />
-      }
+        {
+          !isLoading && isSubmissionServerActionComplete === true && <SubmissionResultsInfo submissionResultsInfo={submissionSuccessInfo} />
+        }
 
+        {
+          !isLoading && isSubmissionServerActionComplete === false && <SubmissionResultsInfo submissionResultsInfo={submissionFailureInfo} />
+        }
+
+      </section>
     </section>
   );
 }

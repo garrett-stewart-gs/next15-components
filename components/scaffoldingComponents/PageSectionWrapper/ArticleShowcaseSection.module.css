@@ -1,7 +1,8 @@
 .pageSectionWrapper {
   flex-direction: column;
+  align-items: center;
 }
 
-.pageSectionWrapper>div {
-  min-width: 10em;
+.pageSectionWrapper>.carouselContainer {
+  width: 100%;
 }

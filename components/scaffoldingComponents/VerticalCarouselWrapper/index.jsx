@@ -6,12 +6,12 @@ import { useVerticalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import styles from "./VerticalCarouselWrapper.module.css";
 
-const calculateHtmlProperties = (activeIndex, numberOfItems, itemsPerSection, transitionSpeed) => {
+const calculateHtmlProperties = (activeIndex, numberOfItems, incrementAmount, transitionSpeed) => {
   const viewportHeight = 100;
-  const carouselHeight = viewportHeight * numberOfItems / itemsPerSection;
+  const carouselHeight = viewportHeight * numberOfItems / incrementAmount;
   const itemHeight = viewportHeight / numberOfItems;
   const translatePercentage = -activeIndex * itemHeight;
-  const animationTime = transitionSpeed * itemsPerSection;
+  const animationTime = transitionSpeed * incrementAmount;
 
   return {
     viewportHeight,
@@ -60,7 +60,7 @@ const createVerticalScrollListener = (completeHandleBack, completeHandleNext) =>
 // handleBack and handleNext essentially pass current array information to parent, allowing you to give custom instructions to the carousel
 // (activeIndex is react state initialized in the carousel wrapper)
 // (numberOfItems is determined by number of children)
-export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
+export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
 
   
   // create array state tracking based on number of children
@@ -74,8 +74,8 @@ export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBac
   
   // if custom behavior provided (handleBack/handleNext), then append custom behavior to increment/decrement. 
   // If not, simply increment/decrement
-  const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, itemsPerSection) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, itemsPerSection));
-  const completeHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, itemsPerSection) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, itemsPerSection));
+  const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, incrementAmount) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, incrementAmount));
+  const completeHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, incrementAmount) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, incrementAmount));
   
   // if parent needs ability to increment/decrement carousel (child) state, run function that delivers state manipulator to parent. parent needs to store value in outer closure, while the callback is defined as the inner closure
   if (sendChildStateMethods !== null) sendChildStateMethods(completeHandleBack, completeHandleNext);
@@ -91,7 +91,7 @@ export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBac
     itemHeight,
     translatePercentage,
     animationTime
-  } = calculateHtmlProperties(activeIndex, numberOfItems, itemsPerSection, transitionSpeed);
+  } = calculateHtmlProperties(activeIndex, numberOfItems, incrementAmount, transitionSpeed);
 
   return (
     <main // carousel viewport
@@ -100,8 +100,6 @@ export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBac
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      style={{
-      }}
     >
       <div // carousel (overflows the viewport)
         className={styles.yCarousel}
@@ -120,7 +118,7 @@ export default function VerticalCarouselWrapper({ itemsPerSection = 1, handleBac
                 key={`vertical carousel element ${childIndex}`}
                 className={`
                   ${styles.yCarouselElement}
-                  ${siblingNumber >= 0 && siblingNumber < itemsPerSection ? styles.active : ""}
+                  ${siblingNumber >= 0 && siblingNumber < incrementAmount ? styles.active : ""}
                 `}
                 style={{ height: `${itemHeight}%`, }}
               >

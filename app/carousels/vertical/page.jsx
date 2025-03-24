@@ -35,7 +35,7 @@ export default function VerticalPage() {
       }}>
 
         <VerticalCarouselWrapper
-          itemsPerSection={5}
+          incrementAmount={5}
         >
           {
 

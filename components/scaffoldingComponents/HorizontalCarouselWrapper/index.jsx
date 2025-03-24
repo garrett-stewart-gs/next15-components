@@ -6,24 +6,6 @@ import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import styles from "./HorizontalCarouselWrapper.module.css";
 
-
-const calculateHtmlProperties = (activeIndex, numberOfItems, itemsPerSection, transitionSpeed) => {
-  const viewportWidth = 100;
-  const carouselWidth = viewportWidth * numberOfItems / itemsPerSection;
-  const itemWidth = viewportWidth / numberOfItems;
-  const translatePercentage = -activeIndex * itemWidth;
-  const animationTime = transitionSpeed * itemsPerSection;
-
-  return {
-    viewportWidth,
-    carouselWidth,
-    itemWidth,
-    translatePercentage,
-    animationTime,
-  };
-
-};
-
 const useHorizontalScrollListener = (completeHandleBack, completeHandleNext) => {
   const viewportRef = useRef(null);
   const lastScrollTimeRef = useRef(0);
@@ -60,9 +42,9 @@ const useHorizontalScrollListener = (completeHandleBack, completeHandleNext) => 
 // (activeIndex is react state initialized in the carousel wrapper)
 // (numberOfItems is determined by number of children)
 // you can provide an inner closure function that writes data to child state object, giving the carousel's parents access to control child state (ex. enable parents buttons to control child)
-export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
+export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
 
-  
+
   // use array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
   const {
@@ -71,27 +53,24 @@ export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleB
     decrementActiveIndex,
     currentArrayLength: numberOfItems,
   } = useActiveIndex(childrenArr.length);
-  
+
   // if custom behavior provided (handleBack/handleNext), then append custom behavior to increment/decrement. 
   // If not, simply increment/decrement
-  const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, itemsPerSection) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, itemsPerSection));
-  const completeHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, itemsPerSection) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, itemsPerSection));
-  
+  const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, incrementAmount) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, incrementAmount));
+  const completeHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, incrementAmount) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, incrementAmount));
+
   // if parent needs ability to increment/decrement carousel (child) state, run function that delivers state manipulator to parent. parent needs to store value in outer closure, while the callback is defined as the inner closure
   if (sendChildStateMethods !== null) sendChildStateMethods(completeHandleBack, completeHandleNext);
-  
+
   // enable swipe tracking and custom behavior when swipe occurs, USING SWIPE TRACKER HOOK
   const { handleTouchStart, handleTouchMove, handleTouchEnd } = useHorizontalSwipeTracker(completeHandleBack, completeHandleNext);
-  
+
   // enable shift+scroll behavior USING SCROLL LISTENER HOOK
   const viewportRef = useHorizontalScrollListener(completeHandleBack, completeHandleNext);
 
-  const {
-    carouselWidth,
-    itemWidth,
-    translatePercentage,
-    animationTime
-  } = calculateHtmlProperties(activeIndex, numberOfItems, itemsPerSection, transitionSpeed);
+
+  const translatePerItem = -100 / numberOfItems;
+  const animationTime = transitionSpeed * incrementAmount;
 
   return (
     <main // carousel viewport
@@ -104,8 +83,7 @@ export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleB
       <div // carousel (overflows the viewport)
         className={styles.xCarousel}
         style={{
-          width: `${carouselWidth}%`,
-          transform: `translateX(${translatePercentage}%)`,
+          transform: `translateX(${activeIndex * translatePerItem}%)`,
           transition: `transform ${animationTime}s ease-out`,
         }}
       >
@@ -117,9 +95,8 @@ export default function HorizontalCarouselWrapper({ itemsPerSection = 1, handleB
                 key={`horizontal carousel element ${childIndex}`}
                 className={`
                   ${styles.xCarouselElement}
-                  ${siblingNumber >= 0 && siblingNumber < itemsPerSection ? styles.active : ""}
+                  ${siblingNumber >= 0 && siblingNumber < incrementAmount ? styles.active : ""}
                 `}
-                style={{ flex: `0 0 ${itemWidth}%` }}
               >
                 {child}
               </div>

@@ -23,7 +23,43 @@ const articleObjArr = [
     p: "Find the answers to all your questions, even the ones you didn't know you had!",
     imageSrc: image2,
     link: "/",
-  }
+  },
+  {
+    h6: "Our Portfolio",
+    p: "Browse our gallery and read more about what our clients think.",
+    imageSrc: image,
+    link: "/",
+  },
+  {
+    h6: "FAQs",
+    p: "Find the answers to all your questions, even the ones you didn't know you had!",
+    imageSrc: image2,
+    link: "/",
+  },
+  {
+    h6: "Our Portfolio",
+    p: "Browse our gallery and read more about what our clients think.",
+    imageSrc: image,
+    link: "/",
+  },
+  {
+    h6: "FAQs",
+    p: "Find the answers to all your questions, even the ones you didn't know you had!",
+    imageSrc: image2,
+    link: "/",
+  },
+  {
+    h6: "Our Portfolio",
+    p: "Browse our gallery and read more about what our clients think.",
+    imageSrc: image,
+    link: "/",
+  },
+  {
+    h6: "FAQs",
+    p: "Find the answers to all your questions, even the ones you didn't know you had!",
+    imageSrc: image2,
+    link: "/",
+  },
 ];
 
 export default function ArticleShowcaseSection() {
@@ -36,9 +72,8 @@ export default function ArticleShowcaseSection() {
         <h4>Learn Everything You Need To Make Your Event Great!</h4>
       </TextStyleWrapper>
 
-      <div>
-
-        <HorizontalCarouselWrapper itemsPerSection={2} >
+      <div className={styles.carouselContainer}>
+        <HorizontalCarouselWrapper incrementAmount={1} >
           {
             articleObjArr.map((articleObj, index) => <ArticleLink key={`Home Page Article ${index}`} articleObj={articleObj} />)
           }

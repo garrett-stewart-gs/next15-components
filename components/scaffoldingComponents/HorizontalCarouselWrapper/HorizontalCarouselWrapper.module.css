@@ -5,6 +5,7 @@
 }
 
 .xCarousel {
+  width: fit-content;
   height: fit-content;
   display: flex;
   justify-content: flex-start;

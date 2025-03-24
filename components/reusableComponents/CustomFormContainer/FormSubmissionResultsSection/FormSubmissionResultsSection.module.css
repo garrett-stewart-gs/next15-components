@@ -1,15 +1,26 @@
+
+
+.formSectionContainer {
+  font-size: var(--ref-size);
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+}
+
 .formSubmissionResultsSection {
+
   max-width: fit-content;
   flex-basis: 90%;
   flex-shrink: 1;
+
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
-  margin-block: 20px;
-  gap: 20px;
+  padding: 1.875em;
+  margin: 1.25em;
+  gap: 1.25em;
   background-color: white;
-  box-shadow: 0 0 10px var(--box-shadow-color);
+  box-shadow: 0 0 0.625em var(--primary-shade);
   border-radius: var(--border-radius-small);
 }
-
