@@ -68,7 +68,6 @@ export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleB
   // enable shift+scroll behavior USING SCROLL LISTENER HOOK
   const viewportRef = useHorizontalScrollListener(completeHandleBack, completeHandleNext);
 
-
   const translatePerItem = -100 / numberOfItems;
   const animationTime = transitionSpeed * incrementAmount;
 

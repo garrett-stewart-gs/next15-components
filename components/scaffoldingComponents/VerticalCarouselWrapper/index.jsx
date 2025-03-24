@@ -6,23 +6,6 @@ import { useVerticalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 
 import styles from "./VerticalCarouselWrapper.module.css";
 
-const calculateHtmlProperties = (activeIndex, numberOfItems, incrementAmount, transitionSpeed) => {
-  const viewportHeight = 100;
-  const carouselHeight = viewportHeight * numberOfItems / incrementAmount;
-  const itemHeight = viewportHeight / numberOfItems;
-  const translatePercentage = -activeIndex * itemHeight;
-  const animationTime = transitionSpeed * incrementAmount;
-
-  return {
-    viewportHeight,
-    carouselHeight,
-    itemHeight,
-    translatePercentage,
-    animationTime,
-  };
-
-};
-
 const createVerticalScrollListener = (completeHandleBack, completeHandleNext) => {
   const viewportRef = useRef(null);
   const lastScrollTimeRef = useRef(0);
@@ -86,12 +69,8 @@ export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBac
   // enable shift+scroll behavior USING SCROLL LISTENER HOOK
   const viewportRef = createVerticalScrollListener(completeHandleBack, completeHandleNext); // creates scroll listener and returns useRef object
 
-  const {
-    carouselHeight,
-    itemHeight,
-    translatePercentage,
-    animationTime
-  } = calculateHtmlProperties(activeIndex, numberOfItems, incrementAmount, transitionSpeed);
+  const translateAmount = -100 / numberOfItems;
+  const animationTime = transitionSpeed * incrementAmount;
 
   return (
     <main // carousel viewport
@@ -104,8 +83,8 @@ export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBac
       <div // carousel (overflows the viewport)
         className={styles.yCarousel}
         style={{
-          height: `${carouselHeight}%`,
-          transform: `translateY(${translatePercentage}%)`,
+          // height: `${carouselHeight}%`,
+          transform: `translateY(${activeIndex * translateAmount}%)`,
           transition: `transform ${animationTime}s ease-out`,
         }}
       >
@@ -120,7 +99,7 @@ export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBac
                   ${styles.yCarouselElement}
                   ${siblingNumber >= 0 && siblingNumber < incrementAmount ? styles.active : ""}
                 `}
-                style={{ height: `${itemHeight}%`, }}
+                // style={{ height: `${itemHeight}%`, }}
               >
                 {child}
               </div>

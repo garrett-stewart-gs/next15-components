@@ -35,17 +35,17 @@ export default function VerticalPage() {
       }}>
 
         <VerticalCarouselWrapper
-          incrementAmount={5}
+          incrementAmount={2}
         >
           {
 
             dummyArray.map((article, index) => {
               return (
-                <article key={article.key}>
+                <article key={article.key} style={{width: "100%"}}>
                   <div
                     style={{
-                      flex: "1 0 5em",
-                      aspectRatio: "1",
+                      width: "100%",
+                      aspectRatio: "1 / 2",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
