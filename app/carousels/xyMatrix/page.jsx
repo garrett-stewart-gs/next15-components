@@ -29,7 +29,7 @@ for (let i = 0; i < 30; i++) {
 
 }
 
-export default function MatrixPage() {
+export default function XyMatrixPage() {
   
   
   return (
@@ -41,12 +41,12 @@ export default function MatrixPage() {
       }}
     >
 
-      <VerticalCarouselWrapper incrementAmount={1}>
+      <HorizontalCarouselWrapper incrementAmount={1}>
         {
           dummyRows.map( (row, rowIndex) => {
             return (
 
-              <HorizontalCarouselWrapper incrementAmount={4} loop={true}>
+              <VerticalCarouselWrapper incrementAmount={2} loop={true}>
                 {
                   row.map((columnElement, columnIndex) => {
                     return (
@@ -63,12 +63,12 @@ export default function MatrixPage() {
                     )
                   })
                 }
-              </HorizontalCarouselWrapper>
+              </VerticalCarouselWrapper>
               
             )
           })
         }
-      </VerticalCarouselWrapper>
+      </HorizontalCarouselWrapper>
     </main>
   );
 }

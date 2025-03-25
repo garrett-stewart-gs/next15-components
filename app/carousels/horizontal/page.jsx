@@ -34,14 +34,20 @@ export default function HorizontalPage() {
 
       {/* <h1>ActiveIndex: {activeIndex}</h1> */}
       <HorizontalCarouselWrapper
-        incrementAmount={4}
+        incrementAmount={2}
         loop={true}
       >
         {
 
           dummyArray.map((article, index) => {
             return (
-              <article key={article.key} style={{width: "30em"}}>
+              <article
+                key={article.key}
+                style={{
+                  width: "30em",
+                  minHeight: `${index === 8 ? "30em" : "50px"}`,
+                }}
+              >
                 <Image src={article.imageSrc} alt="w/e" ></Image>
                 <h1>{article.title}</h1>
                 <p>{article.paragraph}</p>

@@ -36,6 +36,9 @@ export function useVerticalScrollTracker(handleScrollNegative, handleScrollPosit
   const timeOfLastScroll = useRef(0);
 
   const handleVerticalScroll = (e) => {
+    console.log('scrolling vertical')
+    // ignore scroll events where shift key is pressed
+    if (e.shiftKey) return;
 
     // get exact time
     const now = Date.now();

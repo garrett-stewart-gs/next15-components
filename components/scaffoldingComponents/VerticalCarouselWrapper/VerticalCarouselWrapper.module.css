@@ -1,8 +1,8 @@
 .yCarouselViewport {
+  max-height: 100dvh;
   height: 100%;
   width: 100%;
   overflow: hidden;
-  border: 1px solid black;
 }
 
 .yCarousel {
@@ -16,9 +16,17 @@
 
 .yCarouselElement {
   width: 100%;
-  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
+  transition: opacity ease-in-out 0.30s;
+}
+
+.yCarouselElement:not(.active) {
+  opacity: 0;
+}
+
+.yCarouselElement.active {
+  opacity: 1;
 }
