@@ -5,12 +5,13 @@
   --base-size: 1rem;
   --down1-size: 0.75rem;
   --down2-size: 0.625rem;
-
+  
   /* NOTE: target container/parent elements, and apply font-size: var(--ref-size); */
   /* global media query break points set below, using --ref-size */
   --ref-size: var(--base-size);
   --doc-width: 100em;
-
+  
+  
   /* good for applying to text for consistent sizing */
   --h1-size: 3em;
   --h2-size: 2.6em;

@@ -3,39 +3,70 @@ import React, { useEffect, useRef } from "react";
 
 import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
+import { useHorizontalScrollTracker } from "@/utils/hooks/useScrollTrackers";
+import { useHorizontalCarouselSlider } from "@/utils/hooks/useCarouselTransitions";
 
 import styles from "./HorizontalCarouselWrapper.module.css";
 
-const useHorizontalScrollListener = (completeHandleBack, completeHandleNext) => {
-  const viewportRef = useRef(null);
-  const lastScrollTimeRef = useRef(0);
-  const throttleDelay = 300; // milliseconds
+// const checkInputDelay = (throttleDelay,) => {
+//   const lastInputTimeRef = useRef(0);
+//   const now = Date.now();
 
-  useEffect(() => {
-    const container = viewportRef.current;
-    if (!container) return;
+//   if ( now - lastInputTimeRef.current < throttleDelay) {
+//     return false;
+//   }
 
-    const handleWheel = (event) => {
-      if (event.shiftKey) {
-        event.preventDefault(); // Prevent default vertical scroll
-        const now = Date.now();
-        if (now - lastScrollTimeRef.current > throttleDelay) {
-          if (event.deltaY < 0) {
-            completeHandleBack();
-          } else {
-            completeHandleNext();
-          }
-          lastScrollTimeRef.current = now;
-        }
-      }
-    };
+//   lastInputTimeRef.current = now;
+//   return true;
+// };
 
-    container.addEventListener("wheel", handleWheel);
-    return () => container.removeEventListener("wheel", handleWheel);
-  }, [completeHandleBack, completeHandleNext]);
+// const handleWheel = (e) => {
+//   if (e.shiftKey) { // only listen for shift + scroll
+//     e.preventDefault(); // Prevent default vertical scroll
 
-  return viewportRef;
-};
+//     const now = Date.now();
+//     if (now - lastScrollTimeRef.current > throttleDelay) {
+//       if (e.deltaY < 0) {
+//         completeHandleBack();
+//       } else {
+//         completeHandleNext();
+//       } 
+//       lastScrollTimeRef.current = now;
+//     }
+//   }
+
+// };
+
+// const useHorizontalScrollListener = (completeHandleBack, completeHandleNext) => {
+//   const viewportRef = useRef(null);
+//   const lastScrollTimeRef = useRef(0);
+//   const throttleDelay = 300; // milliseconds
+
+//   useEffect(() => {
+//     const container = viewportRef.current;
+//     if (!container) return;
+
+//     const handleWheel = (event) => {
+//       if (event.shiftKey) {
+//         event.preventDefault(); // Prevent default vertical scroll
+//         const now = Date.now();
+//         if (now - lastScrollTimeRef.current > throttleDelay) {
+//           if (event.deltaY < 0) {
+//             completeHandleBack();
+//           } else {
+//             completeHandleNext();
+//           }
+//           lastScrollTimeRef.current = now;
+//         }
+//       }
+//     };
+
+//     container.addEventListener("wheel", handleWheel);
+//     return () => container.removeEventListener("wheel", handleWheel);
+//   }, [completeHandleBack, completeHandleNext]);
+
+//   return viewportRef;
+// };
 
 
 // handleBack and handleNext pass current array information to parent, allowing you to give custom instructions to the carousel
@@ -43,7 +74,6 @@ const useHorizontalScrollListener = (completeHandleBack, completeHandleNext) => 
 // (numberOfItems is determined by number of children)
 // you can provide an inner closure function that writes data to child state object, giving the carousel's parents access to control child state (ex. enable parents buttons to control child)
 export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
-
 
   // use array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
@@ -66,10 +96,9 @@ export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleB
   const { handleTouchStart, handleTouchMove, handleTouchEnd } = useHorizontalSwipeTracker(completeHandleBack, completeHandleNext);
 
   // enable shift+scroll behavior USING SCROLL LISTENER HOOK
-  const viewportRef = useHorizontalScrollListener(completeHandleBack, completeHandleNext);
+  const { handleHorizontalScroll } = useHorizontalScrollTracker(completeHandleBack, completeHandleNext);
 
-  const translatePerItem = -100 / numberOfItems;
-  const animationTime = transitionSpeed * incrementAmount;
+  const { viewportRef, carouselRef } = useHorizontalCarouselSlider(activeIndex, numberOfItems, transitionSpeed, incrementAmount);
 
   return (
     <main // carousel viewport
@@ -78,13 +107,15 @@ export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleB
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      onWheel={handleHorizontalScroll}
     >
       <div // carousel (overflows the viewport)
+        ref={carouselRef}
         className={styles.xCarousel}
-        style={{
-          transform: `translateX(${activeIndex * translatePerItem}%)`,
-          transition: `transform ${animationTime}s ease-out`,
-        }}
+        // style={{
+        //   // transform: `translateX(${activeIndex * translatePerItem}%)`,
+        //   transition: `translateX ${transitionSpeed * incrementAmount} ease-out`,
+        // }}
       >
         {
           childrenArr.map((child, childIndex) => {
@@ -98,6 +129,7 @@ export default function HorizontalCarouselWrapper({ incrementAmount = 1, handleB
                 `}
               >
                 {child}
+                <span>activeIndex: {activeIndex}</span>
               </div>
             );
           }

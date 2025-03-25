@@ -41,7 +41,7 @@ export default function MatrixPage() {
       }}
     >
 
-      <VerticalCarouselWrapper incrementAmount={2}>
+      <VerticalCarouselWrapper incrementAmount={1}>
         {
           dummyRows.map( (row, rowIndex) => {
             return (
@@ -53,6 +53,7 @@ export default function MatrixPage() {
 
                       <div
                         key={columnElement.key}
+                        style={{width: "30em"}}
                       >
                         <Image src={columnElement.imageSrc} alt="w/e" ></Image>
                         <h1>{columnElement.title}</h1>

@@ -41,7 +41,7 @@ export default function VerticalPage() {
 
             dummyArray.map((article, index) => {
               return (
-                <article key={article.key} style={{width: "100%"}}>
+                <article key={article.key} style={{ width: "100%" }}>
                   <div
                     style={{
                       width: "100%",

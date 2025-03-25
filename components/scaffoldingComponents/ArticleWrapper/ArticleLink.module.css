@@ -1,6 +1,6 @@
 
 .articleWrapper {
-  width: 15em;
+  width: 20em;
   margin: 0.625em auto;
   border: 0.0625em solid var(--secondary-shade);
 }
@@ -9,13 +9,14 @@
   text-decoration: none;
 }
 
-.imageWrapper {
+.articleWrapper>a>.imageWrapper {
   width: 100%;
   aspect-ratio: 7 / 4;
 }
 
-.textStyleWrapper {
+.articleWrapper>a>.textStyleWrapper {
   padding: 0.625em;
   width: 100%;
   margin-top: 0.625em
 }
+

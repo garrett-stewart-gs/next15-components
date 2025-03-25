@@ -28,9 +28,9 @@ export function useActiveIndex(arrayLength, initialIndex = 0) {
 
       if (activeIndex === null) return currentArrayLength - value;
 
-      if (!loop) return (prev - value < 0) ? 0 : prev - value;
+      if (!loop) return (prev - value < 0) ? 0 : (prev - value);
 
-      if (prev - value < 0) return arrayLength - value;
+      if (prev - value < 0) return (prev === 0) ? (arrayLength - 1) : 0;
 
       return prev - value;
 

@@ -12,7 +12,7 @@ const dummyArticle = {
 };
 
 const dummyArray = [];
-for (let i = 0; i < 21; i++) {
+for (let i = 0; i < 25; i++) {
   dummyArray.push(
     {
       key: `horizontal dummy article ${i + 1}`,
@@ -34,14 +34,14 @@ export default function HorizontalPage() {
 
       {/* <h1>ActiveIndex: {activeIndex}</h1> */}
       <HorizontalCarouselWrapper
-        incrementAmount={5}
+        incrementAmount={4}
         loop={true}
       >
         {
 
           dummyArray.map((article, index) => {
             return (
-              <article key={article.key}>
+              <article key={article.key} style={{width: "30em"}}>
                 <Image src={article.imageSrc} alt="w/e" ></Image>
                 <h1>{article.title}</h1>
                 <p>{article.paragraph}</p>

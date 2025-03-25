@@ -4,6 +4,7 @@ import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSecti
 
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
+import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
 
 const sectionObjArr = [
   {
@@ -27,6 +28,12 @@ export default function Home() {
 
   return (
     <main >
+
+      <TextStyleWrapper>
+        <h1>excuse me, </h1>
+        <h2>AFKAF</h2>
+        <p>you are hereby requested to <span>provide</span> snacks forthright and without delay.</p>
+      </TextStyleWrapper>
 
       {
         sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)

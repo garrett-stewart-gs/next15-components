@@ -1,4 +1,5 @@
 .pageSectionWrapper {
+  font-size: var(--ref-size);
   width: 100%;
   max-width: var(--doc-width);
   margin-inline: auto;

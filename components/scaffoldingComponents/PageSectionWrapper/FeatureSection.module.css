@@ -1,4 +1,5 @@
 .pageSectionWrapper {
+  column-gap: 2.5em;
   row-gap: 0;
 }
 
@@ -11,12 +12,12 @@
 }
 
 .textStyleWrapper {
-  flex: 1 0 20em;
+  flex: 3 0 20em;
 }
 
 .imageWrapper {
-  flex: 1 0 25em;
-  max-width: 30em;
+  flex: 1 1 30em;
+  max-width: 35em;
   aspect-ratio: 7 / 4;
   box-shadow: 0 0 0.625em var(--primary-shade);
   border-radius: 1.25em;
