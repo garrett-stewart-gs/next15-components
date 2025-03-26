@@ -1,6 +1,7 @@
 "use client";
 
 import { useCustomFormContext } from "../CustomFormContext";
+import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 
 import HorizontalCarouselWrapper from "../../../scaffoldingComponents/HorizontalCarouselWrapper";
 import CustomFormSection from "../FormSection";
@@ -17,16 +18,6 @@ const createFormActions = (
   setSubmissionResult, // from customFormContext state (manages form submission state/results)
 ) => {
 
-  const childStateMethods = {
-    completeHandleBack: null,
-    completeHandleNext: null,
-  };
-
-  const retrieveChildMethods = (completeHandleBack, completeHandleNext) => {
-    childStateMethods.completeHandleBack = completeHandleBack;
-    childStateMethods.completeHandleNext = completeHandleNext;
-  };
-
   // get all form fields in current section (which are registered with react-hook-form)
   const activeSectionFields = (activeIndex) => {
     return activeSectionsArr[activeIndex].sectionInputsArr.flatMap(sectionInputObj => {
@@ -39,7 +30,11 @@ const createFormActions = (
 
   // validate only the form fields that are currently displayed in the active form section
   // wrapper for trigger, renamed for clarity of purpose
-  const validateFormSection = async (activeIndex) => await trigger(activeSectionFields(activeIndex));
+  const validateFormSection = async (activeIndex) => {
+    const currentSectionFields = activeSectionFields(activeIndex);
+    const isSectionValid = await trigger(currentSectionFields);
+    return isSectionValid;
+  };
 
   // clear current section of form (occurs right before decrementing the active form section)
   const clearFormSection = (activeIndex) => activeSectionFields(activeIndex).map(activeSectionField => resetField(activeSectionField));
@@ -47,27 +42,26 @@ const createFormActions = (
   // custom submission that appends custom submission action to default react-hook-form submission behavior
   const handleCustomSubmit = handleSubmit((data) => onCustomSubmit(data, setSubmissionResult)); // handle submit returns a function that can be called with handleCustomSubmit
 
-  const customHandleNext = async (activeIndex, numberOfItems) => {
+  const validateSectionNext = async (activeIndex, numberOfItems) => {
+
     // if user is on final index / submission results page, don't try to validate and disable incrementing by returning false
     if (activeIndex === numberOfItems - 1) return false;
-
     // if user is on last page of form, before submission results page (numberOfItems - 1), validate current form page.
     // if section validation successful: submit form and return true to increment
     // if section validation unsuccessful: return false to prevent increment
     if (activeIndex === numberOfItems - 2) {
       const isSectionValid = await validateFormSection(activeIndex);
-      console.log('isSectionValid:', isSectionValid);
-      return isSectionValid ? handleCustomSubmit() && true : false;
+      return isSectionValid ? (handleCustomSubmit() && true) : false;
     };
 
     // if user is not on first or last form section/page, trigger partial validation and return the resulting boolean value
     // if partial validation successful, returned value: true
     // if partial validation unsuccessful, returned value: false
-    return await validateFormSection(activeIndex);
-
+    const isSectionValid = await validateFormSection(activeIndex);
+    return isSectionValid;
   };
 
-  const customHandleBack = (activeIndex, numberOfItems) => {
+  const clearSectionBack = (activeIndex, numberOfItems) => {
     // if user is on first form page or submission results page (index: numberOfItems - 1), disable decrementing by returning false value
     if (activeIndex === 0 || activeIndex === numberOfItems - 1) return false;
     // otherwise, clear the current section and allow decrementing by returning true value
@@ -76,10 +70,8 @@ const createFormActions = (
   };
 
   return {
-    childStateMethods,
-    retrieveChildMethods,
-    customHandleBack, // custom instructions to carousel component. carousel component provides activeIndex State value
-    customHandleNext, // custom instructions to carousel component. carousel component provides activeIndex State value
+    clearSectionBack, // custom instructions to carousel component. carousel component provides activeIndex State value
+    validateSectionNext, // custom instructions to carousel component. carousel component provides activeIndex State value
   };
 };
 
@@ -97,22 +89,37 @@ export default function CustomForm() {
   // extract the form sections that have a shouldRender function that returns true
   const activeSectionsArr = formConfigArr.filter(sectionObj => sectionObj.shouldRenderFn && sectionObj.shouldRenderFn());
 
+  const {
+    activeIndex,
+    incrementActiveIndex,
+    decrementActiveIndex,
+    currentArrayLength,
+  } = useActiveIndex(activeSectionsArr.length + 1); // add 1 to include form section results
+  const numberOfItems = currentArrayLength;
+
   // extract callback functions to give custom instructs to carousel
   const {
-    childStateMethods, // contains 2 methods: complete versions of handleBack and handleNext (they are composed of the child carousel's default handleNext/Back behavior + customHandleNext/Back behavior)
-    retrieveChildMethods, // allows child to update childStateMethods on mount (childStateMethods need to be applied to parent elements so they can control child state)
-    customHandleBack, // parent instructions for appending custom handleNext/Back behavior to the carousel's default handleNext/Back behavior
-    customHandleNext // parent instructions for appending custom handleNext/Back behavior to the carousel's default handleNext/Back behavior
+    validateSectionNext, // fn that returns boolean. custom instructions used to prepend incrementing active index (ie don't increment until action complete)
+    clearSectionBack, // fn that returns boolean. custom instructions used to prepend decrementing active index (ie don't decrement until action complete)
   } = createFormActions(activeSectionsArr, handleSubmit, trigger, resetField, onCustomSubmit, setSubmissionResult);
 
+  const formBack = async () => {
+    if (! await clearSectionBack(activeIndex, numberOfItems)) return;
+    decrementActiveIndex();
+  };
+
+  const formNext = async () => {
+    if (! await validateSectionNext(activeIndex, numberOfItems)) return;
+    incrementActiveIndex();
+  };
 
   return (
     <form className={styles.customForm}>
 
       <HorizontalCarouselWrapper
-        handleBack={customHandleBack} // provides custom behavior when decrementing (including clearing current section fields before decrement)
-        handleNext={customHandleNext} // provides custom behavior when incrementing (including validating current section fields before increment)
-        sendChildStateMethods={retrieveChildMethods}
+        parentActiveIndexState={activeIndex}
+        handleBack={formBack}
+        handleNext={formNext}
       >
         {
 
@@ -121,12 +128,19 @@ export default function CustomForm() {
         }
         <FormSubmissionResultsSection />
       </HorizontalCarouselWrapper>
-      
+
       <div className={styles.customFormButtonsContainer}>
-        <button type="button" onClick={() => childStateMethods.completeHandleBack()}>Back</button>
-        <button type="button" onClick={() => childStateMethods.completeHandleNext()}>Next</button>
+        {
+          activeIndex !== 0 && activeIndex !== numberOfItems - 1 && < button type="button" onClick={formBack}>Back</button>
+        }
+        {
+          activeIndex < numberOfItems - 2 && <button type="button" onClick={formNext}>Next</button>
+        }
+        {
+          activeIndex === numberOfItems - 2 && <button type="button" onClick={formNext}>Submit</button>
+        }
       </div>
 
-    </form>
+    </form >
   );
 }

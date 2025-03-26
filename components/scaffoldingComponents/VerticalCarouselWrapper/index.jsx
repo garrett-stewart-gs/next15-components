@@ -17,10 +17,6 @@ export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBac
   const childrenArr = React.Children.toArray(children);
   const numberOfItems = childrenArr.length;
   const childRefs = useRef([]);
-  // // ensures array is the exact correct length
-  // useEffect(() => {
-  //   childRefs.current = childRefs.current.slice(0, numberOfItems);
-  // }, [childrenArr]);
 
   const {
     viewportRef,
@@ -48,7 +44,7 @@ export default function VerticalCarouselWrapper({ incrementAmount = 1, handleBac
   // enable shift+scroll behavior USING SCROLL LISTENER HOOK
   const { handleVerticalScroll } = useVerticalScrollTracker(completeHandleBack, completeHandleNext);
 
-  useViewportVisibilityTracker(viewportRef, childRefs, styles, 0.1);
+  useViewportVisibilityTracker(childrenArr, viewportRef, childRefs, styles, 0.1);
 
   return (
     <main // carousel viewport
