@@ -5,6 +5,7 @@ import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSecti
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
 import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
+import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 const sectionObjArr = [
   {
@@ -33,7 +34,9 @@ export default function Home() {
         sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)
       }
 
+      <LinkButton link="/" text="Link"/>
       <ArticleShowcaseSection />
+
 
     </main>
   );

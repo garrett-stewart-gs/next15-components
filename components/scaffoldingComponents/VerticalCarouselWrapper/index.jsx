@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useVerticalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 import { useVerticalScrollTracker } from "@/utils/hooks/useScrollTrackers";
@@ -25,15 +25,8 @@ export default function VerticalCarouselWrapper({ parentActiveIndexState = null,
     translateCarouselPositive,
   } = useVerticalCarouselSlider(numberOfItems, transitionSpeed, incrementAmount, loop);
 
-  // NEED TO KEEP THIS FOR NOW, NEED TO UPDATE CUSTOM FORM
   // if custom behavior provided (handleBack/handleNext), then append custom behavior to increment/decrement. 
   // If not, simply increment/decrement
-  // const completeHandleBack = async () => handleBack === null ? decrementActiveIndex(loop, incrementAmount) : (await handleBack(activeIndex, numberOfItems) && decrementActiveIndex(loop, incrementAmount));
-  // const completeHandleNext = async () => handleNext === null ? incrementActiveIndex(loop, incrementAmount) : (await handleNext(activeIndex, numberOfItems) && incrementActiveIndex(loop, incrementAmount));
-
-  // const completeHandleBack = async () => translateCarouselNegative();
-  // const completeHandleNext = async () => translateCarouselPositive();
-
   const completeHandleBack = async () => (handleBack !== null) ? (await handleBack() && translateCarouselNegative()) : translateCarouselNegative();
   const completeHandleNext = async () => (handleNext !== null) ? (await handleNext() && translateCarouselPositive()) : translateCarouselPositive();
 

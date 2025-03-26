@@ -1,0 +1,33 @@
+.linkButton {
+  font-size: var(--ref-size);
+  height: 3.5em;
+  min-width: 14em;
+  width: 14em;
+  text-decoration: none;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  color: var(--primary-color);
+  padding-inline: 0.625em;
+  border-radius: 0.375em;
+  border: 0.125em solid var(--primary-color);
+  transition: all linear 0.15s;
+}
+
+.linkButton:hover {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 1.25em var(--primary-shade);
+  transform: scale(1.05);
+}
+
+.linkButton>p {
+  margin-inline: auto;
+  font-size: var(--h5-size);
+  font-weight: var(---weight);
+  color: var(--primary-color);
+  transform: all linear 0.15s;
+}
+
+.linkButton:hover>p {
+  color: var(--tertiary-shade);
+}
