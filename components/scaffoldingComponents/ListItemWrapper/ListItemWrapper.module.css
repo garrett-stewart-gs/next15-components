@@ -1,0 +1,7 @@
+.listItemWrapper {
+  font-size: var(--ref-size);
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+}
+

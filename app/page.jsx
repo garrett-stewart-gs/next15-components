@@ -2,10 +2,15 @@
 import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrapper/FeatureSection";
 import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection.index";
 
+import InteractiveFaqItem from "@/components/scaffoldingComponents/ListItemWrapper/InteractiveFaqItem";
+import SearchbarWrapper from "@/components/scaffoldingComponents/SearchbarWrapper";
+
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
 import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
 import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
+import BulletWrapper from "@/components/scaffoldingComponents/BulletWrapper";
+import AnimatedPlusMinusIcon from "@/components/reusableComponents/DropdownIcons/AnimatedPlusMinus";
 
 const sectionObjArr = [
   {
@@ -23,6 +28,23 @@ const sectionObjArr = [
 
 ];
 
+const faqObjArr = [
+  {
+    question: "Does the weather affect how early we can start the presentation?",
+    answer: "Sometimes. Cloudy days usually reduce the amount of ambient light in the area, making dark images look brighter allowing for an earlier start time. Sunny days without obstacles to cast shade on the screen can delay the presentation start time.",
+  },
+  {
+    question: "Does the weather affect how early we can start the presentation?",
+    answer: "Sometimes. Cloudy days usually reduce the amount of ambient light in the area, making dark images look brighter allowing for an earlier start time. Sunny days without obstacles to cast shade on the screen can delay the presentation start time.",
+  },
+  {
+    question: "Does the weather affect how early we can start the presentation?",
+    answer: "Sometimes. Cloudy days usually reduce the amount of ambient light in the area, making dark images look brighter allowing for an earlier start time. Sunny days without obstacles to cast shade on the screen can delay the presentation start time.",
+  },
+  
+
+];
+
 
 export default function Home() {
 
@@ -34,7 +56,16 @@ export default function Home() {
         sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)
       }
 
-      <LinkButton link="/" text="Link"/>
+      <SearchbarWrapper>
+        <input type="search" placeholder={"Search..."}/>
+      </SearchbarWrapper>
+      
+      <div>
+        {
+          faqObjArr.map((faqObj, index) => <InteractiveFaqItem key={`interactive faq #${index}`} index={index} faqObj={faqObj} />)
+        }
+      </div>
+
       <ArticleShowcaseSection />
 
 

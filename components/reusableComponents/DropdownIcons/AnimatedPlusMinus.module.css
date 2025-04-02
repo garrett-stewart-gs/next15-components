@@ -1,0 +1,22 @@
+.animatedPlusMinusIcon {
+  font-size: var(--ref-size);
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.animatedPlusMinusIcon>path {
+  fill: var(--primary-color);
+  transform: rotate(-180deg);
+  transform-origin: center center;
+  transition: all linear 0.15s;
+}
+
+
+
+.animatedPlusMinusIcon>path:first-child {
+  transform: rotate(-270deg);
+}
+
+.animatedPlusMinusIcon.active>path {
+  transform: rotate(0deg);
+}

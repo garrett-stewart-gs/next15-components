@@ -13,9 +13,7 @@ export default function LinkButton({ link, text, parentStyles }) {
       href={link}
     >
       <p>
-        {/* {text}
-        plus more words */}
-        Request A Quote
+        {text}
       </p>
 
     </Link >

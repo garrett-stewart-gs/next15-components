@@ -19,13 +19,14 @@ export default function ArticleLink({ articleObj }) {
           <Image
             src={imageSrc}
             alt={"w/e"}
+            sizes="20em"
             fill="true"
           />
         </ImageWrapper >
 
         <TextStyleWrapper parentStyles={styles}>
           <h6>{h6}</h6>
-          <p>{p}plus a little bit</p>
+          <p>{p}</p>
         </TextStyleWrapper>
 
       </Link>

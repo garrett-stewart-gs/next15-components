@@ -11,7 +11,7 @@ export function useActiveIndex(arrayLength, initialIndex = 0) {
 
   let currentArrayLength = arrayLength;
 
-  const incrementActiveIndex = (loop = true, value = 1) => {
+  const incrementActiveIndex = (loop = false, value = 1) => {
     setActiveIndex(prev => {
 
       if (activeIndex === null) return -1 + value;
@@ -23,18 +23,17 @@ export function useActiveIndex(arrayLength, initialIndex = 0) {
     });
   };
 
-  const decrementActiveIndex = (loop = true, value = 1) => {
+  const decrementActiveIndex = (loop = false, value = 1) => {
     setActiveIndex(prev => {
-
       if (activeIndex === null) return currentArrayLength - value;
 
       if (!loop) return (prev - value < 0) ? 0 : (prev - value);
 
       if (prev - value < 0) return (prev === 0) ? (arrayLength - 1) : 0;
-
       return prev - value;
 
     });
+
   };
 
   const setNewActiveIndex = (newIndex) => (newIndex <= currentArrayLength - 1 && newIndex >= 0) && setActiveIndex(prev => newIndex);

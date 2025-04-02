@@ -26,10 +26,12 @@ export function useHorizontalCarouselSlider(
     carouselRef.current.style.transform = `translateX(${lastTranslatePercentValue.current}%)`;
   };
 
-  const translateCarouselPositive = () => {
+  const translateCarouselPositive = (numberOfInputs = 1) => {
     const viewportDimensions = viewportRef.current.getBoundingClientRect();
     const carouselDimensions = carouselRef.current.getBoundingClientRect();
     const maxTranslateAmount = -100 * (carouselDimensions.width - viewportDimensions.width) / carouselDimensions.width;
+
+    const translateAmount = translatePerInput * Math.abs(numberOfInputs);
 
     // if last translate percentage was set to maximum, loop to beginning/0 or stay at max, depending on loop variable
     if (lastTranslatePercentValue.current === maxTranslateAmount) {
@@ -42,25 +44,27 @@ export function useHorizontalCarouselSlider(
     }
 
     // if next translate would meet or surpasses max translate value, translate to max
-    if (lastTranslatePercentValue.current + translatePerInput <= maxTranslateAmount) { // note that translatePerInput is negative (hence, + operator)
+    if (lastTranslatePercentValue.current + translateAmount <= maxTranslateAmount) { // note that translateAmount is negative (hence, + operator)
       updateTranslateValue(maxTranslateAmount);
       return translateCarousel();
     }
 
     // if next translate does not meet or surpass max translate value, translate carousel left
-    if (lastTranslatePercentValue.current + translatePerInput > maxTranslateAmount) {
-      updateTranslateValue(lastTranslatePercentValue.current + translatePerInput);
+    if (lastTranslatePercentValue.current + translateAmount > maxTranslateAmount) {
+      updateTranslateValue(lastTranslatePercentValue.current + translateAmount);
       return translateCarousel();
     }
 
   };
 
-  const translateCarouselNegative = () => {
+  const translateCarouselNegative = (numberOfInputs = 1) => {
 
     const viewportDimensions = viewportRef.current.getBoundingClientRect();
     const carouselDimensions = carouselRef.current.getBoundingClientRect();
     const maxTranslateAmount = -100 * (carouselDimensions.width - viewportDimensions.width) / carouselDimensions.width;
     const minTranslateAmount = 0;
+
+    const translateAmount = translatePerInput * Math.abs(numberOfInputs);
 
     // if last translate percentage was set to maximum, loop to end/max or stay at beginning, depending on loop variable
     if (lastTranslatePercentValue.current === minTranslateAmount) {
@@ -73,14 +77,14 @@ export function useHorizontalCarouselSlider(
     }
 
     // if next translate would meet or surpass min translate value, translate to min
-    if (lastTranslatePercentValue.current - translatePerInput >= minTranslateAmount) {
+    if (lastTranslatePercentValue.current - translateAmount >= minTranslateAmount) {
       updateTranslateValue(minTranslateAmount);
       return translateCarousel();
     }
 
     // if next translate does not meet or surpass min translate value, translate carousel right
-    if (lastTranslatePercentValue.current - translatePerInput < minTranslateAmount) {
-      updateTranslateValue(lastTranslatePercentValue.current - translatePerInput);
+    if (lastTranslatePercentValue.current - translateAmount < minTranslateAmount) {
+      updateTranslateValue(lastTranslatePercentValue.current - translateAmount);
       return translateCarousel();
     }
 

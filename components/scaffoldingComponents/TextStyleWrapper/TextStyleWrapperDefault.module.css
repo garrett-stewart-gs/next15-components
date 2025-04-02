@@ -29,6 +29,7 @@
   font-size: var(--h2-size);
   font-weight: var(--bold-weight);
   color: var(--primary-color);
+
 }
 
 .textStyleWrapper>h5 {
@@ -45,14 +46,14 @@
 
 .textStyleWrapper>span {
   display: block;
-  font-size: var(--p-size);
+  font-size: var(--sml-p-size);
   font-weight: var(--bold-weight);
   color: var(--primary-color);
 }
 
 .textStyleWrapper>p {
-  font-size: var(--p-size);
-  font-weight: var(--avg-weight);
+  font-size: var(--sml-p-size);
+  font-weight: var(--light-weight);
   color: var(--primary-shade);
 }
 
@@ -76,6 +77,6 @@
 .textStyleWrapper>h5+span,
 .textStyleWrapper>h6+p,
 .textStyleWrapper>h6+span {
-  font-size: var(--p-size);
+  font-size: var(--big-p-size);
   margin-block: 0.375em;
 }

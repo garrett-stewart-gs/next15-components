@@ -1,0 +1,16 @@
+.bulletWrapper {
+  font-size: var(--ref-size);
+  width: 3em;
+  height: 3em;
+  margin: 0.625em;
+}
+
+
+.bulletWrapper>path {
+  fill: var(--primary-color);
+}
+
+.bulletWrapper>text {
+  font-size: 3rem;
+  fill: var(--tertiary-shade);
+}

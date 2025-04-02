@@ -1,0 +1,28 @@
+.searchbarWrapper {
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbarWrapper>input {
+  font-size: var(--h6-size);
+  height: 2.5em;
+  width: 20em;
+  max-width: 75%;
+  padding-inline: 0.625em;
+  margin-block: 2em;
+  background-color: var(--tertiary-shade);
+  outline: none;
+  border: 0.0625rem solid var(--secondary-shade);
+  border-radius: 3rem;
+  box-shadow: 0 0 0.375rem var(--primary-shade);
+  transition: all linear 0.15s;
+}
+
+.searchbarWrapper>input:focus,
+.searchbarWrapper>input:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 1.25rem var(--primary-shade);
+}

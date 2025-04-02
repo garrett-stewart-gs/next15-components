@@ -38,7 +38,8 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
   useEffect(() => { 
     if (parentActiveIndexState === null) return;
     if (parentActiveIndexState === lastIndexState.current) return;
-    (parentActiveIndexState < lastIndexState.current) ? translateCarouselNegative() : translateCarouselPositive();
+    const indexChange = parentActiveIndexState - lastIndexState.current;
+    (indexChange < 0) ? translateCarouselNegative(indexChange) : translateCarouselPositive(indexChange);
     lastIndexState.current = parentActiveIndexState;
   }, [parentActiveIndexState]);
 

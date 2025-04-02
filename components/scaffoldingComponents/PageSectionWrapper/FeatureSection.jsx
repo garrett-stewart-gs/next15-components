@@ -6,6 +6,7 @@ import Image from "next/image";
 import PageSectionWrapper from ".";
 import TextStyleWrapper from "../TextStyleWrapper";
 import ImageWrapper from "../ImageWrapper";
+import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 import styles from "./FeatureSection.module.css";
 
@@ -22,6 +23,7 @@ export default function FeatureSection({sectionObj }) {
         <h1>{h1}</h1>
         <h2>{h2}</h2>
         <p>{p}</p>
+        <LinkButton link={"/"} text={"Button"}/>
       </TextStyleWrapper>
 
       <ImageWrapper parentStyles={styles}>

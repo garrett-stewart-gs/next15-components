@@ -1,0 +1,13 @@
+.circleIcon {
+  width: 0.875em;
+  height: 0.875em;
+  cursor: pointer;
+}
+
+.circleIcon>path {
+  fill: var(--secondary-shade);
+}
+
+.circleIcon.active>path {
+  fill: var(--primary-color);
+}
