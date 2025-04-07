@@ -2,10 +2,8 @@
 .articleWrapper {
   width: 20em;
   margin: 0.625em;
-  /* border: 0.0625em solid var(--secondary-shade); */
   border-radius: 0.625em;
   box-shadow: 0 0 0.375rem var(--primary-shade);
-
   transition: all linear 0.15s;
 }
 

@@ -5,9 +5,9 @@ import React, { useEffect, useRef } from "react";
 import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 import { useHorizontalScrollTracker } from "@/utils/hooks/useScrollTrackers";
 import { useHorizontalCarouselSlider } from "@/utils/hooks/useCarouselTransitions";
+import { useViewportVisibilityTracker } from "@/utils/hooks/useVisibilityTrackers";
 
 import styles from "./HorizontalCarouselWrapper.module.css";
-import { useViewportVisibilityTracker } from "@/utils/hooks/useVisibilityTrackers";
 
 
 // handleBack and handleNext pass current array information to parent, allowing you to give custom instructions to the carousel

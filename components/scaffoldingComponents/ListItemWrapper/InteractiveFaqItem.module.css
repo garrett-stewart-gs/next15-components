@@ -60,5 +60,4 @@
 .listItemWrapper.active>.textStyleWrapper>:nth-child(2) {
   opacity: 1;
   max-height: 20em;
-  /* overflow: visible; */
 }

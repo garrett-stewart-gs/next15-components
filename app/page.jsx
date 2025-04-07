@@ -5,6 +5,8 @@ import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSecti
 import InteractiveFaqItem from "@/components/scaffoldingComponents/ListItemWrapper/InteractiveFaqItem";
 import SearchbarWrapper from "@/components/scaffoldingComponents/SearchbarWrapper";
 
+import DropdownMenuWrapper from "@/components/scaffoldingComponents/DropdownMenuWrapper";
+
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
 import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
@@ -52,6 +54,13 @@ export default function Home() {
   return (
     <main >
 
+      <DropdownMenuWrapper>
+        <h5>Services</h5>
+        <h5>Daylight Rentals</h5>
+        <h5>Inflatable Rentals</h5>
+        <h5>ScreenSales</h5>
+      </DropdownMenuWrapper>
+
       {
         sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)
       }
@@ -59,7 +68,7 @@ export default function Home() {
       <SearchbarWrapper>
         <input type="search" placeholder={"Search..."}/>
       </SearchbarWrapper>
-      
+
       <div>
         {
           faqObjArr.map((faqObj, index) => <InteractiveFaqItem key={`interactive faq #${index}`} index={index} faqObj={faqObj} />)

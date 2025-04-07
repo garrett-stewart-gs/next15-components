@@ -1,0 +1,31 @@
+.dropdownMenuWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  /* height: 6.25em; */
+}
+
+.dropdownMenuWrapper>*:first-child {
+  z-index: 1;
+}
+
+.dropdownMenuWrapper>.dropdownContent{
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: fit-content;
+  z-index: 0;
+  transition: all linear 0.15s;
+}
+
+.dropdownMenuWrapper:not(.active)>.dropdownContent{
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.dropdownMenuWrapper.active>.dropdownContent{
+  opacity: 1;
+  transform: translateY(0);
+}
