@@ -10,25 +10,19 @@ import {
   useScrollAnimateOpacity,
 } from "@/utils/hooks/useScrollPositionAnimations";
 
-import Link from "next/link";
-import Image from "next/image";
 
+
+import LogoLinkContainer from "./LogoLinkContainer";
 import NavLinksContainer from "./NavLinksContainer";
-import ImageWrapper from "@/components/scaffoldingComponents/ImageWrapper";
 import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
 
-import logo from "@/public/images/logos/FAM-Logomark-Primary-Colour-RGB.svg";
-// import logo from "@/public/images/logos/fam_logo_rgb_full.png";
 
 import styles from "./SplashNavbar.module.css";
 
-
-
-
 export default function SplashNavbar() {
 
-  const splashContainerRef = useRef(null);
-  useScrollScaleElementPaddingBottom(splashContainerRef, 0);
+  const relativeContainerRef = useRef(null);
+  useScrollScaleElementPaddingBottom(relativeContainerRef, 0);
 
   const splashNavbarRef = useRef(null);
   useScrollScaleElementHeight(splashNavbarRef, 6.25);
@@ -45,42 +39,33 @@ export default function SplashNavbar() {
   useScrollTranslateXElement(splashLinksRef, -1);
 
   return (
-    <nav
-      ref={splashContainerRef}
-      className={`
-        ${styles.splashNavbarContainer}
-      `}
-      onClick={() => console.log(window.scrollY)}
-    >
-      <main ref={splashNavbarRef} className={`${styles.splashNavbar}`}>
-        <Link
-          ref={logoLinkRef}
-          className={styles.logoLinkContainer}
-          href="/"
-        >
-          <ImageWrapper parentStyles={styles}>
-            <Image
-              src={logo}
-              alt="website logo"
-              sizes="100vw"
-              fill
-            />
-          </ImageWrapper>
-        </Link>
-      </main>
+    <nav className={styles.splashNavbarContainer}>
 
-      <section
-        ref={splashSloganRef}
-        className={styles.splashNavbarSlogan}
+      <main
+        ref={relativeContainerRef}
+        className={`${styles.relativeContainer}`}
       >
-        <TextStyleWrapper parentStyles={styles}>
-          <h2>MEDIA ON THE MOVE</h2>
-        </TextStyleWrapper>
-      </section>
+        <section
+          ref={splashNavbarRef}
+          className={`${styles.splashNavbar}`}
+        >
+          <LogoLinkContainer parentRef={logoLinkRef} parentStyles={styles} />
+        </section>
 
-      <section ref={splashLinksRef} className={styles.splashNavbarLinks}>
-        <NavLinksContainer />
-      </section>
+        <section
+          ref={splashSloganRef}
+          className={styles.splashNavbarSlogan}
+        >
+          <TextStyleWrapper parentStyles={styles}>
+            <h2>MEDIA ON THE MOVE</h2>
+          </TextStyleWrapper>
+        </section>
+
+        <section ref={splashLinksRef} className={styles.splashNavbarLinks}>
+          <NavLinksContainer />
+        </section>
+
+      </main>
 
     </nav>
   );

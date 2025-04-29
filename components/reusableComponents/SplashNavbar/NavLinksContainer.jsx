@@ -11,7 +11,12 @@ export default function NavLinksContainer() {
   return (
     <main className={styles.navLinksContainer}>
 
-      <section className={styles.splashLinksContainer}>
+      <section 
+        className={`
+          ${styles.linksContainer}
+          ${styles.desktopLinksContainer}
+        `}
+      >
 
         <Link href="/" >HOME</Link>
 
@@ -51,7 +56,12 @@ export default function NavLinksContainer() {
 
       </section>
 
-      <section className={styles.splashLinksContainer}>
+      <section 
+        className={`
+          ${styles.linksContainer}
+          ${styles.mobileLinksContainer}
+        `}
+      >
 
         <DropdownMenuWrapper parentStyles={styles}>
           <HamburgerMenuIcon />

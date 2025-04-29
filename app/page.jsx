@@ -3,6 +3,7 @@ import Link from "next/link";
 import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrapper/FeatureSection";
 import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection.index";
 import SplashNavbar from "@/components/reusableComponents/SplashNavbar";
+import Navbar from "@/components/reusableComponents/SplashNavbar/Navbar";
 
 import InteractiveFaqItem from "@/components/scaffoldingComponents/ListItemWrapper/InteractiveFaqItem";
 import SearchbarWrapper from "@/components/scaffoldingComponents/SearchbarWrapper";

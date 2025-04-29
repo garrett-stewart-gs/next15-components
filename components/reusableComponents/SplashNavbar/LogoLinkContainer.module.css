@@ -1,0 +1,15 @@
+.logoLinkContainer {
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 2/1;
+  padding: 0.625em 1.25em;
+  transition: all linear 0.3s;
+}
+
+.imageWrapper {
+  height: 100%;
+}
+
+.imageWrapper>img {
+  object-fit: contain;
+}

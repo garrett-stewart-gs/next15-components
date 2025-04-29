@@ -1,12 +1,11 @@
 .navLinksContainer {
   font-size: var(--ref-size);
   height: 100%;
-  width: fit-content;
   display: flex;
   align-items: center;
 }
 
-.splashLinksContainer {
+.linksContainer {
   width: fit-content;
   height: 100%;
   display: flex;
@@ -15,31 +14,31 @@
   padding: 1.25em;
 }
 
-.splashLinksContainer:first-child {
+.linksContainer.desktopLinksContainer {
   display: flex;
 }
 
-.splashLinksContainer:last-child {
+.linksContainer.mobileLinksContainer {
   display: none;
 }
 
 
 
-.splashLinksContainer>.dropdownMenuWrapper {
+.linksContainer>.dropdownMenuWrapper {
   height: 100%;
   min-width: 7.5em;
   border-radius: 0.625em 0.625em 0 0;
 }
 
-.splashLinksContainer>.dropdownMenuWrapper:not(.active) {}
+.linksContainer>.dropdownMenuWrapper:not(.active) {}
 
-.splashLinksContainer>.dropdownMenuWrapper.active {
+.linksContainer>.dropdownMenuWrapper.active {
   background-color: var(--tertiary-shade);
 }
 
 
 
-.splashLinksContainer>.dropdownMenuWrapper .dropdownTitle {
+.linksContainer>.dropdownMenuWrapper .dropdownTitle {
   height: 100%;
   padding-block: 0.625em 0.375em;
   padding-inline: 0.625em;
@@ -48,11 +47,11 @@
   transition: all linear 0.15s;
 }
 
-.splashLinksContainer>.dropdownMenuWrapper:not(.active) .dropdownTitle {
+.linksContainer>.dropdownMenuWrapper:not(.active) .dropdownTitle {
   color: var(--primary-shade)
 }
 
-.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle {
+.linksContainer>.dropdownMenuWrapper.active .dropdownTitle {
   background-color: var(--primary-color);
   color: var(--tertiary-shade);
   box-shadow:
@@ -64,8 +63,7 @@
 
 
 /* desktop && mobile dropdown content */
-.splashLinksContainer>.dropdownMenuWrapper .dropdownContent,
-.mobileLinksContainer>.dropdownMenuWrapper .dropdownContent {
+.linksContainer>.dropdownMenuWrapper .dropdownContent {
   padding-block: 0.625em;
   padding-inline: 0.625em;
   gap: 0.375em;
@@ -74,15 +72,13 @@
   transition: all linear 0.15s;
 }
 
-.splashLinksContainer>.dropdownMenuWrapper:not(.active) .dropdownContent {}
-
-.splashLinksContainer>.dropdownMenuWrapper.active .dropdownContent {
+.linksContainer>.dropdownMenuWrapper.active .dropdownContent {
   box-shadow: 0 0 0.375em var(--primary-shade);
 }
 
 
 /* non-dropdown title links */
-.splashLinksContainer>a {
+.linksContainer>a {
   font-size: var(--h5-size);
   height: 100%;
   min-width: 4em;
@@ -98,7 +94,7 @@
   transition: all linear 0.15s;
 }
 
-.splashLinksContainer>a:hover {
+.linksContainer>a:hover {
   background-color: var(--primary-color);
   color: var(--tertiary-shade);
   box-shadow: 0 0 0.234em var(--primary-shade);
@@ -107,7 +103,7 @@
 
 
 /* dropdown title links */
-.splashLinksContainer .dropdownTitle>a {
+.linksContainer .dropdownTitle>a {
   font-size: var(--h5-size);
   color: inherit;
   height: 100%;
@@ -119,14 +115,14 @@
 }
 
 /* title arrow (>) */
-.splashLinksContainer .dropdownTitle>a>p:last-child {
+.linksContainer .dropdownTitle>a>p:last-child {
   transform: rotate(90deg);
   margin-left: 0.5em;
   margin-bottom: 0.2em;
 }
 
 /* dropdown content links */
-.splashLinksContainer .dropdownContent>a {
+.linksContainer .dropdownContent>a {
   font-size: var(--big-p-size);
   color: var(--primary-shade);
   height: 1.25em;
@@ -139,35 +135,35 @@
   transition: all linear 0.15s;
 }
 
-.splashLinksContainer .dropdownContent>a:hover {
+.linksContainer .dropdownContent>a:hover {
   color: var(--primary-color);
 }
 
-.splashLinksContainer>.dropdownMenuWrapper .dropdownTitle>svg {
+.mobileLinksContainer>.dropdownMenuWrapper .dropdownTitle>svg {
   height: 100%;
   aspect-ratio: 1 / 1;
   transition: all linear 0.15s;
 }
 
-.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg {
+.mobileLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg {
   transform: rotate(90deg);
 }
 
-.splashLinksContainer .dropdownTitle>svg>path {
+.mobileLinksContainer .dropdownTitle>svg>path {
   stroke: var(--primary-shade);
 }
 
-.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg>path {
+.mobileLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg>path {
   stroke: var(--tertiary-shade);
 }
 
 @media (max-width: 59.375rem) {
 
-  .splashLinksContainer:first-child {
+  .linksContainer.desktopLinksContainer {
     display: none;
   }
 
-  .splashLinksContainer:last-child {
+  .linksContainer.mobileLinksContainer {
     display: flex;
   }
 
