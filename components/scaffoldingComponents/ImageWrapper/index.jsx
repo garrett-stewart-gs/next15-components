@@ -7,7 +7,7 @@ export default function ImageWrapper({ parentStyles, children }) {
   return (
     <div className={`
       ${defaultStyles.imageWrapper}
-      ${parentStyles?.imageWrapper}
+      ${parentStyles ? parentStyles.imageWrapper : ""}
     `}>
       {children}
     </div >

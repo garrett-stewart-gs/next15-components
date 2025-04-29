@@ -1,31 +1,58 @@
 .dropdownMenuWrapper {
   position: relative;
+  min-width: 8em;
+  /* min-height: fit-content; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   cursor: pointer;
-  /* height: 6.25em; */
 }
 
-.dropdownMenuWrapper>*:first-child {
+.dropdownMenuWrapper a {
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.dropdownMenuWrapper>.dropdownTitle {
   z-index: 1;
+  width: 100%;
+  text-align: center;
 }
 
-.dropdownMenuWrapper>.dropdownContent{
+.dropdownMenuWrapper>.dropdownContent {
+  z-index: 0;
+  width: 100%;
   position: absolute;
   left: 0;
   top: 100%;
-  width: 100%;
-  height: fit-content;
-  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity linear 0.1s, transform linear 0.15s;
+}
+
+.dropdownMenuWrapper:not(.active)>.dropdownContent {
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.dropdownMenuWrapper.active>.dropdownContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdownContent>* {
   transition: all linear 0.15s;
 }
 
-.dropdownMenuWrapper:not(.active)>.dropdownContent{
-  opacity: 0;
-  transform: translateY(-100%);
+.dropdownMenuWrapper:not(.active)>.dropdownContent>* {
+  max-height: 0;
 }
 
-.dropdownMenuWrapper.active>.dropdownContent{
-  opacity: 1;
-  transform: translateY(0);
+.dropdownMenuWrapper.active>.dropdownContent>* {
+  max-height: 5em;
 }

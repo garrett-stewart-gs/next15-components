@@ -1,11 +1,12 @@
+import Link from "next/link";
 
 import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrapper/FeatureSection";
 import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection.index";
+import SplashNavbar from "@/components/reusableComponents/SplashNavbar";
 
 import InteractiveFaqItem from "@/components/scaffoldingComponents/ListItemWrapper/InteractiveFaqItem";
 import SearchbarWrapper from "@/components/scaffoldingComponents/SearchbarWrapper";
 
-import DropdownMenuWrapper from "@/components/scaffoldingComponents/DropdownMenuWrapper";
 
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
@@ -43,7 +44,7 @@ const faqObjArr = [
     question: "Does the weather affect how early we can start the presentation?",
     answer: "Sometimes. Cloudy days usually reduce the amount of ambient light in the area, making dark images look brighter allowing for an earlier start time. Sunny days without obstacles to cast shade on the screen can delay the presentation start time.",
   },
-  
+
 
 ];
 
@@ -54,19 +55,14 @@ export default function Home() {
   return (
     <main >
 
-      <DropdownMenuWrapper>
-        <h5>Services</h5>
-        <h5>Daylight Rentals</h5>
-        <h5>Inflatable Rentals</h5>
-        <h5>ScreenSales</h5>
-      </DropdownMenuWrapper>
+      <SplashNavbar />
 
       {
         sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)
       }
 
       <SearchbarWrapper>
-        <input type="search" placeholder={"Search..."}/>
+        <input type="search" placeholder={"Search..."} />
       </SearchbarWrapper>
 
       <div>

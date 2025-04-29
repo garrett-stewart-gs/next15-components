@@ -1,0 +1,174 @@
+.navLinksContainer {
+  font-size: var(--ref-size);
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.splashLinksContainer {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+  padding: 1.25em;
+}
+
+.splashLinksContainer:first-child {
+  display: flex;
+}
+
+.splashLinksContainer:last-child {
+  display: none;
+}
+
+
+
+.splashLinksContainer>.dropdownMenuWrapper {
+  height: 100%;
+  min-width: 7.5em;
+  border-radius: 0.625em 0.625em 0 0;
+}
+
+.splashLinksContainer>.dropdownMenuWrapper:not(.active) {}
+
+.splashLinksContainer>.dropdownMenuWrapper.active {
+  background-color: var(--tertiary-shade);
+}
+
+
+
+.splashLinksContainer>.dropdownMenuWrapper .dropdownTitle {
+  height: 100%;
+  padding-block: 0.625em 0.375em;
+  padding-inline: 0.625em;
+  border-radius: 0.625em 0.625em 0 0;
+  background-color: inherit;
+  transition: all linear 0.15s;
+}
+
+.splashLinksContainer>.dropdownMenuWrapper:not(.active) .dropdownTitle {
+  color: var(--primary-shade)
+}
+
+.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle {
+  background-color: var(--primary-color);
+  color: var(--tertiary-shade);
+  box-shadow:
+    /* top/left:     x‑offset=-0.125em   y=-0.0625em   blur=0.375em   spread=0 */
+    -0.125em -0.0625em 0.375em 0 rgba(0, 0, 0, 0.5),
+    /* top/right:    x‑offset=0.125em    y=-0.0625em   blur=0.375em   spread=0 */
+    0.125em -0.0625em 0.375em 0 rgba(0, 0, 0, 0.5);
+}
+
+
+/* desktop && mobile dropdown content */
+.splashLinksContainer>.dropdownMenuWrapper .dropdownContent,
+.mobileLinksContainer>.dropdownMenuWrapper .dropdownContent {
+  padding-block: 0.625em;
+  padding-inline: 0.625em;
+  gap: 0.375em;
+  border-radius: 0 0 0.625em 0.625em;
+  background-color: var(--tertiary-shade);
+  transition: all linear 0.15s;
+}
+
+.splashLinksContainer>.dropdownMenuWrapper:not(.active) .dropdownContent {}
+
+.splashLinksContainer>.dropdownMenuWrapper.active .dropdownContent {
+  box-shadow: 0 0 0.375em var(--primary-shade);
+}
+
+
+/* non-dropdown title links */
+.splashLinksContainer>a {
+  font-size: var(--h5-size);
+  height: 100%;
+  min-width: 4em;
+  border-radius: 0.391em;
+  padding-block: 0.391em 0.234em; /* 10px 6px */
+  padding-inline: 0.391em;
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all linear 0.15s;
+}
+
+.splashLinksContainer>a:hover {
+  background-color: var(--primary-color);
+  color: var(--tertiary-shade);
+  box-shadow: 0 0 0.234em var(--primary-shade);
+}
+
+
+
+/* dropdown title links */
+.splashLinksContainer .dropdownTitle>a {
+  font-size: var(--h5-size);
+  color: inherit;
+  height: 100%;
+  white-space: nowrap;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* title arrow (>) */
+.splashLinksContainer .dropdownTitle>a>p:last-child {
+  transform: rotate(90deg);
+  margin-left: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+/* dropdown content links */
+.splashLinksContainer .dropdownContent>a {
+  font-size: var(--big-p-size);
+  color: var(--primary-shade);
+  height: 1.25em;
+  display: flex;
+  align-items: center;
+  padding-top: 0.125em;
+  opacity: 1;
+  max-width: 100%;
+  max-height: 1.25em;
+  transition: all linear 0.15s;
+}
+
+.splashLinksContainer .dropdownContent>a:hover {
+  color: var(--primary-color);
+}
+
+.splashLinksContainer>.dropdownMenuWrapper .dropdownTitle>svg {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  transition: all linear 0.15s;
+}
+
+.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg {
+  transform: rotate(90deg);
+}
+
+.splashLinksContainer .dropdownTitle>svg>path {
+  stroke: var(--primary-shade);
+}
+
+.splashLinksContainer>.dropdownMenuWrapper.active .dropdownTitle>svg>path {
+  stroke: var(--tertiary-shade);
+}
+
+@media (max-width: 59.375rem) {
+
+  .splashLinksContainer:first-child {
+    display: none;
+  }
+
+  .splashLinksContainer:last-child {
+    display: flex;
+  }
+
+}

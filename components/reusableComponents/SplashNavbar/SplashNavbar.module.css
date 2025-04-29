@@ -1,0 +1,100 @@
+.splashNavbarContainer {
+  font-size: var(--ref-size);
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding-bottom: 12.5em;
+  background-color: var(--secondary-color);
+  box-shadow: 0 0 0.375em var(--primary-shade);
+  transition: all linear 0.3s;
+}
+
+.splashNavbar {
+  position: relative;
+  width: 100%;
+  max-width: var(--doc-width);
+  min-height: 6.25em;
+  height: 50vw;
+  max-height: 25em;
+  margin-inline: auto;
+  transition: all linear 0.3s;
+}
+
+.logoLinkContainer {
+  z-index: 102;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 2/1;
+  padding: 0.625em 1.25em;
+  transition: all linear 0.3s;
+}
+
+.imageWrapper {
+  height: 100%;
+}
+
+.imageWrapper>img {
+  object-fit: contain;
+}
+
+.splashNavbarSlogan {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 6.25em;
+  height: 6.25em;
+  max-width: var(--doc-width);
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: all linear 0.3s;
+}
+
+.splashNavbarSlogan>.textStyleWrapper {
+  white-space: nowrap;
+}
+
+.splashNavbarLinks {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 0;
+  height: 6.25em;
+  width: fit-content;
+  max-width: var(--doc-width);
+  margin-inline: auto;
+  transition: all linear 0.3s;
+}
+
+@media (max-width: 59.375rem) {
+
+  .splashNavbarContainer {
+    padding-bottom: 6.25em;
+  }
+
+  .splashNavbarSlogan {
+    bottom: 0;
+    padding-top: 0.75em;
+  }
+
+  .splashNavbarLinks {
+    right: 0;
+    transform: translateX(0);
+  }
+
+}
+
+@media (max-width: 34.375rem) {
+
+  .splashNavbarSlogan {
+    padding-right: 9em;
+  }
+
+}
