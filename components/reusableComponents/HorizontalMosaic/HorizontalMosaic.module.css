@@ -1,0 +1,6 @@
+.horizontalMosaic {
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
