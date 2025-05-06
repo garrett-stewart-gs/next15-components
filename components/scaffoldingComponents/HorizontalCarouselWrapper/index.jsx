@@ -14,7 +14,7 @@ import styles from "./HorizontalCarouselWrapper.module.css";
 // (activeIndex is react state initialized in the carousel wrapper)
 // (numberOfItems is determined by number of children)
 // you can provide an inner closure function that writes data to child state object, giving the carousel's parents access to control child state (ex. enable parents buttons to control child)
-export default function HorizontalCarouselWrapper({ parentActiveIndexState = null, incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, children }) {
+export default function HorizontalCarouselWrapper({ parentActiveIndexState = null, incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, parentStyles = null, children }) {
 
   // use array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
@@ -35,7 +35,7 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
   const completeHandleNext = async () => (handleNext !== null) ? (await handleNext() && translateCarouselPositive()) : translateCarouselPositive();
 
   const lastIndexState = useRef(parentActiveIndexState);
-  useEffect(() => { 
+  useEffect(() => {
     if (parentActiveIndexState === null) return;
     if (parentActiveIndexState === lastIndexState.current) return;
     const indexChange = parentActiveIndexState - lastIndexState.current;
@@ -56,7 +56,10 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
   return (
     <main // carousel viewport
       ref={viewportRef}
-      className={styles.xCarouselViewport}
+      className={`
+        ${styles.xCarouselViewport}
+        ${parentStyles ? parentStyles.xCarouselViewport : ""}
+      `}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -64,7 +67,10 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
     >
       <div // carousel (overflows the viewport)
         ref={carouselRef}
-        className={styles.xCarousel}
+        className={`
+          ${styles.xCarousel}
+          ${parentStyles ? parentStyles.xCarousel : ""}
+        `}
       >
         {
           childrenArr.map((child, childIndex) => {
@@ -75,6 +81,7 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
                 className={`
                   ${styles.xCarouselElement}
                   ${styles.active} 
+                  ${parentStyles ? parentStyles.xCarouselElement : ""}
                 `}
               >
                 {child}

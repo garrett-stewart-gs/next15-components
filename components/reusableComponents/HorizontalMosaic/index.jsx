@@ -1,6 +1,10 @@
+"use client";
+
+import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 
 import HorizontalCarouselWrapper from "@/components/scaffoldingComponents/HorizontalCarouselWrapper";
 import ArticleMosaicElement from "@/components/scaffoldingComponents/ArticleWrapper/ArticleMosaicElement";
+import InfoPopUpWindow from "../InfoPopUpWindow";
 
 import styles from "./HorizontalMosaic.module.css";
 
@@ -13,20 +17,27 @@ export default function HorizonatalMosaic({
   zoomFactor = 1,
 }) {
 
+  const { activeIndex, toggleActiveIndex } = useActiveIndex(mosaicArray.length, null);
+
   return (
     <main
-      className={styles.horizontalMosaic}
+      className={`
+        ${styles.horizontalMosaic}
+      `}
     >
+
       <HorizontalCarouselWrapper>
         {
           mosaicArray.map((mosaicElement, index) => {
             return (
               <ArticleMosaicElement
                 key={`${mosaicName} ${index}`}
+                activeIndex={activeIndex}
+                onClick={toggleActiveIndex}
                 numberOfColumns={mosaicArray.length}
-                mosaicImageSrc={mosaicImage.src}
+                mosaicImage={mosaicImage}
                 currentIndex={index}
-                {...mosaicElement}
+                size={mosaicElement.size}
                 verticalOffsetPercentage={verticalOffsetPercentage}
                 horizontalOffsetPercentage={horizontalOffsetPercentage}
                 zoomFactor={zoomFactor}
@@ -35,6 +46,35 @@ export default function HorizonatalMosaic({
           })
         }
       </HorizontalCarouselWrapper>
+
+
+      <div
+        className={`
+          ${styles.screenOptionInformationWindow}
+          ${activeIndex !== null ? styles.active : ""}
+        `}
+        onClick={() => toggleActiveIndex(activeIndex)}
+      >
+        {
+          activeIndex !== null && 
+          <InfoPopUpWindow
+            {...mosaicArray[activeIndex]}
+          />
+        }
+
+        {/* <ArticleMosaicElement
+          activeIndex={activeIndex}
+          onClick={toggleActiveIndex}
+          numberOfColumns={mosaicArray.length}
+          mosaicImageSrc={mosaicImage.src}
+          currentIndex={activeIndex}
+          {...mosaicArray[activeIndex]}
+          verticalOffsetPercentage={verticalOffsetPercentage}
+          horizontalOffsetPercentage={horizontalOffsetPercentage}
+          zoomFactor={zoomFactor}
+        /> */}
+      </div>
+
     </main>
   );
 }

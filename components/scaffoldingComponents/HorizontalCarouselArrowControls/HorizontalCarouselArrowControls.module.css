@@ -5,6 +5,7 @@
   max-height: 25em;
 }
 
+/* left/right arrow buttons */
 .horizontalCarouselControlsWrapper>*:first-child,
 .horizontalCarouselControlsWrapper>*:last-child {
   max-width: 2.5em;
@@ -12,27 +13,3 @@
   margin-inline: 0.625em;
   cursor: pointer;
 }
-
-
-
-/* .horizontalCarouselControlsWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.horizontalCarouselControlsWrapper>:not(.carouselButtonsContainer) {
-  pointer-events: auto;
-} */
-
-/* .carouselButtonsContainer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-
-} */

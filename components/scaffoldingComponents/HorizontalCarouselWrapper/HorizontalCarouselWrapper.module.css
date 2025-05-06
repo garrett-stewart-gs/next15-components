@@ -16,9 +16,6 @@
 }
 
 .xCarouselElement {
-  display: "flex";
-  justify-content: "center";
-  align-items: "center";
   transition: opacity ease-out 0.30s;
 }
 

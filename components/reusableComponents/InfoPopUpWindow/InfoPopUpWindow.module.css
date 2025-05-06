@@ -1,0 +1,120 @@
+.infoPopUpWindow {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.625em;
+  box-shadow: 0 0 1.25em var(--primary-shade);
+  overflow: hidden;
+}
+
+/* Option Title/Size */
+.infoPopUpWindow>.textStyleWrapper {
+  background-color: var(--primary-color);
+  height: 3.75em;
+  display: flex;
+  justify-content: center;
+}
+
+/* Option Title/Size Text */
+.infoPopUpWindow>.textStyleWrapper p {
+  color: var(--tertiary-shade);
+  font-size: var(--big-p-size);
+  line-height: 1.2;
+  font-weight: var(--avg-weight);
+}
+
+.infoWindowCarouselContainer {
+  width: 100%;
+  flex: 0 1 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.625em;
+}
+
+
+.infoWindowCarouselContainer>.horizontalCarouselControlsWrapper {
+  height: 100%;
+  justify-content: space-between;
+}
+
+.infoWindowCarouselContainer .xCarouselViewport {
+  min-height: 100%;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+.infoWindowCarouselContainer .xCarousel {
+  min-height: 100%;
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.infoWindowCarouselContainer .xCarouselElement {
+  min-height: 100%;
+  height: 100%;
+  max-height: 15.907em;
+  flex: 0 1 50%;
+  min-width: 50%;
+}
+
+/*  */
+/* IMPORTANT: ensures carousel elements are the same size */
+.infoWindowCarouselContainer .xCarouselElement>.textStyleWrapper,
+.infoWindowCarouselContainer .xCarouselElement>.imageWrapper {
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
+}
+
+.infoWindowCarouselContainer .xCarouselElement>.textStyleWrapper {
+  justify-content: center;
+}
+
+.popUpWindowImageContainer>.imageWrapper>img {
+  object-fit: contain;
+}
+
+@media (max-width: 106.25rem) {
+
+  .infoWindowCarouselContainer .xCarousel {
+    width: fit-content;
+    max-width: fit-content;
+  }
+
+  .infoWindowCarouselContainer .xCarouselElement {
+    flex: 1 1 auto;
+    min-width: fit-content;
+  }
+
+}
+
+@media (max-width: 33.875rem) {
+
+  .infoWindowCarouselContainer .xCarousel {
+    min-width: 200%;
+    max-width: 200%;
+  }
+
+  .infoWindowCarouselContainer .xCarouselElement {
+    min-width: 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .infoWindowCarouselContainer .xCarouselElement>.textStyleWrapper,
+  .infoWindowCarouselContainer .xCarouselElement>.imageWrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    /* margin-block: auto; */
+  }
+
+}

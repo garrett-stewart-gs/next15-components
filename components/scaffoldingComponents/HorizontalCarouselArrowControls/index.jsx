@@ -4,13 +4,13 @@ import RightArrowIcon from "@/components/reusableComponents/ArrowIcons/RightArro
 
 import defaultStyles from "./HorizontalCarouselArrowControls.module.css";
 
-export default function HorizontalCarouselControls({ handleLeft, handleRight, parentStyles, children }) {
+export default function HorizontalCarouselControls({ handleLeft, handleRight, parentStyles = null, children }) {
 
   return (
     <main
       className={`
         ${defaultStyles.horizontalCarouselControlsWrapper}
-        ${parentStyles?.horizontalCarouselControlsWrapper}
+        ${parentStyles ? parentStyles.horizontalCarouselControlsWrapper : ""}
       `}
     >
       

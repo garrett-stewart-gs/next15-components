@@ -21,7 +21,10 @@ export default function HorizontalCarouselIndexSelectorControls({ numberOfElemen
             <CircleIcon
               key={`horizontal carousel index selector ${elementNumber}`}
               isActive={elementNumber === parentActiveIndexState ? true : false}
-              onClick={() => setNewActiveIndex(elementNumber)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setNewActiveIndex(elementNumber);
+              }}
             />
           );
         })

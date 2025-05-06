@@ -42,7 +42,7 @@ export function useActiveIndex(arrayLength, initialIndex = 0) {
 
   const toggleActiveIndex = (newIndex) => {
 
-    if (newIndex === null) return deactivateActiveIndex();
+    if (newIndex === activeIndex) return deactivateActiveIndex();
 
     return setNewActiveIndex(newIndex);
 
