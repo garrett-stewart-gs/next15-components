@@ -4,6 +4,7 @@
   border-radius: 0.625em;
   box-shadow: 0 0 0.375rem var(--primary-shade);
   overflow: hidden;
+  cursor: pointer;
   transition: all linear 0.15s;
 }
 

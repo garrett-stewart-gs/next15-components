@@ -8,7 +8,7 @@ export default function LinkButton({ link, text, parentStyles }) {
     <Link
       className={`
       ${defaultStyles.linkButton}
-      ${parentStyles?.linkButton}
+      ${parentStyles ? parentStyles.linkButton : ""}
     `}
       href={link}
     >

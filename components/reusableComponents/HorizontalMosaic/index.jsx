@@ -62,17 +62,6 @@ export default function HorizonatalMosaic({
           />
         }
 
-        {/* <ArticleMosaicElement
-          activeIndex={activeIndex}
-          onClick={toggleActiveIndex}
-          numberOfColumns={mosaicArray.length}
-          mosaicImageSrc={mosaicImage.src}
-          currentIndex={activeIndex}
-          {...mosaicArray[activeIndex]}
-          verticalOffsetPercentage={verticalOffsetPercentage}
-          horizontalOffsetPercentage={horizontalOffsetPercentage}
-          zoomFactor={zoomFactor}
-        /> */}
       </div>
 
     </main>

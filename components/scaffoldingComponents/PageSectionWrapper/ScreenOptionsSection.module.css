@@ -1,3 +1,62 @@
 .pageSectionWrapper {
   flex-direction: column;
 }
+
+.pageSectionWrapper>.toggleSwitchWrapper {
+  width: 40em;
+  max-width: 95%;
+  min-height: 7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 1.875em 1.25em;
+  cursor: pointer;
+}
+
+.toggleSwitchWrapper>.textStyleWrapper {
+  flex: 0 0 50%;
+}
+
+.toggleSwitchWrapper>.textStyleWrapper>* {
+  min-width: 100%;
+}
+
+.screenOptionsSlider,
+.buttonLinksSlider {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.buttonLinksSlider {
+  padding-block: 1.875em;
+}
+
+.screenOptionsSlider>*,
+.buttonLinksSlider>* {
+  flex: 0 0 100%;
+  transition: all linear 0.15s;
+}
+
+.buttonLinksSlider>* {
+  display: flex;
+  justify-content: center;
+  gap: 1.25em;
+}
+
+.screenOptionsSlider.left>* {
+  transform: translateX(0);
+}
+
+.screenOptionsSlider.right>* {
+  transform: translateX(-100%);
+}
+
+.buttonLinksSlider.left>* {
+  transform: translateX(-100%);
+}
+
+.buttonLinksSlider.right>* {
+  transform: translateX(0);
+}

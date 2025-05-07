@@ -1,8 +1,13 @@
+"use client";
+
+import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 
 import PageSectionWrapper from ".";
 import TextStyleWrapper from "../TextStyleWrapper";
+import ToggleSwitchWrapper from "../ToggleSwitchWrapper/ToggleSwitchWrapper";
 
 import HorizonatalMosaic from "@/components/reusableComponents/HorizontalMosaic";
+import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 import styles from "./ScreenOptionsSection.module.css";
 
@@ -126,6 +131,8 @@ const inflatableArray = [
 
 export default function ScreenOptionsSection() {
 
+  const { activeIndex, decrementActiveIndex, incrementActiveIndex } = useActiveIndex(2, 0);
+
   return (
     <PageSectionWrapper parentStyles={styles}>
 
@@ -134,25 +141,65 @@ export default function ScreenOptionsSection() {
         <h2>Different Screens For Different Scenes.</h2>
       </TextStyleWrapper>
 
-      <div>inflatable vs daylight selector here</div>
+      <ToggleSwitchWrapper
+        parentStyles={styles}
+        activeParentIndex={activeIndex}
+        onClick={() => incrementActiveIndex(true)}
+      >
+        <TextStyleWrapper parentStyles={styles}>
+          <h6>Daylight Screens</h6>
+        </TextStyleWrapper>
+        <TextStyleWrapper parentStyles={styles}>
+          <h6>Inflatable Screens</h6>
+        </TextStyleWrapper>
+      </ToggleSwitchWrapper>
 
-      <HorizonatalMosaic
-        mosaicName={"Daylight Screen Options Mosaic 1"} // used for react key generation
-        mosaicImage={daylightMosaicImage}
-        mosaicArray={daylightArray}
-        verticalOffsetPercentage={60}
-        horizontalOffsetPercentage={0}
-        zoomFactor={1}
-      />
+      <div
+        className={`
+          ${styles.screenOptionsSlider}
+          ${activeIndex === 0 ? styles.left : ""}
+          ${activeIndex === 1 ? styles.right : ""}
+        `}
+      >
 
-      <HorizonatalMosaic
-        mosaicName={"Inflatable Screen Options Mosaic 2"} // used for react key generation
-        mosaicImage={inflatableMosaicImage}
-        mosaicArray={inflatableArray}
-        verticalOffsetPercentage={60}
-        horizontalOffsetPercentage={0}
-        zoomFactor={1}
-      />
+        <HorizonatalMosaic
+          mosaicName={"Daylight Screen Options Mosaic 1"} // used for react key generation
+          mosaicImage={daylightMosaicImage}
+          mosaicArray={daylightArray}
+          verticalOffsetPercentage={60}
+          horizontalOffsetPercentage={0}
+          zoomFactor={1}
+        />
+
+        <HorizonatalMosaic
+          mosaicName={"Inflatable Screen Options Mosaic 2"} // used for react key generation
+          mosaicImage={inflatableMosaicImage}
+          mosaicArray={inflatableArray}
+          verticalOffsetPercentage={60}
+          horizontalOffsetPercentage={0}
+          zoomFactor={1}
+        />
+
+      </div>
+
+      <div
+        className={`
+          ${styles.buttonLinksSlider}
+          ${activeIndex === 0 ? styles.left : ""}
+          ${activeIndex === 1 ? styles.right : ""}
+        `}
+      >
+        <article>
+          <LinkButton link={"/"} text={"Rentals"} />
+          <LinkButton link={"/"} text={"Sales"} />
+        </article>
+
+        <article>
+          <LinkButton link={"/"} text={"Rentals"} />
+          <LinkButton link={"/"} text={"Sales"} />
+        </article>
+      </div>
+
 
     </PageSectionWrapper>
   );

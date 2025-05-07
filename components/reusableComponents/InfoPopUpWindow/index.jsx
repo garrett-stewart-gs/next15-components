@@ -78,6 +78,7 @@ export default function InfoPopUpWindow({
           numberOfElements={2}
           parentActiveIndexState={activeIndex}
           setNewActiveIndex={setNewActiveIndex}
+          parentStyles={styles}
         />
 
       </section>

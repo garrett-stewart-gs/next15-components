@@ -2,12 +2,12 @@
 
 import defaultStyles from "./TextStyleWrapperDefault.module.css";
 
-export default function TextStyleWrapper({ parentStyles, children }) {
+export default function TextStyleWrapper({ parentStyles = null, children }) {
 
   return (
     <div className={`
       ${defaultStyles.textStyleWrapper}
-      ${parentStyles?.textStyleWrapper}
+      ${parentStyles ? parentStyles.textStyleWrapper : ""}
     `}>
       {children}
     </div>
