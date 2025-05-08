@@ -14,7 +14,7 @@
 .screenOptionInformationWindow {
   position: absolute;
   top: 0;
-  background-color: var(--tertiary-shade);
+  background-color: var(--tertiary-color);
   transition: all linear 0.15s;
 }
 

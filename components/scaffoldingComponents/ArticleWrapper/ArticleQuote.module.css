@@ -1,0 +1,33 @@
+.articleWrapper {
+  font-size: var(--ref-size);
+  background-color: var(--tertiary-shade);
+  width: 16.25em;
+  height: 25em;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 0.625em;
+  padding-bottom: 1.25em;
+  margin: 0.625em;
+  border-radius: 0.625em;
+  box-shadow: 0 0 0.375rem var(--primary-shade);
+  transition: all linear 0.15s;
+}
+
+.articleWrapper>.textStyleWrapper>* {
+  font-weight: var(--avg-weight);
+}
+
+.articleWrapper:hover {
+  box-shadow: 0 0 1.25em var(--primary-shade);
+  transform: scale(1.02);
+}
+
+.articleWrapper>.bulletWrapper {
+  width: 4.5em;
+  height: 4.5em;
+}
+
+.articleWrapper>.bulletWrapper>text {
+  font-size: 6rem;
+  transform: translateY(18%);
+}

@@ -1,5 +1,6 @@
 .pageSectionWrapper {
   font-size: var(--ref-size);
+  background-color: var(--tertiary-color);
   width: 100%;
   max-width: var(--doc-width);
   margin-inline: auto;

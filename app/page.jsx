@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrapper/FeatureSection";
-import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection.index";
+import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection";
 import ScreenOptionsSection from "@/components/scaffoldingComponents/PageSectionWrapper/ScreenOptionsSection";
+import TestimonialCardSection from "@/components/scaffoldingComponents/PageSectionWrapper/TestimonialCardSection";
 import SplashNavbar from "@/components/reusableComponents/Navbar";
 import Navbar from "@/components/reusableComponents/Navbar/Navbar";
 
@@ -78,6 +79,8 @@ export default function Home() {
       <ArticleShowcaseSection />
 
       <ScreenOptionsSection/>
+
+      <TestimonialCardSection/>
 
     </main>
   );

@@ -63,7 +63,12 @@
   font-style: normal;
 }
 
+body {
+  background-color: var(--tertiary-color);
+}
+
 body,
+button,
 input {
   font-family: 'Jost', sans-serif;
   font-weight: 400;

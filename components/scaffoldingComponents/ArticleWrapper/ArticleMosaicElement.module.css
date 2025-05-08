@@ -1,5 +1,4 @@
 .articleWrapper {
-  /* position: relative; */
   margin: 0.625em;
   border-radius: 0.625em;
   box-shadow: 0 0 0.375rem var(--primary-shade);
@@ -35,24 +34,3 @@
   line-height: 1.2;
   font-weight: var(--avg-weight);
 }
-
-/* .mosaicElementContainer:not(.active)>.textStyleWrapper:last-child{
-  color: var(--tertiary-shade);
-}
-
-.mosaicElementContainer.active>.textStyleWrapper:last-child{
-  color: var(--tertiary-shade);
-} */
-
-/* .mosaicElementContainer>.textStyleWrapper:last-child {
-  background-color: var(--tertiary-shade);
-  opacity: 0;
-}
-
-.mosaicElementContainer:not(.active)>.textStyleWrapper:last-child{
-  opacity: 0;
-}
-
-.mosaicElementContainer.active>.textStyleWrapper:last-child{
-  opacity: 1;
-} */

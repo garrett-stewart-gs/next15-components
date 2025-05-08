@@ -1,5 +1,6 @@
 .infoPopUpWindow {
   font-size: var(--ref-size);
+  background-color: var(--tertiary-shade);
   width: 100%;
   height: 100%;
   display: flex;
