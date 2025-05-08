@@ -4,6 +4,7 @@ import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrappe
 import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection";
 import ScreenOptionsSection from "@/components/scaffoldingComponents/PageSectionWrapper/ScreenOptionsSection";
 import TestimonialCardSection from "@/components/scaffoldingComponents/PageSectionWrapper/TestimonialCardSection";
+import LogoShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/LogoShowcaseSection";
 import SplashNavbar from "@/components/reusableComponents/Navbar";
 import Navbar from "@/components/reusableComponents/Navbar/Navbar";
 
@@ -81,6 +82,8 @@ export default function Home() {
       <ScreenOptionsSection/>
 
       <TestimonialCardSection/>
+
+      <LogoShowcaseSection/>
 
     </main>
   );

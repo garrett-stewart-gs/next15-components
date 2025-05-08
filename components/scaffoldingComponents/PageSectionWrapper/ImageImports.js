@@ -1,35 +1,15 @@
 // ARTICLE SHOWCASE SECTION
-import DaylightRentalImage from '@/public/images/reuseableComponents/ArticleShowcaseSection/lrg_daylight_classic_car.jpg';
-import InflatableRentalImage from '@/public/images/reuseableComponents/ArticleShowcaseSection/xlrg_inflatable_jaws_on_the_lake_double_sided_screen_audience_no_image_water_side_2.jpg';
-import ScreenSalesImage from '@/public/images/reuseableComponents/ArticleShowcaseSection/lrg_daylight_event_layout_screen_and_audience.JPG';
-import OurPortfolioImage from "@/public/images/reuseableComponents/ArticleShowcaseSection/portfolio_jaws_audience.jpg";
-import FaqsImage from "@/public/images/reuseableComponents/ArticleShowcaseSection/questions.png";
 
 export const articleShowcaseSectionImages = {
-  DaylightRentalImage,
-  InflatableRentalImage,
-  ScreenSalesImage,
-  OurPortfolioImage,
-  FaqsImage,
+  DaylightRentalImage: '/images/reuseableComponents/ArticleShowcaseSection/lrg_daylight_classic_car.jpg',
+  InflatableRentalImage: '/images/reuseableComponents/ArticleShowcaseSection/xlrg_inflatable_jaws_on_the_lake_double_sided_screen_audience_no_image_water_side_2.jpg',
+  ScreenSalesImage: '/images/reuseableComponents/ArticleShowcaseSection/lrg_daylight_event_layout_screen_and_audience.JPG',
+  OurPortfolioImage: "/images/reuseableComponents/ArticleShowcaseSection/portfolio_jaws_audience.jpg",
+  FaqsImage: "/images/reuseableComponents/ArticleShowcaseSection/questions.png",
 }
 
 
 // SCREEN OPTIONS / INTERACTIVE MOSAIC SECTION
-// import daylightMosaicImage from "@/public/images/homePage/screenOptions/LRG-Daylight_Golf-Cart-Drive-In_FreshAirCinema_3.jpg";
-// import inflatableMosaicImage from "@/public/images/homePage/screenOptions/xlrg_regular_sunny_park.jpg";
-
-// import smlDaylightDiagram from "@/public/images/homePage/screenOptions/diagram-lrg-daylight.jpg";
-// import medDaylightDiagram from "@/public/images/homePage/screenOptions/diagram-lrg-daylight.jpg";
-// import lrgDaylightDiagram from "@/public/images/homePage/screenOptions/diagram-lrg-daylight.jpg";
-
-// import miniInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-sml-inflatable.png";
-// import smlInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-sml-inflatable.png";
-// import medInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-sml-inflatable.png";
-// import lrgInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-lrg-inflatable.png";
-// import xlrgInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-xlrg-inflatable.png";
-// import jumboInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-jumbo-di-inflatable.png";
-// import xlrgDiInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-jumbo-di-inflatable.png";
-// import jumboDiInflatableDiagram from "@/public/images/homePage/screenOptions/diagram-jumbo-di-inflatable.png";
 
 export const screenOptionsSectionImages = {
   daylightMosaicImage: "/images/homePage/screenOptions/LRG-Daylight_Golf-Cart-Drive-In_FreshAirCinema_3.jpg",
@@ -49,4 +29,25 @@ export const screenOptionsSectionImages = {
     xlrgDiInflatableDiagram: "/images/homePage/screenOptions/diagram-jumbo-di-inflatable.png",
     jumboDiInflatableDiagram: "/images/homePage/screenOptions/diagram-jumbo-di-inflatable.png",
   }
+}
+
+// CLIENT LOGO SHOWCASE
+
+export const ourClientsLogos = {
+  carouselLogos: [
+    "/images/homePage/ourClients/bowness-community-association-logo.png",
+    "/images/homePage/ourClients/spruce-meadows-logo.png",
+    "/images/homePage/ourClients/st-albert-dodge-logo.png",
+    "/images/homePage/ourClients/town-of-blackfalds-logo.png",
+    "/images/homePage/ourClients/calgary-municipal-land-corporation-logo.svg",
+    "/images/homePage/ourClients/calgary-public-library-logo.svg",
+    "/images/homePage/ourClients/city-of-st-albert-logo.svg",
+    "/images/homePage/ourClients/mattamy-homes-logo.svg",
+    "/images/homePage/ourClients/spruce-meadows-logo.svg",
+    "/images/homePage/ourClients/town-of-stony-plain-logo.svg",
+    "/images/homePage/ourClients/town-of-sylvan-lake-logo.svg",
+    "/images/homePage/ourClients/genesis-land-development-corp-logo.webp",
+    "/images/homePage/ourClients/kaltire-logo.webp",
+    "/images/homePage/ourClients/pinebrook-golf-and-country-club-logo.webp",
+  ]
 }

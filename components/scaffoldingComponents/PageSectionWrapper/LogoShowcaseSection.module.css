@@ -1,0 +1,45 @@
+.pageSectionWrapper {
+  flex-direction: column;
+}
+
+.pageSectionWrapper>.sliderRow {
+  width: 100%;
+  display: flex;
+  margin-block: 1.25em;
+}
+
+.pageSectionWrapper>.sliderRow:first-child {
+  justify-content: flex-start;
+}
+
+.pageSectionWrapper>.sliderRow:last-child {
+  justify-content: flex-end;
+}
+
+.logoSlider {
+  display: flex;
+  padding-inline: 5em;
+  gap: 10em;
+  transition: all linear 1s;
+}
+
+.logoSlider>.imageWrapper {
+  width: 10em;
+  height: 5em;
+}
+
+.logoSlider>.imageWrapper>img {
+  object-fit: contain;
+}
+
+/* .logoSlider {
+  border: 1px solid black;
+} */
+
+/* .logoSlider:first-child {
+  background-color: red;
+}
+
+.logoSlider:last-child {
+  background-color: blue;
+} */
