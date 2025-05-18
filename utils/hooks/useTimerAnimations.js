@@ -2,24 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 
-const convertPxValueToEm = (elementWidthPx, elementFontSize) => elementWidthPx / elementFontSize;
-
-function calculateAnimationProgress() {
-
-}
-
-function calculateCurrentValue(initialValue, endingValue, animationProgressPercentage) {
-
-  // determine maximum change in scale
-  const maximumChangeInValue = endingValue - initialValue;
-
-  const currentChangeInValue = maximumChangeInValue * animationProgressPercentage;
-
-  // calculate current scale factor based on animation progress percentage
-  return Number((initialValue + currentChangeInValue).toFixed(2));
-
-}
-
 // sets a interval timer that runs your callback function every x milliseconds, default 10000ms = 10sec
 export function useAnimationTimer(animationArr, interval = 1000) {
 
@@ -33,9 +15,9 @@ export function useAnimationTimer(animationArr, interval = 1000) {
       clearInterval(timerRef.current);
       timerRef.current = setInterval(
         () => {
-          animationArr.forEach(animation => animation())
+          animationArr.forEach(animation => animation());
         },
-        [interval]
+        interval
       );
     },
     []
@@ -68,39 +50,106 @@ export function useAnimationTimer(animationArr, interval = 1000) {
 
 }
 
-export function useTranslateXRef(
-  startingTranslateXPercent = 100, // places element at far right/left at 0%
-  endingTranslateXPercent = -100, // places element at far left/right at 100%;
-  startingAnimationProgress = 50, // places element in center at 50%
-) {
+export function useContinuousTranslateX(isShiftingRight = false, step = 0.1) {
 
-  const elementRef = useRef(null);
-  const totalTranslatePercentChange = useRef(endingTranslateXPercent - startingTranslateXPercent);
-  const currentAnimationProgress = useRef(startingAnimationProgress);
+  const parentRef = useRef(null); // passed to component
+  const child1Ref = useRef(null); // internal ref only
+  const child2Ref = useRef(null); // internal ref only
 
-  const updateTranslateValue = () => {
+  const hasBeenInitialized = useRef(false); // track if animation has been initialized/run previously
+
+  const getElementRect = (elementRef) => elementRef.current.getBoundingClientRect();
+
+  const readElementTranslateValuePx = (elementRef) => {
+    // grab the “matrix(a, b, c, d, tx, ty)” string
+    const transformMatrixString = getComputedStyle(elementRef.current).transform;
+    // extract the tx value, and convert to float
+    return parseFloat(transformMatrixString.match(/matrix.*\((.+)\)/)[1].split(', ')[4]);
+  };
+
+  const convertTranslateValueInPxToPercent = (translateValueInPx, elementRef) => {
+    const elementWidthInPx = getElementRect(elementRef).width;
+    return (translateValueInPx / elementWidthInPx) * 100;
+  };
+
+  const getElementTranslateXPercent = (elementRef) => {
+    const translateXValueInPx = readElementTranslateValuePx(elementRef);
+    return convertTranslateValueInPxToPercent(translateXValueInPx, elementRef);
+  };
+
+  const isTranslateXPercentWithinRange = (translateXPercent, elementRef) => {
+    return translateXPercent >= elementRef.min && translateXPercent <= elementRef.max ? true : false;
+  };
+
+  const applyTranslateXPercentToElement = (elementRef, translatePercent) => elementRef.current.style.transform = `translateX(${translatePercent}%)`;
+
+  const initializeAnimationProperties = () => {
+
+    // record that animation properties have been initialized
+    hasBeenInitialized.current = true;
+
+    // obtain childRefs
+    child1Ref.current = parentRef.current.children[0];
+    child2Ref.current = parentRef.current.children[1];
+
+    // assign individual min/max values to childRefs
+    child1Ref["min"] = isShiftingRight ? 0 : -100;
+    child1Ref["max"] = isShiftingRight ? 200 : 100;
+    child2Ref["min"] = isShiftingRight ? -100 : -200;
+    child2Ref["max"] = isShiftingRight ? 100 : 0;
+
+    // apply initial translate percentages to children
+    if (isShiftingRight) { // shifting right
+      applyTranslateXPercentToElement(child1Ref, child1Ref.min);
+      applyTranslateXPercentToElement(child2Ref, 0);
+    } else { // shifting left
+      applyTranslateXPercentToElement(child1Ref, 0);
+      applyTranslateXPercentToElement(child2Ref, child2Ref.max);
+    }
+
+  };
+
+  const handleElementTranslateXAnimation = () => {
 
     // if element ref not initialized yet, return
-    if (!elementRef.current) return;
+    if (!parentRef.current) return;
 
-    // calculate current translate percent change
-    const currentTranslatePercentage = startingTranslateXPercent + (totalTranslatePercentChange.current * currentAnimationProgress.current / 100);
+    // if uninitialized, initialize animation properties and return
+    if (!hasBeenInitialized.current) return initializeAnimationProperties();
 
-    console.log('new calculated currentTranslatePercentage: ', currentTranslatePercentage)
+    // obtain current translateX values
+    const currentChild1TranslateXPercent = getElementTranslateXPercent(child1Ref);
+    const currentChild2TranslateXPercent = getElementTranslateXPercent(child2Ref);
 
-    // apply new translateX value to element
-    elementRef.current.style.transform = `translateX(${currentTranslatePercentage}%)`;
+    // calculate new translateX values, based on shifting direction (isShiftingRight boolean)
+    const newChild1TranslateXPercent = isShiftingRight ? currentChild1TranslateXPercent + step : currentChild1TranslateXPercent - step;
+    const newChild2TranslateXPercent = isShiftingRight ? currentChild2TranslateXPercent + step : currentChild2TranslateXPercent - step;
 
-    // increment currentAnimation progress, or loop if animation finished
-    currentAnimationProgress.current = currentAnimationProgress.current < 100 ? 
-      currentAnimationProgress.current + 1
-      :
-      0;
+    // apply new translateX percentage to child 1
+    if (!isTranslateXPercentWithinRange(newChild1TranslateXPercent, child1Ref)) { // if new percentage is out of range
+      isShiftingRight ?
+        applyTranslateXPercentToElement(child1Ref, child1Ref.min) // shifting right
+        :
+        applyTranslateXPercentToElement(child1Ref, child1Ref.max); // shifting left
+    } else { // if new percentage is within range
+      applyTranslateXPercentToElement(child1Ref, newChild1TranslateXPercent);
+    }
+
+    // apply new translateX percentage to child 2
+    if (!isTranslateXPercentWithinRange(newChild2TranslateXPercent, child2Ref)) { // if new percentage is out of range
+      isShiftingRight ?
+        applyTranslateXPercentToElement(child2Ref, child2Ref.min) // shifting right
+        :
+        applyTranslateXPercentToElement(child2Ref, child2Ref.max); // shifting left
+    } else { // if new percentage is within range
+      applyTranslateXPercentToElement(child2Ref, newChild2TranslateXPercent);
+    }
+
   };
 
   return {
-    elementRef,
-    updateTranslateValue,
+    parentRef,
+    handleElementTranslateXAnimation,
   };
 
 }
