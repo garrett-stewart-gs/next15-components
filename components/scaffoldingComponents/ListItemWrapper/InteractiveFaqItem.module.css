@@ -4,8 +4,6 @@
   padding-left: 0.375em;
   border-top: 0.0625em solid var(--primary-color);
   transition: all linear 0.15s;
-  max-width: var(--doc-width);
-  margin-inline: auto;
 }
 
 .listItemWrapper:first-of-type {

@@ -1,13 +1,13 @@
 
-import defaultStyles from "./SearchbarWrapper.module.css";
+import styles from "./SearchbarWrapper.module.css";
 
-export default function SearchbarWrapper({ parentStyles, children }) {
+export default function SearchbarWrapper({ parentStyles =  null, children }) {
 
   return (
     <div
       className={`
-        ${defaultStyles.searchbarWrapper}
-        ${parentStyles?.searchbarWrapper}  
+        ${styles.searchbarWrapper}
+        ${parentStyles ? parentStyles.searchbarWrapper : ""}  
       `}
     >
       {children}

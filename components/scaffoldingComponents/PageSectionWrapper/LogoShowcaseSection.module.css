@@ -28,7 +28,7 @@
 .slider {
   display: flex;
   padding-inline: 5em;
-  gap: 10em;
+  gap: min(15dvw, 10em);
 }
 
 
