@@ -83,6 +83,8 @@ export function useContinuousTranslateX(isShiftingRight = false, step = 0.1) {
 
   const applyTranslateXPercentToElement = (elementRef, translatePercent) => elementRef.current.style.transform = `translateX(${translatePercent}%)`;
 
+  const applyOpacityToElement = (elementRef, opacityValue) => elementRef.current.style.opacity = `${opacityValue}`;
+
   const initializeAnimationProperties = () => {
 
     // record that animation properties have been initialized
@@ -127,20 +129,38 @@ export function useContinuousTranslateX(isShiftingRight = false, step = 0.1) {
 
     // apply new translateX percentage to child 1
     if (!isTranslateXPercentWithinRange(newChild1TranslateXPercent, child1Ref)) { // if new percentage is out of range
+
+      // hide element temporarily
+      applyOpacityToElement(child1Ref, 0);
+
+      // apply translateX percentage that corresponds to starting location
       isShiftingRight ?
         applyTranslateXPercentToElement(child1Ref, child1Ref.min) // shifting right
         :
         applyTranslateXPercentToElement(child1Ref, child1Ref.max); // shifting left
+
+      // show temporarily hidden element
+      applyOpacityToElement(child1Ref, 1);
+
     } else { // if new percentage is within range
       applyTranslateXPercentToElement(child1Ref, newChild1TranslateXPercent);
     }
 
     // apply new translateX percentage to child 2
     if (!isTranslateXPercentWithinRange(newChild2TranslateXPercent, child2Ref)) { // if new percentage is out of range
+
+      // hide element temporarily
+      applyOpacityToElement(child2Ref, 0);
+
+      // apply translateX percentage that corresponds to starting location
       isShiftingRight ?
         applyTranslateXPercentToElement(child2Ref, child2Ref.min) // shifting right
         :
         applyTranslateXPercentToElement(child2Ref, child2Ref.max); // shifting left
+
+      // show temporarily hidden element
+      applyOpacityToElement(child2Ref, 1);
+
     } else { // if new percentage is within range
       applyTranslateXPercentToElement(child2Ref, newChild2TranslateXPercent);
     }

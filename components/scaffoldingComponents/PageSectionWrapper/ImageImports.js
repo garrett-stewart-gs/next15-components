@@ -36,18 +36,17 @@ export const screenOptionsSectionImages = {
 export const ourClientsLogos = {
   carouselLogos: [
     "/images/homePage/ourClients/bowness-community-association-logo.png",
-    "/images/homePage/ourClients/spruce-meadows-logo.png",
     "/images/homePage/ourClients/st-albert-dodge-logo.png",
     "/images/homePage/ourClients/town-of-blackfalds-logo.png",
     "/images/homePage/ourClients/calgary-municipal-land-corporation-logo.svg",
     "/images/homePage/ourClients/calgary-public-library-logo.svg",
+    "/images/homePage/ourClients/kaltire-logo.webp",
     "/images/homePage/ourClients/city-of-st-albert-logo.svg",
     "/images/homePage/ourClients/mattamy-homes-logo.svg",
     "/images/homePage/ourClients/spruce-meadows-logo.svg",
     "/images/homePage/ourClients/town-of-stony-plain-logo.svg",
     "/images/homePage/ourClients/town-of-sylvan-lake-logo.svg",
     "/images/homePage/ourClients/genesis-land-development-corp-logo.webp",
-    "/images/homePage/ourClients/kaltire-logo.webp",
     "/images/homePage/ourClients/pinebrook-golf-and-country-club-logo.webp",
   ]
 }
