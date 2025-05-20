@@ -62,7 +62,7 @@
 .textStyleWrapper>h2+p,
 .textStyleWrapper>h2+span {
   font-size: var(--h5-size);
-  margin-block: 1.25em;
+  margin-top: 1.25em;
 }
 
 .textStyleWrapper>h3+p,
@@ -70,7 +70,7 @@
 .textStyleWrapper>h4+p,
 .textStyleWrapper>h4+span {
   font-size: var(--h6-size);
-  margin-block: 0.625em;
+  margin-top: 0.625em;
 }
 
 .textStyleWrapper>h5+p,
@@ -78,5 +78,5 @@
 .textStyleWrapper>h6+p,
 .textStyleWrapper>h6+span {
   font-size: var(--big-p-size);
-  margin-block: 0.375em;
+  margin-top: 0.375em;
 }

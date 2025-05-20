@@ -1,27 +1,24 @@
 .articleWrapper {
   width: 100%;
-  column-gap: 2.5em;
-  row-gap: 0;
+  column-gap: 1.25em;
+  row-gap: 3.125em;
   background-color: var(--tertiary-color);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .articleWrapper>.textStyleWrapper {
-  flex: 3 0 20em;
+  flex: 3 1 20em;
   justify-content: center;
 }
 
 .articleWrapper>.imageWrapper {
-  flex: 1 1 30em;
-  max-width: 35em;
-  aspect-ratio: 7 / 4;
+  flex: 0 0 35em;
+  max-width: 100%;
+  aspect-ratio: 3.5/2;
+  max-height: fit-content;
   box-shadow: 0 0 0.375em var(--primary-shade);
   border-radius: 1.25em;
   background-color: var(--tertiary-shade);
-}
-
-
-@media (max-width: 50rem) {
-  .articleWrapper {
-    flex-wrap: wrap;
-  }
+  margin-block: auto;
 }
