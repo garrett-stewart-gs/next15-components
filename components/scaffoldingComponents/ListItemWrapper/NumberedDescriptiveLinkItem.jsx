@@ -7,7 +7,7 @@ import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 import styles from "./NumberedDescriptiveLinkItem.module.css";
 
-export default function NumberedDescriptiveLinkItem({ bulletNumber, title, description, buttonText }) {
+export default function NumberedDescriptiveLinkItem({ bulletNumber, title, description, buttonText, buttonLink }) {
 
   return (
     <ListItemWrapper parentStyles={styles}>
@@ -25,7 +25,7 @@ export default function NumberedDescriptiveLinkItem({ bulletNumber, title, descr
 
       <LinkButton
         parentStyles={styles}
-        link={"/"}
+        link={buttonLink}
         text={buttonText}
       />
 

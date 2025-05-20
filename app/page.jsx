@@ -2,36 +2,116 @@
 import SplashNavbar from "@/components/reusableComponents/Navbar";
 import Navbar from "@/components/reusableComponents/Navbar/Navbar";
 
+
+import SplashFeatureCarouselSection from "@/components/scaffoldingComponents/PageSectionWrapper/SplashFeatureCarouselSection";
 import FeatureSection from "@/components/scaffoldingComponents/PageSectionWrapper/FeatureSection";
 import ArticleShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/ArticleShowcaseSection";
 import ScreenOptionsSection from "@/components/scaffoldingComponents/PageSectionWrapper/ScreenOptionsSection";
 import TestimonialCardSection from "@/components/scaffoldingComponents/PageSectionWrapper/TestimonialCardSection";
 import LogoShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/LogoShowcaseSection";
-
 import FaqsSearchableSection from "@/components/scaffoldingComponents/PageSectionWrapper/FaqsSearchableSection";
 import NumberedDescriptiveLinkItemsSection from "@/components/scaffoldingComponents/PageSectionWrapper/NumberedDescriptiveLinkItemsSection";
 
 
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
+import {
+  splashFeatureSectionImages,
+  additionalInfoArticleImages,
+  serviceOptionsArticleImages,
+  ourClientsLogos,
+} from "./ImageImports";
 
 
-
+const splashFeatureArrObj = [
+  {
+    title1: "Your Event,",
+    title2: "Our Expertise.",
+    paragraph: "Breathe Easier With Fresh Air Media.",
+    imageSrc: splashFeatureSectionImages.expertiseImage,
+  },
+  {
+    title1: "Anytime,",
+    title2: "Anywhere.",
+    paragraph: "We Bring The Screen To You.",
+    imageSrc: splashFeatureSectionImages.mobilityImage,
+  },
+  {
+    title1: "Bright Days?",
+    title2: "Brighter Screens.",
+    paragraph: "Our Daylight Screens Look Great In Any Light.",
+    imageSrc: splashFeatureSectionImages.daytimeImage,
+  },
+  {
+    title1: "Enjoy The Fresh Air",
+    title2: "...And A Movie.",
+    paragraph: "Outdoor Cinema At Its Finest.",
+    imageSrc: splashFeatureSectionImages.outdoorMovieImage,
+  },
+  {
+    title1: "Capture The Spirit Of",
+    title2: "Live Events.",
+    paragraph: "Sports, Ceremonies, And Everything In Between.",
+    imageSrc: splashFeatureSectionImages.liveEventImage,
+  },
+  {
+    title1: "Relive The Magic Of",
+    title2: "Drive-In Events.",
+    paragraph: "Classic Experiences With A Modern Twist.",
+    imageSrc: splashFeatureSectionImages.driveInEventImage,
+  },
+];
 
 const sectionObjArr = [
   {
-    h1: "Host Your Event,",
-    h2: "Anytime!",
-    p: "Outdoor media has always struggled in the sun, but our daylight screens are changing the game. Enjoy the freedom and flexibility to host events seamlessly, even under the brightest of skies!",
+    title1: "Host Your Event,",
+    title2: "Anytime!",
+    paragraph: "Outdoor media has always struggled in the sun, but our daylight screens are changing the game. Enjoy the freedom and flexibility to host events seamlessly, even under the brightest of skies!",
     imageSrc: image,
   },
   {
-    h1: "No Space?",
-    h2: "No Problem.",
-    p: "Unlock your venue's potential. Our daylight screens fit to your venue, not the other way around.",
+    title1: "No Space?",
+    title2: "No Problem.",
+    paragraph: "Unlock your venue's potential. Our daylight screens fit to your venue, not the other way around.",
     imageSrc: image2,
   },
 
+];
+
+const serviceOptionsArrObj = [
+  {
+    h6: "Inflatable Rentals",
+    p: "Perfect for night-time events like outdoor movie screenings, community gatherings, or celebrations under the stars.",
+    imageSrc: serviceOptionsArticleImages.InflatableRentalImage,
+    link: "/",
+  },
+  {
+    h6: "Daylight Rentals",
+    p: "Ideal for day-time events, livestreams, video gaming, and events requiring a compact and efficient setup.",
+    imageSrc: serviceOptionsArticleImages.DaylightRentalImage,
+    link: "/",
+  },
+  {
+    h6: "Screen Sales",
+    p: "For those hosting events regularly, our customizable packages offer daylight or inflatable screens with all the equipment needed to run a show.",
+    imageSrc: serviceOptionsArticleImages.ScreenSalesImage,
+    link: "/",
+  },
+];
+
+const additionalInfoArrObj = [
+  {
+    h6: "Our Portfolio",
+    p: "Browse our gallery and read more about what our clients think.",
+    imageSrc: additionalInfoArticleImages.OurPortfolioImage,
+    link: "/",
+  },
+  {
+    h6: "FAQs",
+    p: "Find the answers to all your questions, even the ones you didn't know you had!",
+    imageSrc: additionalInfoArticleImages.FaqsImage,
+    link: "/",
+  },
 ];
 
 const faqsArrObj = [
@@ -42,7 +122,7 @@ const faqsArrObj = [
   {
     question: "When is the full payment required for the event?",
     answer: "1 month prior to the event date! If you are booking your event and it is less than 1 month away, we require full payment to secure your booking.",
-  }, 
+  },
   {
     question: "What if the weather is bad for my event? Can I reschedule or rebook the event?",
     answer: "Yes! When your event is cancelled due to weather, we will apply 100% of your payment as credit towards your next event within 6 months. You may request an extension beyond the 6 month period, but we will assess this on a case-by-case basis. Also, depending on when your event was cancelled, we may charge a rebooking fee.",
@@ -109,30 +189,63 @@ const faqsArrObj = [
   },
 ];
 
-
 const linkItemsArrObj = [
   {
     title: "Browse Our FAQs",
     description: "Learn more about planning your event.",
     buttonText: "Let's Browse",
+    buttonLink: "/",
   },
   {
     title: "Contact Us",
     description: "Submit an inquiry, receive a quote, and secure your booking.",
     buttonText: "Request Quote",
+    buttonLink: "/",
   },
   {
     title: "Develop A Site Plan",
     description: "Our team will collaborate with you to ensure our logistics match your vision.",
     buttonText: "Learn More",
+    buttonLink: "/",
   },
   {
     title: "Complete The Event",
     description: "Watch your plans come to fruition.",
     buttonText: "See More",
+    buttonLink: "/",
   },
-]
+];
 
+const testimonialsArrObj = [
+  {
+    paragraphs: [
+      'Fresh Air is an extremely professional company to work with. Their communication is clear and they always deliver as promised.',
+      'I would recommend them to anyone planning community events.',
+    ],
+    quotee: 'Bowness Community Association',
+  },
+  {
+    paragraphs: [
+      'Fantastic company with hardworking and professional crew. Thanks for bringing magic to our park!',
+    ],
+    quotee: 'Northstar Residents Association',
+  },
+  {
+    paragraphs: [
+      'This was our first time putting on an outdoor event.',
+      'The onsite team and the equipment for the event was top notch. The quality of the daytime screen was amazing and everyone attending loved the movie.',
+      'I would recommend Fresh Air Media to anyone holding a drive-in event, they are a great company to partner with.',
+    ],
+    quotee: 'Kaltire',
+  },
+  {
+    paragraphs: [
+      'I love working with Fresh Air Media. They are a relaxed team yet so professional in what they do. I never have to worry with my events when I know these people are behind the scenes.',
+      'Thank you Fresh Air Media for always being so accommodating!',
+    ],
+    quotee: "Mahogany Homeowner's Association",
+  },
+];
 
 export default function Home() {
 
@@ -142,21 +255,55 @@ export default function Home() {
 
       <Navbar />
 
+      <SplashFeatureCarouselSection
+        splashFeatureArrObj={splashFeatureArrObj}
+      />
+
       {
-        sectionObjArr.map((sectionObj, index) => <FeatureSection key={`home page feature section ${index}`} sectionObj={sectionObj} />)
+        sectionObjArr.map((sectionObj, index) => {
+          return (
+            <FeatureSection
+              key={`home page feature section ${index}`}
+              {...sectionObj}
+            />
+          );
+        })
       }
 
 
 
-      <ArticleShowcaseSection />
+      <ArticleShowcaseSection
+        title1={"Our Services."}
+        title2={"From Sales To Rentals!"}
+        articleArrObj={serviceOptionsArrObj}
+      />
 
       <ScreenOptionsSection />
 
-      <TestimonialCardSection />
+      <TestimonialCardSection
+        title1={"Testimonials:"}
+        title2={"What Others Are Saying."}
+        tesitmonialsArrObj={testimonialsArrObj}
+      />
 
-      <LogoShowcaseSection />
+      <LogoShowcaseSection
+        title1={"Our Clients:"}
+        title2={"Join the FAM!"}
+        logosArr1={ourClientsLogos.row1Logos}
+        logosArr2={ourClientsLogos.row2Logos}
+      />
 
-      <NumberedDescriptiveLinkItemsSection linkItemsArrObj={linkItemsArrObj}/>
+      <ArticleShowcaseSection
+        title1={"Knowledge Is Power."}
+        title2={"Learn Everything You Need To Make Your Event Great!"}
+        articleArrObj={additionalInfoArrObj}
+      />
+
+      <NumberedDescriptiveLinkItemsSection
+        title1={"What Now?"}
+        title2={"Let's Get Started."}
+        linkItemsArrObj={linkItemsArrObj}
+      />
 
       <FaqsSearchableSection faqsArrObj={faqsArrObj} />
 

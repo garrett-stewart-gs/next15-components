@@ -11,7 +11,7 @@ import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 import styles from "./ScreenOptionsSection.module.css";
 
-import { screenOptionsSectionImages as images } from "./ImageImports";
+import { screenOptionsSectionImages as images } from "../../../app/ImageImports";
 
 const {
   daylightMosaicImage,

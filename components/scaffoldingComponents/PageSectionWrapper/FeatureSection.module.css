@@ -1,31 +1,7 @@
-.pageSectionWrapper {
-  column-gap: 2.5em;
-  row-gap: 0;
-}
-
-.pageSectionWrapper:nth-child(even) {
+.pageSectionWrapper:nth-child(even)>article {
   flex-direction: row-reverse;
 }
 
-.pageSectionWrapper:nth-child(odd) {
+.pageSectionWrapper:nth-child(odd)>article {
   flex-direction: row;
-}
-
-.textStyleWrapper {
-  flex: 3 0 20em;
-}
-
-.imageWrapper {
-  flex: 1 1 30em;
-  max-width: 35em;
-  aspect-ratio: 7 / 4;
-  box-shadow: 0 0 0.375em var(--primary-shade);
-  border-radius: 1.25em;
-}
-
-
-@media (max-width: 50rem) {
-  .pageSectionWrapper {
-    flex-wrap: wrap;
-  }
 }

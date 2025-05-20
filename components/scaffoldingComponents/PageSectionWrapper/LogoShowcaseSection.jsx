@@ -4,16 +4,13 @@ import Image from "next/image";
 
 import { useAnimationTimer, useContinuousTranslateX, useTranslateXRef } from "@/utils/hooks/useTimerAnimations";
 
-import { ourClientsLogos } from "./ImageImports";
-const { carouselLogos } = ourClientsLogos;
-
 import PageSectionWrapper from ".";
 import TextStyleWrapper from "../TextStyleWrapper";
 import ImageWrapper from "../ImageWrapper";
 
 import styles from "./LogoShowcaseSection.module.css";
 
-export default function LogoShowcaseSection() {
+export default function LogoShowcaseSection({title1, title2, logosArr1, logosArr2}) {
 
   // define continuous translateX hook arguments
   const moveLeft = false; // for 1st argument for hook: false means move left
@@ -37,8 +34,8 @@ export default function LogoShowcaseSection() {
     <PageSectionWrapper parentStyles={styles}>
 
       <TextStyleWrapper parentStyles={styles}>
-        <h1>Our Clients</h1>
-        <h2>Join the FAM!</h2>
+        <h1>{title1}</h1>
+        <h2>{title2}</h2>
       </TextStyleWrapper>
 
       <main
@@ -57,7 +54,7 @@ export default function LogoShowcaseSection() {
             className={styles.slider}
           >
             {
-              [...carouselLogos].map((logo, index) => {
+              [...logosArr1].map((logo, index) => {
                 return (
                   <ImageWrapper key={`top left slider image${index}`} parentStyles={styles}>
                     <Image
@@ -75,7 +72,7 @@ export default function LogoShowcaseSection() {
             className={styles.slider}
           >
             {
-              [...carouselLogos].map((logo, index) => {
+              [...logosArr1].map((logo, index) => {
                 return (
                   <ImageWrapper key={`top right slider image${index}`} parentStyles={styles}>
                     <Image
@@ -102,7 +99,7 @@ export default function LogoShowcaseSection() {
             className={styles.slider}
           >
             {
-              [...carouselLogos].reverse().map((logo, index) => {
+              [...logosArr2].map((logo, index) => {
                 return (
                   <ImageWrapper key={`bottom left slider image${index}`} parentStyles={styles}>
                     <Image
@@ -120,7 +117,7 @@ export default function LogoShowcaseSection() {
             className={styles.slider}
           >
             {
-              [...carouselLogos].reverse().map((logo, index) => {
+              [...logosArr2].map((logo, index) => {
                 return (
                   <ImageWrapper key={`bottom right slider image${index}`} parentStyles={styles}>
                     <Image

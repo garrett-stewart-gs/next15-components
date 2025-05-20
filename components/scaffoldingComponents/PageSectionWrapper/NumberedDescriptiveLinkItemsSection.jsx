@@ -6,14 +6,14 @@ import NumberedDescriptiveLinkItem from "../ListItemWrapper/NumberedDescriptiveL
 
 import styles from "./NumberedDescriptiveLinkItemsSection.module.css";
 
-export default function NumberedDescriptiveLinkItemsSection({ linkItemsArrObj }) {
+export default function NumberedDescriptiveLinkItemsSection({ title1, title2, linkItemsArrObj }) {
 
   return (
     <PageSectionWrapper parentStyles={styles}>
 
       <TextStyleWrapper parentStyles={styles}>
-        <h1>What Now?</h1>
-        <h2>Let's Get Started</h2>
+        <h1>{title1}</h1>
+        <h2>{title2}</h2>
       </TextStyleWrapper>
 
       <div className={styles.numberedDescriptiveLinksContainer}>

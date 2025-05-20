@@ -65,6 +65,8 @@
 
 body {
   background-color: var(--tertiary-color);
+  font-size: var(--ref-size);
+  padding-top: 6.25em;
 }
 
 body,

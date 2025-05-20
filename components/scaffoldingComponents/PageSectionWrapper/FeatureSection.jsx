@@ -1,37 +1,25 @@
-import image from "@/public/icons/email-received-icon.svg";
-import image2 from "@/public/icons/email-remove-delete-icon.svg";
 
 import Image from "next/image";
 
 import PageSectionWrapper from ".";
 import TextStyleWrapper from "../TextStyleWrapper";
 import ImageWrapper from "../ImageWrapper";
-import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
+
+import ArticleFeatureMessageWithImage from "../ArticleWrapper/ArticleFeatureMessageWithImage";
 
 import styles from "./FeatureSection.module.css";
 
-
-
-export default function FeatureSection({sectionObj }) {
-
-  const { h1, h2, p, imageSrc } = sectionObj;
+export default function FeatureSection({ title1, title2, paragraph, imageSrc }) {
 
   return (
     <PageSectionWrapper parentStyles={styles}>
 
-      <TextStyleWrapper parentStyles={styles}>
-        <h1>{h1}</h1>
-        <h2>{h2}</h2>
-        <p>{p}</p>
-      </TextStyleWrapper>
-
-      <ImageWrapper parentStyles={styles}>
-        <Image
-          src={imageSrc}
-          alt={"w/e"}
-          fill="true"
-        />
-      </ImageWrapper>
+      <ArticleFeatureMessageWithImage
+        title1={title1}
+        title2={title2}
+        paragraph={paragraph}
+        imageSrc={imageSrc}
+      />
 
     </PageSectionWrapper>
   );

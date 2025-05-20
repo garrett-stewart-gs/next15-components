@@ -1,0 +1,27 @@
+.articleWrapper {
+  width: 100%;
+  column-gap: 2.5em;
+  row-gap: 0;
+  background-color: var(--tertiary-color);
+}
+
+.articleWrapper>.textStyleWrapper {
+  flex: 3 0 20em;
+  justify-content: center;
+}
+
+.articleWrapper>.imageWrapper {
+  flex: 1 1 30em;
+  max-width: 35em;
+  aspect-ratio: 7 / 4;
+  box-shadow: 0 0 0.375em var(--primary-shade);
+  border-radius: 1.25em;
+  background-color: var(--tertiary-shade);
+}
+
+
+@media (max-width: 50rem) {
+  .articleWrapper {
+    flex-wrap: wrap;
+  }
+}
