@@ -1,6 +1,7 @@
 .listItemWrapper {
   display: flex;
   justify-content: space-between;
+  padding-block: 0.625em;
 }
 
 .listItemWrapper>div {
