@@ -1,13 +1,13 @@
 
 
-import defaultStyles from "./TextStyleWrapperDefault.module.css";
+import styles from "./TextStyleWrapperDefault.module.css";
 
 export default function TextStyleWrapper({ parentStyles = null, mouseEventHandlers = {}, children }) {
 
   return (
     <div 
       className={`
-        ${defaultStyles.textStyleWrapper}
+        ${styles.textStyleWrapper}
         ${parentStyles ? parentStyles.textStyleWrapper : ""}
       `}
       {...mouseEventHandlers}

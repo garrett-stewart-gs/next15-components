@@ -9,6 +9,7 @@ import TestimonialCardSection from "@/components/scaffoldingComponents/PageSecti
 import LogoShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/LogoShowcaseSection";
 
 import FaqsSearchableSection from "@/components/scaffoldingComponents/PageSectionWrapper/FaqsSearchableSection";
+import NumberedDescriptiveLinkItemsSection from "@/components/scaffoldingComponents/PageSectionWrapper/NumberedDescriptiveLinkItemsSection";
 
 
 import image from "@/public/icons/email-received-icon.svg";
@@ -109,7 +110,28 @@ const faqsArrObj = [
 ];
 
 
-
+const linkItemsArrObj = [
+  {
+    title: "Browse Our FAQs",
+    description: "Learn more about planning your event.",
+    buttonText: "Let's Browse",
+  },
+  {
+    title: "Contact Us",
+    description: "Submit an inquiry, receive a quote, and secure your booking.",
+    buttonText: "Request Quote",
+  },
+  {
+    title: "Develop A Site Plan",
+    description: "Our team will collaborate with you to ensure our logistics match your vision.",
+    buttonText: "Learn More",
+  },
+  {
+    title: "Complete The Event",
+    description: "Watch your plans come to fruition.",
+    buttonText: "See More",
+  },
+]
 
 
 export default function Home() {
@@ -133,6 +155,8 @@ export default function Home() {
       <TestimonialCardSection />
 
       <LogoShowcaseSection />
+
+      <NumberedDescriptiveLinkItemsSection linkItemsArrObj={linkItemsArrObj}/>
 
       <FaqsSearchableSection faqsArrObj={faqsArrObj} />
 

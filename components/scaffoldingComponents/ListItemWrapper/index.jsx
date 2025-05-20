@@ -1,13 +1,13 @@
 
-import defaultStyles from "./ListItemWrapper.module.css";
+import styles from "./ListItemWrapper.module.css";
 
-export default function ListItemWrapper({ parentIsActive, parentStyles, onClick, children }) {
+export default function ListItemWrapper({ parentIsActive = null, parentStyles = null, onClick = null, children }) {
 
   return (
     <article
       className={`
-        ${defaultStyles.listItemWrapper}
-        ${parentStyles?.listItemWrapper}
+        ${styles.listItemWrapper}
+        ${parentStyles ? parentStyles.listItemWrapper : ""}
         ${parentIsActive ? parentStyles.active : ""}
       `}
       onClick={onClick}
