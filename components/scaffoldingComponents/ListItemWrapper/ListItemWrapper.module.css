@@ -3,5 +3,10 @@
   display: flex;
   align-items: center;
   gap: 0.625em;
+  padding-block: 0.625em;
+  border-top: 0.0625em solid var(--primary-color);
 }
 
+.listItemWrapper:first-of-type {
+  border-top: none;
+}

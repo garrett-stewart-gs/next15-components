@@ -12,23 +12,24 @@ export default function NumberedDescriptiveLinkItem({ bulletNumber, title, descr
   return (
     <ListItemWrapper parentStyles={styles}>
 
-      <BulletWrapper>{bulletNumber}</BulletWrapper>
-
       <div>
+
+        <BulletWrapper>{bulletNumber}</BulletWrapper>
 
         <TextStyleWrapper parentStyles={styles}>
           <h5>{title}</h5>
           <h6>{description}</h6>
         </TextStyleWrapper>
 
-
-        <LinkButton
-          link={"/"}
-          text={buttonText}
-        />
-
       </div>
-      
+
+      <LinkButton
+        parentStyles={styles}
+        link={"/"}
+        text={buttonText}
+      />
+
+
     </ListItemWrapper>
   );
 }

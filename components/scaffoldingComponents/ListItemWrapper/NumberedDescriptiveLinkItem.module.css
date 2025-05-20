@@ -1,7 +1,7 @@
 .listItemWrapper {
   display: flex;
   justify-content: space-between;
-  padding-block: 0.625em;
+  padding-block: 1.25em;
 }
 
 .listItemWrapper>div {
@@ -11,14 +11,8 @@
   flex-grow: 1;
 }
 
-.listItemWrapper .bulletWrapper {
-  /* flex-basis: 3em; */
-  /* flex-shrink: 0; */
-}
-
 .listItemWrapper .textStyleWrapper {
   align-items: flex-start;
-  /* flex-basis: 20em; */
   flex-grow: 1;
   gap: 0.375em;
 }
@@ -29,16 +23,24 @@
 
 @media (max-width: 31.25rem) {
 
-  .listItemWrapper>div {
+  .listItemWrapper {
     flex-direction: column;
   }
 
-  .listItemWrapper .textStyleWrapper {
+  .listItemWrapper>div {
+    min-width: 100%;
+  }
+
+  .listItemWrapper>.linkButton {
+    margin-block: 0.625em;
+  }
+
+  /* .listItemWrapper .textStyleWrapper {
     align-items: center;
   }
   
   .listItemWrapper .textStyleWrapper>* {
     text-align: center;
-  }
+  } */
 
 }

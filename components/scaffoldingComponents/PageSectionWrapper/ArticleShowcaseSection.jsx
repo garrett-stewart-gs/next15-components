@@ -108,7 +108,6 @@ export default function ArticleShowcaseSection() {
       <TextStyleWrapper parentStyles={styles}>
         <h3>Knowledge Is Power.</h3>
         <h4>Learn Everything You Need To Make Your Event Great!</h4>
-        <p>activeIndex: {activeIndex}</p>
       </TextStyleWrapper>
 
       <div className={styles.carouselContainer}>
