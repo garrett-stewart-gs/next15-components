@@ -1,0 +1,4 @@
+.pageSectionWrapper article {
+  flex-direction: row;
+  width: 90dvw; 
+}

@@ -1,12 +1,12 @@
 // SPLASH FEATURE CAROUSEL SECTION
 
 export const splashFeatureSectionImages = {
-  expertiseImage: "",
-  mobilityImage: "",
-  daytimeImage: "",
-  outdoorMovieImage: "",
-  liveEventImage: "",
-  driveInEventImage: "",
+  expertiseImage: "/images/homePage/heroCarousel/expertise_image.jpg",
+  mobilityImage: "/images/homePage/heroCarousel/mobile_image_final.jpg",
+  daytimeImage: "/images/homePage/heroCarousel/bright_daylight_screen_image.jpg",
+  outdoorMovieImage: "/images/homePage/heroCarousel/movie_image.jpg",
+  liveEventImage: "/images/homePage/heroCarousel/livestream_smldl_image.jpg",
+  driveInEventImage: "/images/homePage/heroCarousel/drive_in_image.jpg",
 }
 
 // ARTICLE SHOWCASE SECTION

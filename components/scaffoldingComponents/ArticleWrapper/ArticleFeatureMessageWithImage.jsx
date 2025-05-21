@@ -7,10 +7,12 @@ import ImageWrapper from "../ImageWrapper";
 
 import styles from "./ArticleFeatureMessageWithImage.module.css";
 
-export default function ArticleFeatureMessageWithImage({title1, title2, paragraph, imageSrc}) {
+export default function ArticleFeatureMessageWithImage({ title1, title2, paragraph, imageSrc }) {
 
   return (
-    <ArticleWrapper parentStyles={styles}>
+    <ArticleWrapper
+      parentStyles={styles}
+    >
       <TextStyleWrapper parentStyles={styles}>
         <h1>{title1}</h1>
         <h2>{title2}</h2>
