@@ -117,11 +117,13 @@ export default function HorizontalCarouselWrapper({
                     ref={child => childRefs.current[childIndex] = child}
                     key={`horizontal carousel element ${childIndex}`}
                     className={`
-                  ${styles.xCarouselElement}
-                  ${disableAdaptiveHeight ? "" : styles.adaptiveHeight}
-                  ${matchElementAndViewportWidths ? styles.matchesViewportWidth : ""}
-                  ${parentStyles ? parentStyles.xCarouselElement : ""}
-                `}
+                      ${styles.xCarouselElement}
+                      ${disableAdaptiveHeight ? "" : styles.adaptiveHeight}
+                      ${matchElementAndViewportWidths ? "" : styles.active}
+                      ${matchElementAndViewportWidths && childIndex === 0 ? styles.active : ""}
+                      ${matchElementAndViewportWidths ? styles.matchesViewportWidth : ""}
+                      ${parentStyles ? parentStyles.xCarouselElement : ""}
+                    `}
                   >
                     {child}
                   </div>

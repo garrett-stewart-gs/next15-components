@@ -1,8 +1,6 @@
 .leftArrowIcon {
   font-size: var(--ref-size);
   width: 2.5em;
-  /* width: 5dvw;
-  max-width: 2.5em; */
   aspect-ratio: 1 / 3;
   border: 0.0625em solid var(--primary-color);
   border-radius: 0.375em;

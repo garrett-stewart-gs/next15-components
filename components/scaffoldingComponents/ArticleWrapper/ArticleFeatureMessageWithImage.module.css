@@ -3,7 +3,7 @@
   column-gap: 1.25em;
   row-gap: 3.125em;
   background-color: var(--tertiary-color);
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -23,9 +23,3 @@
   background-color: var(--tertiary-shade);
   margin-block: auto;
 }
-
-/* @media (max-width: 50rem) {
-  .articleWrapper {
-    flex-wrap: wrap;
-  }
-} */

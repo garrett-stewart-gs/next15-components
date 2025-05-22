@@ -23,6 +23,7 @@ export default function ArticleFeatureMessageWithImage({ title1, title2, paragra
         <Image
           src={imageSrc}
           alt={"article feature image"}
+          sizes="45em"
           fill="true"
         />
       </ImageWrapper>

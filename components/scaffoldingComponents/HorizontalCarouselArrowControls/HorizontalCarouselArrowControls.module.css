@@ -8,7 +8,5 @@
 /* left/right arrow buttons */
 .horizontalCarouselControlsWrapper>*:first-child,
 .horizontalCarouselControlsWrapper>*:last-child {
-
-  /* margin-inline: 0.625em; */
   cursor: pointer;
 }
