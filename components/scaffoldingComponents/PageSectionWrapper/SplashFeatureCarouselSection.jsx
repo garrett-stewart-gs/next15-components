@@ -2,7 +2,7 @@
 
 import HorizontalCarouselWrapper from "../HorizontalCarouselWrapper";
 import HorizontalCarouselControls from "../HorizontalCarouselArrowControls";
-import HorizontalCarouselIndexSelectorControls from "../HorizontalCarouselIndexSelectorControls";
+import HorizontalCarouselIndexSelectorControls from "../HorizontalCarouselWrapper/HorizontalCarouselIndexSelectorControls";
 
 import PageSectionWrapper from ".";
 import ArticleFeatureMessageWithImage from "../ArticleWrapper/ArticleFeatureMessageWithImage";
@@ -16,6 +16,9 @@ export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
 
       <HorizontalCarouselWrapper
         loop={true}
+        matchElementAndViewportWidths={true}
+        enableArrowControls={true}
+        disableAdaptiveHeight={true}
       >
         {
 

@@ -7,7 +7,7 @@ import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrappe
 import ImageWrapper from "@/components/scaffoldingComponents/ImageWrapper";
 import HorizontalCarouselWrapper from "@/components/scaffoldingComponents/HorizontalCarouselWrapper";
 import HorizontalCarouselArrowControls from "@/components/scaffoldingComponents/HorizontalCarouselArrowControls";
-import HorizontalCarouselIndexSelectorControls from "@/components/scaffoldingComponents/HorizontalCarouselIndexSelectorControls";
+import HorizontalCarouselIndexSelectorControls from "@/components/scaffoldingComponents/HorizontalCarouselWrapper/HorizontalCarouselIndexSelectorControls";
 
 import styles from "./InfoPopUpWindow.module.css";
 

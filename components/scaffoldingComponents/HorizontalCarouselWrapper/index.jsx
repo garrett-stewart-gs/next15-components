@@ -1,11 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 
 import { useHorizontalSwipeTracker } from "@/utils/hooks/useSwipeTrackers";
 import { useHorizontalScrollTracker } from "@/utils/hooks/useScrollTrackers";
 import { useHorizontalCarouselSlider } from "@/utils/hooks/useCarouselTransitions";
 import { useViewportVisibilityTracker } from "@/utils/hooks/useVisibilityTrackers";
+
+import LeftArrowIcon from "@/components/reusableComponents/ArrowIcons/LeftArrowIcon";
+import RightArrowIcon from "@/components/reusableComponents/ArrowIcons/RightArrowIcon";
+import HorizontalCarouselIndexSelectorControls from "./HorizontalCarouselIndexSelectorControls";
 
 import styles from "./HorizontalCarouselWrapper.module.css";
 
@@ -14,7 +18,21 @@ import styles from "./HorizontalCarouselWrapper.module.css";
 // (activeIndex is react state initialized in the carousel wrapper)
 // (numberOfItems is determined by number of children)
 // you can provide an inner closure function that writes data to child state object, giving the carousel's parents access to control child state (ex. enable parents buttons to control child)
-export default function HorizontalCarouselWrapper({ parentActiveIndexState = null, incrementAmount = 1, handleBack = null, handleNext = null, loop = false, transitionSpeed = 0.15, sendChildStateMethods = null, parentStyles = null, children }) {
+export default function HorizontalCarouselWrapper({
+  incrementAmount = 1,
+  loop = false,
+  parentActiveIndexState = null,
+  setNewActiveIndex = null,
+  handleBack = null,
+  handleNext = null,
+  enableArrowControls = false, // toggles left/right arrow buttons for incrementing/decrementing the carousel position
+  enableSelectorControls = false, // toggles index selector icons for selecting a specific carousel element to display
+  matchElementAndViewportWidths = false, // determines if xCarouselElement size is determined by viewport width OR its own contents
+  disableAdaptiveHeight = false, // determines if carousel height is set by all elements OR visible elements only
+  transitionSpeed = 0.15,
+  parentStyles = null,
+  children
+}) {
 
   // use array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
@@ -29,11 +47,20 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
     translateCarouselPositive,
   } = useHorizontalCarouselSlider(numberOfItems, transitionSpeed, incrementAmount, loop);
 
-  // if custom behavior provided (handleBack/handleNext), then append custom behavior to increment/decrement. 
-  // If not, simply increment/decrement
-  const completeHandleBack = async () => (handleBack !== null) ? (await handleBack() && translateCarouselNegative()) : translateCarouselNegative();
-  const completeHandleNext = async () => (handleNext !== null) ? (await handleNext() && translateCarouselPositive()) : translateCarouselPositive();
+  // consolidate parent/regular instructions for decrement/reverse events
+  const completeHandleBack = async () => (handleBack !== null) ? // check if parent has provided instructions
+    (await handleBack() && translateCarouselNegative()) // check if parent has provided instructions
+    :
+    translateCarouselNegative(); // run regular instructions only
 
+  // consolidate parent/regular instructions for increment/forward events
+  const completeHandleNext = async () => (handleNext !== null) ? // check if parent has provided instructions
+    (await handleNext() && translateCarouselPositive()) // check if parent has provided instructions
+    :
+    translateCarouselPositive();// run regular instructions only
+
+  // track and synchronize parent state with carousel translation
+  // if parent active index state changes, translates carousel slider to correct position
   const lastIndexState = useRef(parentActiveIndexState);
   useEffect(() => {
     if (parentActiveIndexState === null) return;
@@ -53,43 +80,96 @@ export default function HorizontalCarouselWrapper({ parentActiveIndexState = nul
   // elements without .active class have max-height limited to 0;
   useViewportVisibilityTracker(childrenArr, viewportRef, childRefs, styles, 0.1);
 
+  // set css width variable for xCarouselElement to match viewport width
+  useLayoutEffect(
+    () => {
+      if (!matchElementAndViewportWidths) return;
+      // determine viewport width including padding
+      const viewportWidth = viewportRef.current.clientWidth;
+      // create shorthand for accessing padding values
+      const viewportStyle = getComputedStyle(viewportRef.current);
+      // determine viewport padding
+      const viewportPadding = parseFloat(viewportStyle.paddingLeft) + parseFloat(viewportStyle.paddingRight);
+      //determine content width (minus padding)
+      const contentWidth = viewportWidth - viewportPadding;
+      // store content width as css property
+      viewportRef.current.style.setProperty('--viewport-width', `${contentWidth}px`);
+    },
+    []
+  );
+
   return (
-    <main // carousel viewport
-      ref={viewportRef}
-      className={`
+    <main
+      className={styles.xCarouselFullContainer}
+    >
+      <div
+        className={styles.xCarouselArrowsAndViewportContainer}
+      >
+
+        {
+          enableArrowControls && <LeftArrowIcon onClick={completeHandleBack} />
+        }
+
+        <div // carousel viewport
+          ref={viewportRef}
+          className={`
         ${styles.xCarouselViewport}
         ${parentStyles ? parentStyles.xCarouselViewport : ""}
       `}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onWheel={handleHorizontalScroll}
-    >
-      <div // carousel (overflows the viewport)
-        ref={carouselRef}
-        className={`
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onWheel={handleHorizontalScroll}
+        >
+          <div // carousel (overflows the viewport)
+            ref={carouselRef}
+            className={`
           ${styles.xCarousel}
           ${parentStyles ? parentStyles.xCarousel : ""}
         `}
-      >
-        {
-          childrenArr.map((child, childIndex) => {
-            return (
-              <div
-                ref={child => childRefs.current[childIndex] = child}
-                key={`horizontal carousel element ${childIndex}`}
-                className={`
+          >
+            {
+              childrenArr.map((child, childIndex) => {
+                return (
+                  <div
+                    ref={child => childRefs.current[childIndex] = child}
+                    key={`horizontal carousel element ${childIndex}`}
+                    className={`
                   ${styles.xCarouselElement}
-                  ${styles.active} 
+                  ${disableAdaptiveHeight ? "" : styles.adaptiveHeight}
+                  ${matchElementAndViewportWidths ? styles.matchesViewportWidth : ""}
                   ${parentStyles ? parentStyles.xCarouselElement : ""}
                 `}
-              >
-                {child}
-              </div>
-            );
-          })
+                  >
+                    {child}
+                  </div>
+                );
+              })
+            }
+          </div>
+
+        </div>
+
+        {
+          enableArrowControls && <RightArrowIcon onClick={completeHandleNext} />
         }
+
       </div>
+
+      {
+        enableSelectorControls &&
+        parentActiveIndexState !== null &&
+        setNewActiveIndex !== null &&
+        (
+          < HorizontalCarouselIndexSelectorControls
+            numberOfElements={childrenArr.length}
+            parentActiveIndexState={parentActiveIndexState}
+            setNewActiveIndex={setNewActiveIndex}
+            parentStyles={parentStyles}
+          />
+        )
+      }
+
 
     </main>
   );

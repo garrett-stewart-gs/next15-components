@@ -4,9 +4,15 @@ import CustomFormContainer from "@/components/reusableComponents/CustomFormConta
 
 import { generateFormConfig } from "@/components/reusableComponents/CustomFormContainer/formConfig";
 
+import PageSectionWrapper from "@/components/scaffoldingComponents/PageSectionWrapper";
+
 export default function SpaFormPage() {
 
   return (
-    <CustomFormContainer generateFormConfig={generateFormConfig}/>
+    <PageSectionWrapper
+    
+    >
+      <CustomFormContainer generateFormConfig={generateFormConfig} />
+    </PageSectionWrapper>
   );
 }

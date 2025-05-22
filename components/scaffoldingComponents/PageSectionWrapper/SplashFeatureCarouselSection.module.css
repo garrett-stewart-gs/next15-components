@@ -1,4 +1,5 @@
 .pageSectionWrapper article {
   flex-direction: row;
-  width: 90dvw; 
+  width: 100%;
+  /* min-width: 90dvw; */
 }

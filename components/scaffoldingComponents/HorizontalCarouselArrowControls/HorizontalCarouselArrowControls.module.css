@@ -8,8 +8,7 @@
 /* left/right arrow buttons */
 .horizontalCarouselControlsWrapper>*:first-child,
 .horizontalCarouselControlsWrapper>*:last-child {
-  max-width: 2.5em;
-  max-height: fit-content;
-  margin-inline: 0.625em;
+
+  /* margin-inline: 0.625em; */
   cursor: pointer;
 }
