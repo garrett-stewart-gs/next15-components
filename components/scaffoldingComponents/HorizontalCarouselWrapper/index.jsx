@@ -80,24 +80,6 @@ export default function HorizontalCarouselWrapper({
   // elements without .active class have max-height limited to 0;
   useViewportVisibilityTracker(childrenArr, viewportRef, childRefs, styles, 0.1);
 
-  // set css width variable for xCarouselElement to match viewport width
-  useLayoutEffect(
-    () => {
-      if (!matchElementAndViewportWidths) return;
-      // determine viewport width including padding
-      const viewportWidth = viewportRef.current.clientWidth;
-      // create shorthand for accessing padding values
-      const viewportStyle = getComputedStyle(viewportRef.current);
-      // determine viewport padding
-      const viewportPadding = parseFloat(viewportStyle.paddingLeft) + parseFloat(viewportStyle.paddingRight);
-      //determine content width (minus padding)
-      const contentWidth = viewportWidth - viewportPadding;
-      // store content width as css property
-      viewportRef.current.style.setProperty('--viewport-width', `${contentWidth}px`);
-    },
-    []
-  );
-
   return (
     <main
       className={styles.xCarouselFullContainer}

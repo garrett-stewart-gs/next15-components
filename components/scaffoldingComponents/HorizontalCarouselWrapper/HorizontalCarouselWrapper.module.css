@@ -61,6 +61,10 @@
   max-height: 1px;
 }
 
+.xCarouselElement:first-child:not(.active) {
+  min-height: fit-content;
+  max-height: fit-content;
+}
 
 .xCarouselArrowsAndViewportContainer>*:first-child,
 .xCarouselArrowsAndViewportContainer>*:last-child {

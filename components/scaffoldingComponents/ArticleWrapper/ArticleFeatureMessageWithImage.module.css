@@ -8,13 +8,14 @@
 }
 
 .articleWrapper>.textStyleWrapper {
-  flex: 3 1 20em;
+  flex: 1 0 40ch;
+  max-width: 60ch;
   justify-content: center;
 }
 
 .articleWrapper>.imageWrapper {
-  flex: 0 0 35em;
-  max-width: 100%;
+  flex: 3 1 35em;
+  max-width: min(100%, 45em);
   aspect-ratio: 3.5/2;
   max-height: fit-content;
   box-shadow: 0 0 0.375em var(--primary-shade);
@@ -22,3 +23,9 @@
   background-color: var(--tertiary-shade);
   margin-block: auto;
 }
+
+/* @media (max-width: 50rem) {
+  .articleWrapper {
+    flex-wrap: wrap;
+  }
+} */
