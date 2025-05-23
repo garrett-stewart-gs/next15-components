@@ -4,10 +4,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-
-  /*temportary*/
-  /* max-width: var(--doc-width);
-  margin-inline: auto; */
 }
 
 
@@ -33,4 +29,5 @@
   height: 100%;
   left: 0;
   transform: translateX(0);
+  z-index: 1;
 }

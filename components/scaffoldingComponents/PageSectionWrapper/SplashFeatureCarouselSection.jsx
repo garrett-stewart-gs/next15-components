@@ -1,8 +1,6 @@
 
 
 import HorizontalCarouselWrapper from "../HorizontalCarouselWrapper";
-import HorizontalCarouselControls from "../HorizontalCarouselArrowControls";
-import HorizontalCarouselIndexSelectorControls from "../HorizontalCarouselWrapper/HorizontalCarouselIndexSelectorControls";
 
 import PageSectionWrapper from ".";
 import ArticleFeatureMessageWithImage from "../ArticleWrapper/ArticleFeatureMessageWithImage";

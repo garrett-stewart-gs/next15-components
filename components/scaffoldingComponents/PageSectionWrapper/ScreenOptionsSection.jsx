@@ -6,7 +6,7 @@ import PageSectionWrapper from ".";
 import TextStyleWrapper from "../TextStyleWrapper";
 import ToggleSwitchWrapper from "../ToggleSwitchWrapper/ToggleSwitchWrapper";
 
-import HorizonatalMosaic from "@/components/reusableComponents/HorizontalMosaic";
+import HorizonatalMosaic from "@/components/scaffoldingComponents/HorizontalMosaicWrapper";
 import LinkButton from "@/components/reusableComponents/Buttons/LinkButton";
 
 import styles from "./ScreenOptionsSection.module.css";

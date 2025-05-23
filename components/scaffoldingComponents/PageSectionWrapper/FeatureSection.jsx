@@ -1,9 +1,5 @@
 
-import Image from "next/image";
-
 import PageSectionWrapper from ".";
-import TextStyleWrapper from "../TextStyleWrapper";
-import ImageWrapper from "../ImageWrapper";
 
 import ArticleFeatureMessageWithImage from "../ArticleWrapper/ArticleFeatureMessageWithImage";
 

@@ -4,11 +4,11 @@ import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 
 import HorizontalCarouselWrapper from "@/components/scaffoldingComponents/HorizontalCarouselWrapper";
 import ArticleMosaicElement from "@/components/scaffoldingComponents/ArticleWrapper/ArticleMosaicElement";
-import InfoPopUpWindow from "../InfoPopUpWindow";
+import InfoPopUpWindow from "@/components/reusableComponents/InfoPopUpWindow";
 
-import styles from "./HorizontalMosaic.module.css";
+import styles from "./HorizontalMosaicWrapper.module.css";
 
-export default function HorizonatalMosaic({
+export default function HorizonatalMosaicWrapper({
   mosaicName = "Daylight Screen Options Mosaic",
   mosaicImage,
   mosaicArray,
@@ -26,7 +26,9 @@ export default function HorizonatalMosaic({
       `}
     >
 
-      <HorizontalCarouselWrapper>
+      <HorizontalCarouselWrapper
+      
+      >
         {
           mosaicArray.map((mosaicElement, index) => {
             return (
