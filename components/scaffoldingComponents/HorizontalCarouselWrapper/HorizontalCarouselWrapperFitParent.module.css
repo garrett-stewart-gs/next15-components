@@ -1,0 +1,76 @@
+
+.xCarouselFullContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.xCarouselArrowsAndViewportContainer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.xCarouselIndexSelectorContainer {
+  width: 100%;
+  height: fit-content;
+}
+
+.xCarouselViewport {
+  height: fit-content;
+  flex-basis: 100%;
+  flex-shrink: 1;
+  max-width: fit-content;
+  overflow: hidden;
+  padding: 1.25em;
+}
+
+.xCarousel {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.xCarouselElement {
+  width: fit-content;
+  min-height: fit-content;
+  max-height: fit-content;
+  transition: opacity ease-out 0.30s;
+}
+
+.xCarouselElement.matchesViewportWidth {
+  width: calc(min(var(--doc-width), 100dvw) - 5em - 4em);
+}
+
+.xCarouselElement:not(.active) {
+  opacity: 0;
+}
+
+.xCarouselElement.active {
+  opacity: 1;
+}
+
+.xCarouselElement.adaptiveHeight:not(.active) {
+  min-height: 1px;
+  max-height: 1px;
+}
+
+.xCarouselElement:first-child:not(.active) {
+  min-height: fit-content;
+  max-height: fit-content;
+}
+
+.xCarouselArrowsAndViewportContainer>*:first-child,
+.xCarouselArrowsAndViewportContainer>*:last-child {
+  flex-shrink: 0;
+  width: 2em;
+  max-height: fit-content;
+  cursor: pointer;
+  z-index: 1;
+}

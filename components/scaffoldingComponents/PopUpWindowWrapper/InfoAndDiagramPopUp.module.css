@@ -1,45 +1,71 @@
-.infoPopUpWindow {
+
+.popUpWindowWrapper {
   font-size: var(--ref-size);
   background-color: var(--tertiary-shade);
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 1.375em;
+  padding-bottom: 0.625em;
   border-radius: 0.625em;
   box-shadow: 0 0 1.25em var(--primary-shade);
   overflow: hidden;
   cursor: pointer;
+  z-index: 2;
 }
 
-/* Option Title/Size */
-.infoPopUpWindow>.textStyleWrapper {
+.popUpWindowWrapper>.textStyleWrapper {
   background-color: var(--primary-color);
-  height: 3.75em;
+  flex: 0 0 3.75em;
+  border-radius: 0.625em 0.625em 0 0;
   display: flex;
   justify-content: center;
 }
 
-/* Option Title/Size Text */
-.infoPopUpWindow>.textStyleWrapper p {
+.popUpWindowWrapper>.textStyleWrapper p {
   color: var(--tertiary-shade);
   font-size: var(--big-p-size);
   line-height: 1.2;
   font-weight: var(--avg-weight);
 }
 
-.infoWindowCarouselContainer {
-  width: 100%;
-  flex: 0 1 100%;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 0.625em;
+.popUpWindowWrapper .xCarouselFullContainer{
+  flex: 1 1 100%;
+  padding-inline: 0.625em;
 }
 
+.popUpWindowWrapper .xCarouselArrowsAndViewportContainer {
+  flex: 1 1 100%;
+}
 
-.infoWindowCarouselContainer>.horizontalCarouselControlsWrapper {
+.popUpWindowWrapper .xCarouselViewport {
+  flex: 1 1 100%;
+  max-width: 100%;
   height: 100%;
-  justify-content: space-between;
 }
+
+.popUpWindowWrapper .xCarouselElement {
+  display: flex;
+  align-items: center;
+}
+
+
+.popUpWindowWrapper .xCarouselElement>.textStyleWrapper,
+.popUpWindowWrapper .xCarouselElement>.imageWrapper {
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
+}
+
+.popUpWindowWrapper .xCarouselElement>.textStyleWrapper {
+  justify-content: center;
+}
+
+.popUpWindowWrapper .xCarouselElement>.imageWrapper>img {
+  object-fit: contain;
+}
+
+
+/* 
 
 .infoWindowCarouselContainer .xCarouselViewport {
   min-height: 100%;
@@ -63,24 +89,12 @@
   max-height: 15.907em;
   flex: 0 1 50%;
   min-width: 50%;
-}
+} */
 
-/*  */
+/* */
 /* IMPORTANT: ensures carousel elements are the same size */
-.infoWindowCarouselContainer .xCarouselElement>.textStyleWrapper,
-.infoWindowCarouselContainer .xCarouselElement>.imageWrapper {
-  height: 100%;
-  aspect-ratio: 16 / 9;
-  margin-inline: auto;
-}
+/* 
 
-.infoWindowCarouselContainer .xCarouselElement>.textStyleWrapper {
-  justify-content: center;
-}
-
-.popUpWindowImageContainer>.imageWrapper>img {
-  object-fit: contain;
-}
 
 .infoWindowCarouselContainer>.horizontalCarouselControlsWrapper>*:first-child,
 .infoWindowCarouselContainer>.horizontalCarouselControlsWrapper>*:last-child,
@@ -130,7 +144,6 @@
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
-    /* margin-block: auto; */
   }
 
-}
+} */

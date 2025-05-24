@@ -11,7 +11,12 @@ export default function CircleIcon({ isActive = false, onClick = null, parentSty
         ${parentStyles ? parentStyles.active : ""}
         ${parentStyles && isActive ? parentStyles.active : ""}
       `}
-      onClick={onClick}
+      onClick={
+        (e) => {
+          e.stopPropagation();
+          onClick();
+        }
+      }
       viewBox="0 0 120 120"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -7,7 +7,12 @@ export default function LeftArrowIcon({ onClick }) {
   return (
     <svg
       className={styles.leftArrowIcon}
-      onClick={onClick}
+      onClick={
+        (e) => {
+          e.stopPropagation();
+          onClick();
+        }
+      }
       viewBox="0 0 40 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

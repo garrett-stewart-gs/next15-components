@@ -1,0 +1,28 @@
+.mosaicContainer {
+  position: relative;
+  font-size: var(--ref-size);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mosaicContainer>* {
+  transition: all linear 0.15s;
+}
+
+.mosaicContainer:not(.active)>*:first-child {
+  opacity: 1;
+}
+
+.mosaicContainer:not(.active)>*:last-child {
+  opacity: 0; 
+} 
+
+.mosaicContainer.active>*:first-child {
+  opacity: 0;
+}
+
+.mosaicContainer.active>*:last-child {
+  opacity: 1;
+}
+

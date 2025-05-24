@@ -1,34 +1,31 @@
-.articleWrapper {
-  margin: 0.625em;
+.mosaicElementWrapper {
+  height: 21.872em;
+  width: 6.25em;
   border-radius: 0.625em;
+  margin: 0.625em;
   box-shadow: 0 0 0.375rem var(--primary-shade);
   overflow: hidden;
   cursor: pointer;
   transition: all linear 0.15s;
 }
 
-.articleWrapper:hover {
+.mosaicElementWrapper:hover {
   box-shadow: 0 0 1.25em var(--primary-shade);
   transform: scale(1.02);
 }
 
-.mosaicElementContainer {
-  height: 21.872em;
-  width: 6.25em;
-}
-
-.mosaicElementContainer>.textStyleWrapper {
+.mosaicElementWrapper>.textStyleWrapper {
   height: 100%;
 }
 
-.mosaicElementContainer>.textStyleWrapper{
+.mosaicElementWrapper>.textStyleWrapper{
   background-color: var(--primary-color);
   height: 3.75em;
   display: flex;
   justify-content: center;
 }
 
-.mosaicElementContainer>.textStyleWrapper p {
+.mosaicElementWrapper>.textStyleWrapper p {
   color: var(--tertiary-shade);
   font-size: var(--big-p-size);
   line-height: 1.2;

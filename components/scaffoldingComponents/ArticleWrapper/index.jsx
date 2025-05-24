@@ -1,5 +1,5 @@
 
-import styles from "./DefaultWrapperStyles.module.css";
+import styles from "./ArticleWrapperStyles.module.css";
 
 export default function ArticleWrapper({ parentStyles = null, children }) {
 

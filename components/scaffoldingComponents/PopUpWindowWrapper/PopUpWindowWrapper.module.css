@@ -1,0 +1,18 @@
+.popUpWindowWrapper {
+  position: absolute;
+  transition: all linear 0.15s;
+}
+
+.popUpWindowWrapper:not(.active) {
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+}
+
+.popUpWindowWrapper.active {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

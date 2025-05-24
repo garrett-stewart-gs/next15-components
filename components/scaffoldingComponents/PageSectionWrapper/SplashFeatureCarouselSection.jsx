@@ -14,6 +14,7 @@ export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
 
       <HorizontalCarouselWrapper
         loop={true}
+        fitToParent={true}
         matchElementAndViewportWidths={true}
         enableArrowControls={true}
         disableAdaptiveHeight={true}

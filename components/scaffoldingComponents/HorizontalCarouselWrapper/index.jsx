@@ -11,8 +11,9 @@ import LeftArrowIcon from "@/components/reusableComponents/ArrowIcons/LeftArrowI
 import RightArrowIcon from "@/components/reusableComponents/ArrowIcons/RightArrowIcon";
 import HorizontalCarouselIndexSelectorControls from "./HorizontalCarouselIndexSelectorControls";
 
-import styles from "./HorizontalCarouselWrapper.module.css";
 
+import fitToChildStyles from "./HorizontalCarouselWrapperFitChild.module.css";
+import fitToParentStyles from "./HorizontalCarouselWrapperFitParent.module.css"
 
 // handleBack and handleNext pass current array information to parent, allowing you to give custom instructions to the carousel
 // (activeIndex is react state initialized in the carousel wrapper)
@@ -27,12 +28,16 @@ export default function HorizontalCarouselWrapper({
   handleNext = null,
   enableArrowControls = false, // toggles left/right arrow buttons for incrementing/decrementing the carousel position
   enableSelectorControls = false, // toggles index selector icons for selecting a specific carousel element to display
+  fitToParent = false, // toggles whether carousel grows to its parent element size OR shrinks to its children element size
   matchElementAndViewportWidths = false, // determines if xCarouselElement size is determined by viewport width OR its own contents
   disableAdaptiveHeight = false, // determines if carousel height is set by all elements OR visible elements only
   transitionSpeed = 0.15,
   parentStyles = null,
   children
 }) {
+
+  //import correct style sheet based fitToParent boolean
+  const styles = fitToParent ? fitToParentStyles : fitToChildStyles;
 
   // use array state tracking based on number of children
   const childrenArr = React.Children.toArray(children);
@@ -82,10 +87,16 @@ export default function HorizontalCarouselWrapper({
 
   return (
     <main
-      className={styles.xCarouselFullContainer}
+      className={`
+        ${styles.xCarouselFullContainer}
+        ${parentStyles ? parentStyles.xCarouselFullContainer : ""}
+      `}
     >
       <div
-        className={styles.xCarouselArrowsAndViewportContainer}
+        className={`
+          ${styles.xCarouselArrowsAndViewportContainer}
+          ${parentStyles ? parentStyles.xCarouselArrowsAndViewportContainer : ""}
+        `}
       >
 
         {
