@@ -40,6 +40,9 @@ export default function InfoAndDiagramPopUp({
         setNewActiveIndex={setNewActiveIndex}
         handleBack={() => decrementActiveIndex()}
         handleNext={() => incrementActiveIndex()}
+        isCarouselDisplayed={isActive}
+        fitToParent={true}
+        // matchElementAndViewportWidths={true}
         enableArrowControls={true}
         enableSelectorControls={true}
         parentStyles={styles}

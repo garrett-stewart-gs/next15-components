@@ -13,7 +13,7 @@ import HorizontalCarouselIndexSelectorControls from "./HorizontalCarouselIndexSe
 
 
 import fitToChildStyles from "./HorizontalCarouselWrapperFitChild.module.css";
-import fitToParentStyles from "./HorizontalCarouselWrapperFitParent.module.css"
+import fitToParentStyles from "./HorizontalCarouselWrapperFitParent.module.css";
 
 // handleBack and handleNext pass current array information to parent, allowing you to give custom instructions to the carousel
 // (activeIndex is react state initialized in the carousel wrapper)
@@ -26,6 +26,7 @@ export default function HorizontalCarouselWrapper({
   setNewActiveIndex = null,
   handleBack = null,
   handleNext = null,
+  isCarouselDisplayed = true, // pass boolean state in here. allows --viewport-width property to be re-calculated when carousel is changed from hidden to visible 
   enableArrowControls = false, // toggles left/right arrow buttons for incrementing/decrementing the carousel position
   enableSelectorControls = false, // toggles index selector icons for selecting a specific carousel element to display
   fitToParent = false, // toggles whether carousel grows to its parent element size OR shrinks to its children element size
@@ -84,6 +85,25 @@ export default function HorizontalCarouselWrapper({
   // tracks which carousel elements are inside the viewport, and applies .active class
   // elements without .active class have max-height limited to 0;
   useViewportVisibilityTracker(childrenArr, viewportRef, childRefs, styles, 0.1);
+
+  // tracks if carousel is toggled from hidden to displayed, and updates viewport width property accordingly
+  useEffect(
+    () => {
+
+      if(fitToParent && !matchElementAndViewportWidths && !isCarouselDisplayed) return;
+      
+      setTimeout(()=>{
+        const viewportElement = viewportRef.current;
+        const viewportWidth = viewportElement.clientWidth;
+        const viewportStyle = getComputedStyle(viewportElement);
+        const inlinePadding = parseFloat(viewportStyle.paddingInline);
+
+        viewportRef.current.style.setProperty('--viewport-width', `${viewportWidth - 2*inlinePadding}px`);
+      }, 300)
+
+    },
+    [isCarouselDisplayed]
+  );
 
   return (
     <main

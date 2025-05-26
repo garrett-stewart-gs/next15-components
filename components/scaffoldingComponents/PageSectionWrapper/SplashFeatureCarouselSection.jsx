@@ -17,7 +17,8 @@ export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
         fitToParent={true}
         matchElementAndViewportWidths={true}
         enableArrowControls={true}
-        disableAdaptiveHeight={true}
+        // enableSelectorControls={true}
+        // disableAdaptiveHeight={true}
       >
         {
 
