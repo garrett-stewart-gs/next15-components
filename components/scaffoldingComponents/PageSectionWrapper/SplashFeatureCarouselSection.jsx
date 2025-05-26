@@ -1,13 +1,21 @@
+"use client";
 
+import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 
 import HorizontalCarouselWrapper from "../HorizontalCarouselWrapper";
-
 import PageSectionWrapper from ".";
 import ArticleFeatureMessageWithImage from "../ArticleWrapper/ArticleFeatureMessageWithImage";
 
 import styles from "./SplashFeatureCarouselSection.module.css";
 
 export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
+
+  const {
+    activeIndex,
+    incrementActiveIndex,
+    decrementActiveIndex,
+    setNewActiveIndex,
+  } = useActiveIndex(splashFeatureArrObj.length);
 
   return (
     <PageSectionWrapper parentStyles={styles}>
@@ -17,7 +25,11 @@ export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
         fitToParent={true}
         matchElementAndViewportWidths={true}
         enableArrowControls={true}
-        // enableSelectorControls={true}
+        parentActiveIndexState={activeIndex}
+        handleBack={()=>decrementActiveIndex(true)}
+        handleNext={()=>incrementActiveIndex(true)}
+        setNewActiveIndex={setNewActiveIndex}
+        enableSelectorControls={true}
         // disableAdaptiveHeight={true}
       >
         {
