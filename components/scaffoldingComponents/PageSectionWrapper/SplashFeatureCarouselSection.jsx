@@ -30,7 +30,7 @@ export default function SplashFeatureCarouselSection({ splashFeatureArrObj }) {
         handleNext={()=>incrementActiveIndex(true)}
         setNewActiveIndex={setNewActiveIndex}
         enableSelectorControls={true}
-        // disableAdaptiveHeight={true}
+        disableAdaptiveHeight={true}
       >
         {
 

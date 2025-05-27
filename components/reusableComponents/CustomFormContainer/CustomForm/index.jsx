@@ -89,6 +89,8 @@ export default function CustomForm() {
   // extract the form sections that have a shouldRender function that returns true
   const activeSectionsArr = formConfigArr.filter(sectionObj => sectionObj.shouldRenderFn && sectionObj.shouldRenderFn());
 
+  console.log('active sections array: ', activeSectionsArr)
+
   const {
     activeIndex,
     incrementActiveIndex,
@@ -120,10 +122,16 @@ export default function CustomForm() {
         parentActiveIndexState={activeIndex}
         handleBack={formBack}
         handleNext={formNext}
+        // enableArrowControls={true}
+        fitToParent={true}
+        // matchElementAndViewportWidths={true}
       >
         {
 
-          activeSectionsArr.map((sectionObj, index) => <CustomFormSection key={`${formName} form section ${index}`} sectionObj={sectionObj} />)
+          activeSectionsArr.map((sectionObj, index) => {
+            console.log('sectionObj: ', sectionObj)
+            return <CustomFormSection key={`${formName} form section ${index}`} sectionObj={sectionObj} />;
+          })
 
         }
         <FormSubmissionResultsSection />

@@ -53,7 +53,7 @@
 
 /* subtracting 4em for button controls and 5em for padding */
 .xCarouselElement.matchesViewportWidth {
-  width: var(--viewport-width);
+  min-width: var(--viewport-width);
 }
 
 .xCarouselElement:not(.active) {
@@ -64,18 +64,20 @@
   opacity: 1;
 }
 
-/* .xCarouselElement.adaptiveHeight:not(.active) {
+.xCarouselElement.adaptiveHeight:not(.active) {
   min-height: 1px;
   max-height: 1px;
 }
+
+/* 
 
 .xCarouselElement:first-child:not(.active) {
   min-height: fit-content;
   max-height: fit-content;
 } */
 
-.xCarouselArrowsAndViewportContainer>*:first-child,
-.xCarouselArrowsAndViewportContainer>*:last-child {
+.xCarouselArrowsAndViewportContainer>svg:first-child,
+.xCarouselArrowsAndViewportContainer>svg:last-child {
   flex-shrink: 0;
   width: 1.5em;
   margin-inline: 0.5em;

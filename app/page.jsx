@@ -11,7 +11,7 @@ import TestimonialCardSection from "@/components/scaffoldingComponents/PageSecti
 import LogoShowcaseSection from "@/components/scaffoldingComponents/PageSectionWrapper/LogoShowcaseSection";
 import FaqsSearchableSection from "@/components/scaffoldingComponents/PageSectionWrapper/FaqsSearchableSection";
 import NumberedDescriptiveLinkItemsSection from "@/components/scaffoldingComponents/PageSectionWrapper/NumberedDescriptiveLinkItemsSection";
-
+import CustomFormPageSection from "@/components/scaffoldingComponents/PageSectionWrapper/CustomFormPageSection";
 
 import image from "@/public/icons/email-received-icon.svg";
 import image2 from "@/public/icons/email-remove-delete-icon.svg";
@@ -306,6 +306,9 @@ export default function Home() {
       />
 
       <FaqsSearchableSection faqsArrObj={faqsArrObj} />
+
+      <CustomFormPageSection />
+
 
     </main>
   );

@@ -58,12 +58,14 @@
 
 .popUpWindowWrapper .xCarouselElement>.textStyleWrapper {
   justify-content: center;
-  height: 100%;
+  width: 100%;
+  min-width: 21em;
   aspect-ratio: 16/9;
 }
 
 .popUpWindowWrapper .xCarouselElement>.imageWrapper {
-  height: 100%;
+  width: 100%;
+  min-width: 21em;
   aspect-ratio: 16/9;
 }
 

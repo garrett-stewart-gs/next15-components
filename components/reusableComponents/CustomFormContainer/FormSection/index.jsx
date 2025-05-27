@@ -1,5 +1,7 @@
 "use client";
 
+
+import TextStyleWrapper from "@/components/scaffoldingComponents/TextStyleWrapper";
 import CustomTextInput from "../singleInputs/CustomTextInput";
 import CustomMultiDigitInput from "../multipleInputs/CustomMultiDigitInput";
 import CustomRadioInput from "../multipleInputs/CustomRadioInput";
@@ -23,10 +25,11 @@ export default function CustomFormSection({ sectionObj }) {
       <main
         className={styles.formSection}
       >
-        <div className={styles.formSectionTitleContainer}>
-          {sectionTitle && <h3>{sectionTitle}</h3>}
-          {sectionSubTitle && <h4>{sectionSubTitle}</h4>}
-        </div>
+        <TextStyleWrapper parentStyles={styles}>
+          {sectionTitle && <h5>{sectionTitle}</h5>}
+          {sectionSubTitle && <h6>{sectionSubTitle}</h6>}
+        </TextStyleWrapper>
+     
 
         {
           sectionInputsArr.map((inputObj, index) => {

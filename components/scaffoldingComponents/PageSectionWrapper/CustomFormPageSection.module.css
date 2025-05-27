@@ -1,0 +1,8 @@
+.pageSectionWrapper {
+  padding-inline: 0;
+  flex-direction: column;
+}
+
+.pageSectionWrapper>.textStyleWrapper {
+  padding-inline: 1.25em;
+}
