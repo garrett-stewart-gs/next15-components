@@ -6,6 +6,8 @@ import { useActiveIndex } from "@/utils/hooks/useActiveIndex";
 import HorizontalCarouselWrapper from "../../../scaffoldingComponents/HorizontalCarouselWrapper";
 import CustomFormSection from "../FormSection";
 import FormSubmissionResultsSection from "../FormSubmissionResultsSection";
+import FormButton from "../../Buttons/FormButton";
+
 
 import styles from "./CustomForm.module.css";
 
@@ -135,13 +137,13 @@ export default function CustomForm() {
 
       <div className={styles.customFormButtonsContainer}>
         {
-          activeIndex !== 0 && activeIndex !== numberOfItems - 1 && < button type="button" onClick={formBack}>Back</button>
+          activeIndex !== 0 && activeIndex !== numberOfItems - 1 && <FormButton buttonText={"Back"} onClick={formBack} />
         }
         {
-          activeIndex < numberOfItems - 2 && <button type="button" onClick={formNext}>Next</button>
+          activeIndex < numberOfItems - 2 && <FormButton buttonText={"Next"} onClick={formNext} />
         }
         {
-          activeIndex === numberOfItems - 2 && <button type="button" onClick={formNext}>Submit</button>
+          activeIndex === numberOfItems - 2 && <FormButton buttonText={"Submit"} onClick={formNext} />
         }
       </div>
 

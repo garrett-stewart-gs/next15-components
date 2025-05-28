@@ -1,8 +1,9 @@
-.linkButton {
+.formButton {
   font-size: var(--ref-size);
   height: 3.5em;
-  min-width: 14em;
-  width: 14em;
+  /* min-width: 14em;
+  width: 14em; */
+  flex: 0 1 14em;
   text-decoration: none;
   display: flex;
   justify-self: center;
@@ -15,14 +16,14 @@
   transition: all linear 0.15s;
 }
 
-.linkButton:hover {
+.formButton:hover {
   border: none;
   background-color: var(--primary-color);
   box-shadow: 0 0 1.25em var(--primary-shade);
   transform: scale(1.05);
 }
 
-.linkButton>p {
+.formButton>p {
   margin-inline: auto;
   font-size: var(--h4-size);
   font-weight: var(--bold-weight);
@@ -30,6 +31,6 @@
   transition: all linear 0.15s;
 }
 
-.linkButton:hover>p {
+.formButton:hover>p {
   color: var(--tertiary-shade);
 }

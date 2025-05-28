@@ -6,3 +6,7 @@
 .pageSectionWrapper>.textStyleWrapper {
   padding-inline: 1.25em;
 }
+
+.pageSectionWrapper>.textStyleWrapper>p {
+  font-size: var(--h5-size);
+}
